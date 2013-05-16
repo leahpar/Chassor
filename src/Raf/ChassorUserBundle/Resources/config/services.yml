@@ -1,0 +1,7 @@
+parameters:
+#    chassor.example.class: Raf\ChassorBundle\Example
+
+services:
+#    chassor.example:
+#        class: %chassor.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

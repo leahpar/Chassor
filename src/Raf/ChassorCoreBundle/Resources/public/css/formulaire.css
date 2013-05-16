@@ -1,0 +1,56 @@
+
+fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+}
+ 
+legend {
+    padding: 0px 3px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+ 
+label {
+    width: 150px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+}
+ 
+input:focus, textarea:focus {
+    background: #eaeaea;
+}
+ 
+input, textarea {
+    width: 300px;
+}
+textarea {
+    margin-bottom: 5px;
+}
+ 
+textarea {
+    height: 100px;
+}
+ 
+select, .select2-container {
+    width: 300px;
+}
+ 
+input[type=checkbox] {
+    width: 10px;
+}
+ 
+input[type=submit] {
+    width: 150px;
+    padding: 10px;
+}
+
+.required:after {
+    content : "*";
+    color : red;
+    font-size : 12px;
+}
+
+#contenu {
+    margin : 100px;
+}
