@@ -1,0 +1,207 @@
+<?php
+
+namespace Raf\ChassorCoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Enigme
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Raf\ChassorCoreBundle\Entity\EnigmeRepository")
+ */
+class Enigme
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date")
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=255)
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reponses", type="string")
+     */
+    private $reponses;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     * @return Enigme
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string 
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set layout
+     *
+     * @param string $layout
+     * @return Enigme
+     */
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
+    
+        return $this;
+    }
+
+    /**
+     * Get layout
+     *
+     * @return string 
+     */
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Enigme
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Enigme
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return Enigme
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * Set reponses
+     *
+     * @param array $reponses
+     * @return Enigme
+     */
+    public function setReponses($reponses)
+    {
+        $this->reponses = $reponses;
+    
+        return $this;
+    }
+
+    /**
+     * Get reponses
+     *
+     * @return array 
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
+    }
+}

@@ -1,0 +1,35 @@
+
+index:
+    pattern:  /
+    defaults: { _controller: ChassorCoreBundle:Default:index }
+index2:
+    pattern:  /index
+    defaults: { _controller: ChassorCoreBundle:Default:index }
+
+apropos:
+    pattern:  /apropos
+    defaults: { _controller: ChassorCoreBundle:Default:apropos }
+
+
+
+
+
+enigmes:
+    pattern:  /enigmes
+    defaults: { _controller: ChassorCoreBundle:Enigme:enigmes }
+
+banque:
+    pattern:  /banque
+    defaults: { _controller: ChassorCoreBundle:Banque:lister }
+
+
+
+enigme:
+    path:      /enigme-{code}
+    defaults:  { _controller: ChassorCoreBundle:Enigme:enigme }
+
+
+enigmeImage:
+    path:      /enigmes/{code}-{image_id}.jpg
+    defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeImage }
+        
