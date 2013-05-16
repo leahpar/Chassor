@@ -1,0 +1,13 @@
+{%extends "ChassorCoreBundle::layout.html.twig" %}
+
+
+{% block body %}
+
+{% for e in enigmes %}
+<div>
+<a href="enigme-A1">{{ e.enigme.code }} - {{ e.enigme.titre }}</a>
+</div>
+{% endfor %}
+
+
+{% endblock %}
