@@ -37,6 +37,20 @@ class Chassor extends BaseUser
     private $actif = 0;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="text", nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=20, nullable=true)
+     */
+    private $tel;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -90,5 +104,51 @@ class Chassor extends BaseUser
     public function getActif()
     {
         return $this->actif;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     * @return Chassor
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+    
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string 
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     * @return Chassor
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string 
+     */
+    public function getTel()
+    {
+        return $this->tel;
     }
 }
