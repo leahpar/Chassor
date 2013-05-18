@@ -2,19 +2,31 @@
 
 
 {% block enigme %}
-<h1>Enigme A1</h1>
-<h2>Vieille photo</h2>
-<a href="{{ path('enigmeImage', {code: enigme.code, image_id: '1'}) }}" rel="lightbox" title="aze">
-<img src="{{ path('enigmeImage', {code: enigme.code, image_id: '1b'}) }}" class="img-polaroid" alt="Enigme A1" />
-</a>
+
+<div>
+    <a href="{{ path('enigmeImage', {code: enigme.code, image_id: '1'}) }}" rel="lightbox" title="aze">
+    <img src="{{ path('enigmeImage', {code: enigme.code, image_id: '1b'}) }}" class="img-polaroid" alt="Enigme A1" />
+    </a>
+</div>
 
 <form method="post">
-<div>
-    <label for="question" class="required">Combien de livre contient cette photo ?</label>
-    <input type="text" id="question" name="reponse" required="required" maxlength="255" />
-</div>
-<div>
-    <input type="submit" value="Valider" class="btn btn-primary" />
-</div>
+    <div>
+        <label for="question" class="required">Combien de livre contient cette photo ?</label>
+        <input type="text" id="question" name="reponse" required="required" maxlength="255"
+        {% if proposition.valide %}
+        value="{{ proposition.reponse }}" readonly
+        {% endif %}
+        />
+    </div>
+    <div>
+        {% if not proposition.valide %}
+        <input type="submit" value="Valider" class="btn btn-primary" /><br/>
+        {% if enigme.delai > 0 %}
+        <p>Attention : il y a un délai de {{ enigme.delai }} heure(s) entre chaque proposition !</p>
+        {% endif %}
+        {% endif %}
+        <p></p>
+    </div>
 </form>
+
 {% endblock %}

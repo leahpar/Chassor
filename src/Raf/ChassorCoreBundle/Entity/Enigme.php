@@ -55,6 +55,19 @@ class Enigme
      * @ORM\Column(name="reponses", type="string")
      */
     private $reponses;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="delai", type="integer")
+     */
+    private $delai = 0;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $depend;
 
 
     /**
@@ -203,5 +216,74 @@ class Enigme
     public function getReponses()
     {
         return $this->reponses;
+    }
+
+    /**
+     * Set tentative
+     *
+     * @param integer $tentative
+     * @return Enigme
+     */
+    public function setTentative($tentative)
+    {
+        $this->tentative = $tentative;
+    
+        return $this;
+    }
+
+    /**
+     * Get tentative
+     *
+     * @return integer 
+     */
+    public function getTentative()
+    {
+        return $this->tentative;
+    }
+
+    /**
+     * Set delai
+     *
+     * @param integer $delai
+     * @return Enigme
+     */
+    public function setDelai($delai)
+    {
+        $this->delai = $delai;
+    
+        return $this;
+    }
+
+    /**
+     * Get delai
+     *
+     * @return integer 
+     */
+    public function getDelai()
+    {
+        return $this->delai;
+    }
+
+    /**
+     * Set depend
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Enigme $depend
+     * @return Enigme
+     */
+    public function setDepend(\Raf\ChassorCoreBundle\Entity\Enigme $depend = null)
+    {
+        $this->depend = $depend;
+    
+        return $this;
+    }
+
+    /**
+     * Get depend
+     *
+     * @return \Raf\ChassorCoreBundle\Entity\Enigme 
+     */
+    public function getDepend()
+    {
+        return $this->depend;
     }
 }
