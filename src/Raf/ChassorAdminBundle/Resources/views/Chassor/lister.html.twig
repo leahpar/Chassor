@@ -1,0 +1,26 @@
+{% extends "ChassorAdminBundle::admin-layout.html.twig" %}
+ 
+{% block body %}
+
+<h1>Les chassors</h1>
+
+<table class="table table-striped table-hover table-condensed table-bordered">
+<thead>
+<tr>
+    <th>Pseudo</th>
+    <th>Email</th>
+    <th>Compte</th>
+</tr>
+</thead>
+<tbody>
+{% for chassor in liste %}
+<tr>
+    <td>{{ chassor.username }}</td>
+    <td>{{ chassor.email }}</td>
+    <td>{{ chassor.Compte }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+ 
+{% endblock %}
