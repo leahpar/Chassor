@@ -14,7 +14,7 @@ class ChassorEnigme
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Raf\ChassorBundle\Entity\Chassor")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorUserBundle\Entity\Chassor")
      */
     private $chassor;
 
@@ -34,7 +34,7 @@ class ChassorEnigme
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
@@ -45,7 +45,13 @@ class ChassorEnigme
      */
     private $tentative = 0;
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valide", type="boolean")
+     */
+    private $valide = false;
+    
     
 
     /**
@@ -161,5 +167,28 @@ class ChassorEnigme
     public function getEnigme()
     {
         return $this->enigme;
+    }
+
+    /**
+     * Set valide
+     *
+     * @param boolean $valide
+     * @return ChassorEnigme
+     */
+    public function setValide($valide)
+    {
+        $this->valide = $valide;
+    
+        return $this;
+    }
+
+    /**
+     * Get valide
+     *
+     * @return boolean 
+     */
+    public function getValide()
+    {
+        return $this->valide;
     }
 }
