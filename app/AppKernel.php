@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Raf\ChassorUserBundle\ChassorUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new Raf\ChassorAdminBundle\ChassorAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
