@@ -1,0 +1,24 @@
+admin_accueil:
+    pattern:  /
+    defaults: { _controller: ChassorAdminBundle:AdminChassor:lister }
+
+admin_enigme_lister:
+    pattern:  /enigmes
+    defaults: { _controller: ChassorAdminBundle:AdminEnigme:lister }
+
+admin_enigme_ajouter:
+    pattern:  /enigme-ajout
+    defaults: { _controller: ChassorAdminBundle:AdminEnigme:ajouter }
+
+admin_enigme_modifier:
+    pattern:  /enigmes/{id}
+    defaults: { _controller: ChassorAdminBundle:AdminEnigme:modifier }
+
+admin_transaction_lister:
+    pattern:  /transactions
+    defaults: { _controller: ChassorAdminBundle:AdminTransaction:lister }
+    
+admin_chassor_lister:
+    pattern:  /chassors
+    defaults: { _controller: ChassorAdminBundle:AdminChassor:lister }
+    
