@@ -38,21 +38,21 @@ class Enigme
     /**
      * @var string
      *
-     * @ORM\Column(name="message", type="string", length=255)
+     * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
-    private $message;
+    private $commentaire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=10)
      */
     private $code;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reponses", type="string")
+     * @ORM\Column(name="reponses", type="string", length=255, nullable=true)
      */
     private $reponses;
     
@@ -69,7 +69,12 @@ class Enigme
      */
     private $depend;
 
-
+    
+    public function __construct()
+    {
+        $this->date = new \Datetime('2013-07-01');
+    }
+    
     /**
      * Get id
      *
@@ -147,29 +152,6 @@ class Enigme
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set message
-     *
-     * @param string $message
-     * @return Enigme
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-    
-        return $this;
-    }
-
-    /**
-     * Get message
-     *
-     * @return string 
-     */
-    public function getMessage()
-    {
-        return $this->message;
     }
 
     /**
@@ -262,5 +244,51 @@ class Enigme
     public function getDelai()
     {
         return $this->delai;
+    }
+
+    /**
+     * Set depend
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Enigme $depend
+     * @return Enigme
+     */
+    public function setDepend(\Raf\ChassorCoreBundle\Entity\Enigme $depend = null)
+    {
+        $this->depend = $depend;
+    
+        return $this;
+    }
+
+    /**
+     * Get depend
+     *
+     * @return \Raf\ChassorCoreBundle\Entity\Enigme 
+     */
+    public function getDepend()
+    {
+        return $this->depend;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Enigme
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string 
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

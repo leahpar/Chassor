@@ -1,3 +1,7 @@
+chassor_admin:
+    resource: "@ChassorAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 core:
     resource: "@ChassorCoreBundle/Resources/config/routing.yml"
     prefix:   /
