@@ -34,7 +34,7 @@ class ChassorEnigme
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
@@ -45,7 +45,13 @@ class ChassorEnigme
      */
     private $tentative = 0;
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valide", type="boolean")
+     */
+    private $valide = false;
+    
     
 
     /**
@@ -120,10 +126,10 @@ class ChassorEnigme
     /**
      * Set chassor
      *
-     * @param \Raf\ChassorBundle\Entity\Chassor $chassor
+     * @param \Raf\ChassorUserBundle\Entity\Chassor $chassor
      * @return ChassorEnigme
      */
-    public function setChassor(\Raf\ChassorBundle\Entity\Chassor $chassor)
+    public function setChassor(\Raf\ChassorUserBundle\Entity\Chassor $chassor)
     {
         $this->chassor = $chassor;
     
@@ -133,7 +139,7 @@ class ChassorEnigme
     /**
      * Get chassor
      *
-     * @return \Raf\ChassorBundle\Entity\Chassor 
+     * @return \Raf\ChassorUserBundle\Entity\Chassor 
      */
     public function getChassor()
     {
@@ -161,5 +167,28 @@ class ChassorEnigme
     public function getEnigme()
     {
         return $this->enigme;
+    }
+
+    /**
+     * Set valide
+     *
+     * @param boolean $valide
+     * @return ChassorEnigme
+     */
+    public function setValide($valide)
+    {
+        $this->valide = $valide;
+    
+        return $this;
+    }
+
+    /**
+     * Get valide
+     *
+     * @return boolean 
+     */
+    public function getValide()
+    {
+        return $this->valide;
     }
 }

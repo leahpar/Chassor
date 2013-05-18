@@ -5,7 +5,7 @@
 
 {% for e in enigmes %}
 <div>
-<a href="enigme-A1">{{ e.enigme.code }} - {{ e.enigme.titre }}</a>
+<a href="enigme-{{ e.enigme.code }}">{{ e.enigme.code }} - {{ e.enigme.titre }}</a>
 </div>
 {% endfor %}
 
