@@ -25,6 +25,9 @@ class EnigmeType extends AbstractType
                                                    'class' => 'ChassorCoreBundle:Enigme',
                                                    'property' => 'code',
                                                    'attr' => array('class' => 'myselect2')))
+            ->add('difficulte',  'choice', array('choices' => array('N1' => 'Niveau 1',
+                                                                    'N2' => 'Niveau 2',
+                                                                    'N3' => 'Niveau 3')))
         ;
     }
 

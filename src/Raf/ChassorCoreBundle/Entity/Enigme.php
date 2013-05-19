@@ -64,6 +64,13 @@ class Enigme
     private $delai = 0;
     
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="difficulte", type="integer")
+     */
+    private $difficulte = 2;
+    
+    /**
      * @ORM\OneToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -290,5 +297,28 @@ class Enigme
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set difficulte
+     *
+     * @param integer $difficulte
+     * @return Enigme
+     */
+    public function setDifficulte($difficulte)
+    {
+        $this->difficulte = $difficulte;
+    
+        return $this;
+    }
+
+    /**
+     * Get difficulte
+     *
+     * @return integer 
+     */
+    public function getDifficulte()
+    {
+        return $this->difficulte;
     }
 }

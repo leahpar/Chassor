@@ -14,6 +14,7 @@
     <th>Commentaire</th>
     <th>Réponses</th>
     <th>Délai</th>
+    <th>Difficulté</th>
     <th></th>
 </tr>
 </thead>
@@ -26,6 +27,7 @@
     <td>{{ enigme.commentaire|nl2br }}</td>
     <td>{{ enigme.reponses }}</td>
     <td>{{ enigme.delai }}</td>
+    <td>{{ enigme.difficulte }}</td>
     <td>
         <a class="btn" href="{{ path('admin_enigme_modifier',  {'id': enigme.id }) }}"><i class="icon-pencil" title="modifier"></i></a>
     </td>
