@@ -15,3 +15,8 @@
 /.settings/
 /.buildpath
 
+# fichiers vim
+*~
+*.swp
+*.swo
+
