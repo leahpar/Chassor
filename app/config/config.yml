@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -71,8 +72,10 @@ fos_user:
         mailer: fos_user.mailer.twig_swift
     # Permet de renseigner le nouveau formulaire d'inscription
     registration:
+        form:
+            type: chassor_user_registration
         confirmation:
-            enabled:    true
+            enabled:    false
             from_email:
                 address:        noreply@chassor.com
                 sender_name:    Chassor
@@ -83,3 +86,22 @@ liip_imagine:
         F1:
             filters:
                 thumbnail: { size: [250, 250], mode: outbound }
+
+# PaypalIpnBundle Configuration
+orderly_pay_pal_ipn:
+    # If set to false then service loads settings with "sandbox_" prefix
+    islive:  false
+    # Constants for the live environment (default settings in Configuration.php)
+    email:   sales@CHANGEME.com
+    url:     https://www.paypal.com/cgi-bin/webscr
+    debug:   %kernel.debug%
+    # Constants for the sandbox environment (default settings in Configuration.php)
+    sandbox_email:   system_CHANGEME_biz@CHANGEME.com
+    sandbox_url:     https://www.sandbox.paypal.com/cgi-bin/webscr
+    sandbox_debug:   true
+    # ORM
+    drivers:
+        orm:
+            object_manager: doctrine.orm.entity_manager
+            classes: ~
+                

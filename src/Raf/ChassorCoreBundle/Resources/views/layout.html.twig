@@ -35,13 +35,18 @@
               {% endif %}
             </p>
             <ul class="nav">
-              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              <li ><a href="{{ path('admin_accueil') }}">Admin</a></li>
-              {% endif %}
               {% if is_granted("ROLE_CHASSOR") %}
+              <li class="divider-vertical"></li>
               <li {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}><a href="{{ path('enigmes') }}">Mes enigmes</a></li>
               <li {% if app.request.attributes.get('_route') == 'banque'  %}class="active"{% endif %}><a href="{{ path('banque') }}">Ma banque</a></li>
               {% endif %}
+              {% if is_granted("ROLE_ADMIN") %}
+              <li class="divider-vertical"></li>
+              <li {% if app.request.attributes.get('_route') == 'admin_chassor_lister'     %}class="active"{% endif %}><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
+              <li {% if app.request.attributes.get('_route') == 'admin_enigme_lister'      %}class="active"{% endif %}><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
+              <li {% if app.request.attributes.get('_route') == 'admin_transaction_lister' %}class="active"{% endif %}><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
+              {% endif %}
+              <li class="divider-vertical"></li>
               <li {% if app.request.attributes.get('_route') == 'apropos' %}class="active"{% endif %}><a href="{{ path('apropos') }}">A propos</a></li>
             </ul>
           </div><!--/.nav-collapse -->
