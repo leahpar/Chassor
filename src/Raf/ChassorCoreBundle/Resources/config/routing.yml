@@ -1,4 +1,6 @@
 
+#-- pages diverses -----------------------------
+
 index:
     pattern:  /
     defaults: { _controller: ChassorCoreBundle:Default:index }
@@ -13,23 +15,26 @@ apropos:
 
 
 
+#-- Les enigmes -----------------------------
 
 enigmes:
     pattern:  /enigmes
     defaults: { _controller: ChassorCoreBundle:Enigme:enigmes }
 
-banque:
-    pattern:  /banque
-    defaults: { _controller: ChassorCoreBundle:Banque:lister }
-
-
-
 enigme:
     path:      /enigme-{code}
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigme }
 
-
 enigmeImage:
     path:      /enigmes/{code}-{image_id}.jpg
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeImage }
-        
+
+#-- La banque -----------------------------
+
+banque:
+    pattern:  /banque
+    defaults: { _controller: ChassorCoreBundle:Banque:lister }
+
+retour_paiement:
+    pattern:  /ipn/retour-paiement-42-{user}-{trans}-{tt}
+    defaults: { _controller: ChassorCoreBundle:Banque:retourPaiement }

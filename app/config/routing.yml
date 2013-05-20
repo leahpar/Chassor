@@ -30,3 +30,9 @@ fos_user_change_password:
 _imagine:
     resource: .
     type:     imagine
+
+#Paypal IPN
+OrderlyPayPalIpnBundleEmail:
+    resource: "@OrderlyPayPalIpnBundle/Controller/NoNotificationController.php"
+    type:     annotation
+    prefix:   /ipn/

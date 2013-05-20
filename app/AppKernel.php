@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Raf\ChassorAdminBundle\ChassorAdminBundle(),
+            new Orderly\PayPalIpnBundle\OrderlyPayPalIpnBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,21 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <p>Bienvenue {{ user.username }}, votre compte est créé.</p>
+    <p>Pour finaliser votre inscription, il faut payer !</p>
+
+    
+    <script src="{{ asset('js/paypal-button.min.js') }}?merchant=truazeazec@bidule.com"
+        data-button="buynow"
+        data-name="Inscription"
+        data-amount="5.00"
+        data-currency="EUR"
+        data-locale="fr_FR"
+        data-callback="toto.com/ipn"
+        data-env="sandbox"
+    ></script>
+    
+    
+{% endblock fos_user_content %}
