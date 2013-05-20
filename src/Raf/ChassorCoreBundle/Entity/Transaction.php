@@ -48,6 +48,13 @@ class Transaction
      * @ORM\Column(name="date", type="date")
      */
     private $date;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etat", type="integer")
+     */
+    private $etat = 0;
 
 
     /**
@@ -150,5 +157,28 @@ class Transaction
     public function getChassor()
     {
         return $this->chassor;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param integer $etat
+     * @return Transaction
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return integer 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
     }
 }

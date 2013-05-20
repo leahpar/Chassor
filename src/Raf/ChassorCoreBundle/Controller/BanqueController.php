@@ -4,8 +4,12 @@ namespace Raf\ChassorCoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Raf\ChassorUserBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\Transaction;
+
 # Securite
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Response;
 
 class BanqueController extends Controller
 {
@@ -26,4 +30,23 @@ class BanqueController extends Controller
                 'transactions' => $transactions
             ));
     }
+    /*
+     * @ParamConverter("user",  options={"mapping": {"user":  "id"}})
+     * @ParamConverter("trans", options={"mapping": {"trans": "id"}})
+     */
+    public function retourPaiementAction(Chassor $user, Transaction $trans, $tt)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $transaction = $em->getRepository('ChassorCoreBundle:Transaction')
+                          ->findOneBy(array('chassor' => $user, 'id' => $trans->getId()));
+        if ($transaction != null)
+        {
+            $transaction->setEtat($tt);
+            $em->persist($transaction);
+            $em->flush();
+        }
+        return new Response("OK", 200);
+    }
+    
+        
 }

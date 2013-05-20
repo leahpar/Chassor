@@ -39,17 +39,24 @@ class Chassor extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="text", nullable=true)
+     * @ORM\Column(name="nom", type="text", type="string", length=255)
      */
-    private $adresse;
+    private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tel", type="string", length=20, nullable=true)
+     * @ORM\Column(name="prenom", type="text", type="string", length=255)
      */
-    private $tel;
-    
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="text")
+     */
+    private $adresse;
+
     /**
      * Get id
      *
@@ -150,5 +157,51 @@ class Chassor extends BaseUser
     public function getTel()
     {
         return $this->tel;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Chassor
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     * @return Chassor
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string 
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
     }
 }
