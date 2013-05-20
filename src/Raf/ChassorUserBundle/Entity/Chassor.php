@@ -4,6 +4,7 @@ namespace Raf\ChassorUserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
+use Raf\ChassorCoreBundle\Entity\Indice;
 
 /**
  * Chassor
@@ -56,6 +57,13 @@ class Chassor extends BaseUser
      * @ORM\Column(name="adresse", type="text")
      */
     private $adresse;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Indice")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $indices;
+    
 
     /**
      * Get id
@@ -203,5 +211,45 @@ class Chassor extends BaseUser
     public function getPrenom()
     {
         return $this->prenom;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->indices = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add indices
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Indice $indices
+     * @return Chassor
+     */
+    public function addIndice(\Raf\ChassorCoreBundle\Entity\Indice $indices)
+    {
+        $this->indices[] = $indices;
+    
+        return $this;
+    }
+
+    /**
+     * Remove indices
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Indice $indices
+     */
+    public function removeIndice(\Raf\ChassorCoreBundle\Entity\Indice $indices)
+    {
+        $this->indices->removeElement($indices);
+    }
+
+    /**
+     * Get indices
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIndices()
+    {
+        return $this->indices;
     }
 }

@@ -29,6 +29,18 @@ enigmeImage:
     path:      /enigmes/{code}-{image_id}.jpg
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeImage }
 
+
+#-- Les indices -----------------------------
+
+indices:
+    pattern:  /indices
+    defaults: { _controller: ChassorCoreBundle:Indice:indices }
+
+indice:
+    path:      /indice-{code}
+    defaults:  { _controller: ChassorCoreBundle:incide:indice }
+
+
 #-- La banque -----------------------------
 
 banque:
