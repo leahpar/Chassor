@@ -3,11 +3,10 @@
 
 {% block body %}
 
+<ul>
 {% for e in enigmes %}
-<div>
-<a href="enigme-{{ e.enigme.code }}">{{ e.enigme.code }} - {{ e.enigme.titre }}</a>
-</div>
+<li><a href="enigme-{{ e.enigme.code }}">{{ e.enigme.code }} - {{ e.enigme.titre }}</a></li>
 {% endfor %}
-
+</ul>
 
 {% endblock %}

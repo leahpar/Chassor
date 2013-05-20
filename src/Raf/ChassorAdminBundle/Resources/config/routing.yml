@@ -14,6 +14,18 @@ admin_enigme_modifier:
     pattern:  /enigmes/{id}
     defaults: { _controller: ChassorAdminBundle:AdminEnigme:modifier }
 
+admin_indice_lister:
+    pattern:  /indices
+    defaults: { _controller: ChassorAdminBundle:AdminIndice:lister }
+
+admin_indice_ajouter:
+    pattern:  /indice-ajout
+    defaults: { _controller: ChassorAdminBundle:AdminIndice:ajouter }
+
+admin_indice_modifier:
+    pattern:  /indices/{id}
+    defaults: { _controller: ChassorAdminBundle:AdminIndice:modifier }
+
 admin_transaction_lister:
     pattern:  /transactions
     defaults: { _controller: ChassorAdminBundle:AdminTransaction:lister }

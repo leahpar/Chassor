@@ -1,0 +1,12 @@
+{%extends "ChassorCoreBundle::layout.html.twig" %}
+
+
+{% block body %}
+
+<ul>
+{% for i in indices %}
+<li>{{ i.indice ~ i.enigme.code}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
