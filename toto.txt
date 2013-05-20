@@ -1,0 +1,47 @@
+# Generer Bundle
+php app/console generate:bundle
+
+# Generer une entité
+php app/console generate:doctrine:entity
+
+# mettre à jour une entité
+php app/console doctrine:generate:entities ChassorUserBundle:Chassor
+php app/console doctrine:generate:entities ChassorCoreBundle:Enigme
+php app/console doctrine:generate:entities ChassorCoreBundle:Transaction
+php app/console doctrine:generate:entities ChassorCoreBundle:ChassorEnigme
+php app/console doctrine:generate:entities ChassorCoreBundle:Indice
+
+
+
+# generation formulaire
+php app/console doctrine:generate:form ChassorCoreBundle:Enigme
+
+# mise a jour BDD
+php app/console doctrine:schema:update --dump-sql
+php app/console doctrine:schema:update --force
+
+
+
+# Assetic
+php app/console assets:install web --symlink
+
+
+# FOS
+composer.json => "friendsofsymfony/user-bundle": "dev-master"
+php ../composer.phar update friendsofsymfony/user-bundle
+app/AppKernel.php =>     new FOS\UserBundle\FOSUserBundle()
+
+1) Création & activation
+
+php app/console fos:user:create monutilisateur test@example.com motdepasse
+php app/console fos:user:activate monutilisateur
+php app/console fos:user:deactivate monutilisateur
+
+2) Gestion des rôles
+
+php app/console fos:user:promote raf ROLE_ADMIN
+php app/console fos:user:demote testuser ROLE_ADMIN
+
+
+
+php app/console doctrine:generate:entities ChassorBundle:Chassor
