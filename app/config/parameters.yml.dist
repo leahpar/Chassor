@@ -1,0 +1,15 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     chassor
+    database_user:     chassor
+    database_password: chassor
+
+    mailer_transport:  gmail
+    mailer_host:       
+    mailer_user:       xxx
+    mailer_password:   xxx
+
+    locale:            fr
+    secret:            ThisTokenIsNotSoSecretChangeIt
