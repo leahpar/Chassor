@@ -24,7 +24,7 @@ class Transaction
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Raf\ChassorUserBundle\Entity\Chassor")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor")
      */
     private $chassor;
 

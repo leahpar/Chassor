@@ -4,7 +4,7 @@ namespace Raf\ChassorCoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Raf\ChassorUserBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\Transaction;
 
 # Securite

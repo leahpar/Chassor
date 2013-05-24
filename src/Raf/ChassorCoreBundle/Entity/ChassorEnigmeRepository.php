@@ -4,7 +4,7 @@ namespace Raf\ChassorCoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
-use Raf\ChassorUserBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\Chassor;
 
 /**
  * ChassorEnigmeRepository

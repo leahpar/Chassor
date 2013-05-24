@@ -14,7 +14,7 @@ class ChassorEnigme
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Raf\ChassorUserBundle\Entity\Chassor", inversedBy="enigmes")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", inversedBy="enigmes")
      */
     private $chassor;
 
@@ -126,10 +126,10 @@ class ChassorEnigme
     /**
      * Set chassor
      *
-     * @param \Raf\ChassorUserBundle\Entity\Chassor $chassor
+     * @param \Raf\ChassorCoreBundle\Entity\Chassor $chassor
      * @return ChassorEnigme
      */
-    public function setChassor(\Raf\ChassorUserBundle\Entity\Chassor $chassor)
+    public function setChassor(\Raf\ChassorCoreBundle\Entity\Chassor $chassor)
     {
         $this->chassor = $chassor;
     
@@ -139,7 +139,7 @@ class ChassorEnigme
     /**
      * Get chassor
      *
-     * @return \Raf\ChassorUserBundle\Entity\Chassor 
+     * @return \Raf\ChassorCoreBundle\Entity\Chassor 
      */
     public function getChassor()
     {
