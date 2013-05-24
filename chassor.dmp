@@ -1,0 +1,114 @@
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: chassor
+-- ------------------------------------------------------
+-- Server version	5.5.28-1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `Chassor`
+--
+
+LOCK TABLES `Chassor` WRITE;
+/*!40000 ALTER TABLE `Chassor` DISABLE KEYS */;
+INSERT INTO `Chassor` VALUES (1,'raf','raf','raf@chassor.fr','raf@chassor.fr',1,'jyeoto7drdskkook8c8co4wc8gko84k','GNUzJEXdTfnjaXyC57gUq3M05Cevfo9fLJUkaceQaFG5UoKFHh0p0X3Tfv1uR4YX8Cz+6dNTREHQBmWgcc81fw==','2013-05-22 20:13:16',0,0,NULL,NULL,NULL,'a:2:{i:0;s:10:\"ROLE_ADMIN\";i:1;s:12:\"ROLE_CHASSOR\";}',0,NULL,1500,0,'','',''),(2,'test','test','leahpar@gmail.com','leahpar@gmail.com',1,'jr9zw466eyo4cok0wok40sogs0kgcgw','pP+VTSQq6O7SzBGyiGxD6X8evnxW7tHhSL4Hr6NQW6UQ4N58AJm4ietU8P08Tq1jBSgjhDrbQLKesuFxCfRRrg==','2013-05-20 21:41:38',0,0,NULL,NULL,NULL,'a:1:{i:0;s:12:\"ROLE_CHASSOR\";}',0,NULL,0,0,'','',''),(3,'test2','test2','leahpar+1@gmail.com','leahpar+1@gmail.com',1,'3ipris3x2js48o00kwooossoocwkog4','dGkF+hNVxSkos/XDGCLvZ/t5hDneGI+RjfbhTosvCIXNOypgAmyxBPSyIKTh6anTbP7K66eE85MEp5uGjaD/ZA==','2013-05-12 20:07:50',0,0,NULL,'rX6gvjLwhjoso3GuVHr764eTNoJ4nL1vuOg1LDNEHR4',NULL,'a:1:{i:0;s:12:\"ROLE_CHASSOR\";}',0,NULL,0,0,'','',''),(4,'test3','test3','leahpar+2@gmail.com','leahpar+2@gmail.com',1,'isa9g058e2gw0sc040gg84gcgk8gw8c','Ouodw/LSJ64jHRzTTyDtjfCFLEigYDGNkhH43RTgwGEk0KIi9dpHpHECOKTXGknBSDAxt8D/hmhJVwkaFbKMYg==','2013-05-11 00:27:23',0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,0,0,'','',''),(5,'aze','aze','aze@aze.com','aze@aze.com',0,'l4ch1o4fs7k88g4s4swscg40oww4kgg','qBu4pVSIZc8GMmpETIhPnoBPoasbUKmyhmyqcv1EbhRhKIkEuK/uZf51DUgQF9GKA41KySRrwu3FOjrTD/V+dQ==',NULL,0,0,NULL,'ni1pgtSt6g0G2_6wEcxievg4k6nSepJKJWSZtLqGa8Q',NULL,'a:0:{}',0,NULL,0,0,'','',''),(6,'test4','test4','aze2@aze.com','aze2@aze.com',1,'3pru93ndhp0k408kgk8ck8wwso84g8k','4iF10g9ZdgkfO2ZfMHtpsUBKlYBalgIR29Si8oSUOwV9pUqS4R4Ju8Nuq2ywuIXm471qC2ZK5n+OYt8riz6XvQ==','2013-05-19 14:41:16',0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,0,0,'non','patrick','ruque');
+/*!40000 ALTER TABLE `Chassor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `Enigme`
+--
+
+LOCK TABLES `Enigme` WRITE;
+/*!40000 ALTER TABLE `Enigme` DISABLE KEYS */;
+INSERT INTO `Enigme` VALUES (8,'toto','2013-07-01','Vieille photo','A1',NULL,1,NULL,0),(9,'toto','2013-07-01','Musée des antiquités','A2',NULL,0,NULL,2),(10,'toto','2013-07-01','mot dans un livre','A3',NULL,0,NULL,1),(11,'toto','2013-07-01','Clé USB scellée','A4',NULL,0,NULL,2),(12,'toto','2013-07-01','partenaire','A5',NULL,0,NULL,2),(13,'toto','2013-07-01','journal','A6',NULL,0,NULL,1),(14,'toto','2013-07-01','Vitraux St Vincent / Jeanne d\'Arc','A7',NULL,0,NULL,3),(15,'toto','2013-07-01','Cabine téléphonique\r\n01/01 12h58 - 01 23 45 67 89 (St sever)\r\n01/01 12h58 - 01 23 45 67 89 (B.G)\r\n01/01 12h58 - 01 23 45 67 89 (bergen)','A8',NULL,0,NULL,2);
+/*!40000 ALTER TABLE `Enigme` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `Indice`
+--
+
+LOCK TABLES `Indice` WRITE;
+/*!40000 ALTER TABLE `Indice` DISABLE KEYS */;
+INSERT INTO `Indice` VALUES (1,12,'test');
+/*!40000 ALTER TABLE `Indice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `Transaction`
+--
+
+LOCK TABLES `Transaction` WRITE;
+/*!40000 ALTER TABLE `Transaction` DISABLE KEYS */;
+INSERT INTO `Transaction` VALUES (1,2,'Inscription',1000,'2013-05-12',0),(2,2,'Pot de vin',500,'2013-05-13',3);
+/*!40000 ALTER TABLE `Transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `chassor_enigme`
+--
+
+LOCK TABLES `chassor_enigme` WRITE;
+/*!40000 ALTER TABLE `chassor_enigme` DISABLE KEYS */;
+INSERT INTO `chassor_enigme` VALUES (1,8,'123','2013-05-23 22:36:25',12,0),(1,9,'456','2013-05-21 18:54:08',2,0);
+/*!40000 ALTER TABLE `chassor_enigme` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `chassor_indice`
+--
+
+LOCK TABLES `chassor_indice` WRITE;
+/*!40000 ALTER TABLE `chassor_indice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chassor_indice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `ipn_log`
+--
+
+LOCK TABLES `ipn_log` WRITE;
+/*!40000 ALTER TABLE `ipn_log` DISABLE KEYS */;
+INSERT INTO `ipn_log` VALUES (1,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 20:54:58','2013-05-20 20:54:58'),(2,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:05:56','2013-05-20 21:05:56'),(3,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:07:58','2013-05-20 21:07:58'),(4,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:15:23','2013-05-20 21:15:23'),(5,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:16:06','2013-05-20 21:16:06'),(6,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:19:12','2013-05-20 21:19:12'),(7,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:29:26','2013-05-20 21:29:26'),(8,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:30:09','2013-05-20 21:30:09'),(9,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:33:20','2013-05-20 21:33:20'),(10,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:33:41','2013-05-20 21:33:41'),(11,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:38:38','2013-05-20 21:38:38'),(12,'IPN',NULL,NULL,'ERROR','No POST data and no cached IPN data','40cd750bba9870f18aada2478b24840a','{\"ipn_data\":[],\"ipn_response\":null}','2013-05-20 21:39:38','2013-05-20 21:39:38');
+/*!40000 ALTER TABLE `ipn_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `ipn_order_items`
+--
+
+LOCK TABLES `ipn_order_items` WRITE;
+/*!40000 ALTER TABLE `ipn_order_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ipn_order_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `ipn_orders`
+--
+
+LOCK TABLES `ipn_orders` WRITE;
+/*!40000 ALTER TABLE `ipn_orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ipn_orders` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-05-24 21:39:39
