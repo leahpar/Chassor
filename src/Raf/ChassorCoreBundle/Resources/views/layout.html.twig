@@ -29,7 +29,8 @@
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+              <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
+               - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
               {% else %}
               <a href="{{ path('fos_user_security_login') }}">Connexion</a> - <a href="{{ path('fos_user_registration_register') }}">Inscription</a>
               {% endif %}
@@ -80,7 +81,9 @@
         </div>
         
         {% block body %}
-        {% endblock %}
+        {% endblock body %}
+        
+        
     </div>
 
     <!-- les js -->

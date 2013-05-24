@@ -1,0 +1,10 @@
+{% extends "ChassorCoreBundle::layout-user.html.twig" %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+
+<ul>
+<li><a href="{{ path("fos_user_profile_edit") }}">Editer mon profil</a></li>
+<li><a href="{{ path("fos_user_change_password") }}">Changer mon mot de passe</a></li>
+</ul>
+{% endblock fos_user_content %}
