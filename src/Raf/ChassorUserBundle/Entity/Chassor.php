@@ -64,7 +64,12 @@ class Chassor extends BaseUser
      */
     private $indices;
     
-
+    /**
+     * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\ChassorEnigme", mappedBy="chassor")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $enigmes;
+    
     /**
      * Get id
      *
@@ -251,5 +256,38 @@ class Chassor extends BaseUser
     public function getIndices()
     {
         return $this->indices;
+    }
+
+    /**
+     * Add enigmes
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes
+     * @return Chassor
+     */
+    public function addEnigme(\Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes)
+    {
+        $this->enigmes[] = $enigmes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove enigmes
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes
+     */
+    public function removeEnigme(\Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes)
+    {
+        $this->enigmes->removeElement($enigmes);
+    }
+
+    /**
+     * Get enigmes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEnigmes()
+    {
+        return $this->enigmes;
     }
 }

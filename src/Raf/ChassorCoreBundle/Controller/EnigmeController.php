@@ -15,7 +15,6 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Raf\ChassorUserBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
 use Raf\ChassorCoreBundle\Entity\Enigme;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class EnigmeController extends Controller
 {
@@ -54,55 +53,57 @@ class EnigmeController extends Controller
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
         }
         
+        // gestion date
+        $ocb_e = $this->get('ocb.enigme');
+        $dateCur  = new \DateTime();
+        $dateProp = $ocb_e->prochaineProposition($enigme, $chassorEnigme);
+    
         // gestion reponse
         $request = $this->get('request');
         if ($request->getMethod() == 'POST')
         {
-            $reponse = $this->get('request')->request->get('reponse');
-            $correction = explode("|", $enigme->getReponses());
-            $date = new \DateTime();
-            if ($enigme->getDelai() > 0
-             && $chassorEnigme->getDate() != null
-             && $date < $chassorEnigme->getDate()->add(new \DateInterval('PT'.$enigme->getDelai().'H'))) 
+            if ($dateProp != null) 
             {
                 // trop rapide
                 $this->get('session')->getFlashBag()->add(
                         'warning',
                         'Trop tôt ! Vous pourrez reproposer une autre solution le '
-                        .$chassorEnigme->getDate()->format('d/m')
-                        .' à '.$chassorEnigme->getDate()->format('H:i'));
+                        .$dateProp->format('d/m').' à '.$dateProp->format('H:i'));
             }
-            elseif (in_array($reponse, $correction))
+            else
             {
-                // bonne reponse
-                $chassorEnigme->setValide(true);
+                // correction reponse
+                $reponse = $this->get('request')->request->get('reponse');
+                $valide = $ocb_e->reponseValide($enigme, $reponse);
+                
+                $chassorEnigme->setValide($valide);
                 $chassorEnigme->setTentative($chassorEnigme->getTentative() + 1);
-                $chassorEnigme->setDate($date);
+                $chassorEnigme->setDate($dateCur);
+                $dateProp = $ocb_e->prochaineProposition($enigme, $chassorEnigme);
                 $chassorEnigme->setReponse(mysql_real_escape_string($reponse));
                 $em->persist($chassorEnigme);
                 $em->flush();
                 
-                // nouvelles enigmes
-                $this->deverouillerAction($enigme, $user);
-                $this->get('session')->getFlashBag()->add('success', 'Bonne réponse !');
-            }
-            else
-            {
-                // fausse reponse
-                $this->get('session')->getFlashBag()->add('error', 'Mauvaise réponse...');
-                $chassorEnigme->setValide(false);
-                $chassorEnigme->setTentative($chassorEnigme->getTentative() + 1);
-                $chassorEnigme->setDate($date);
-                $chassorEnigme->setReponse(mysql_real_escape_string($reponse));
-                $em->persist($chassorEnigme);
-                $em->flush();
+                if ($valide)
+                {
+                    // nouvelles enigmes
+                    $this->deverouillerAction($enigme, $user);
+                    // bonne reponse
+                    $this->get('session')->getFlashBag()->add('success', 'Bonne réponse !');
+                }
+                else
+                {
+                    // mauvaise reponse
+                    $this->get('session')->getFlashBag()->add('error', 'Mauvaise réponse...');
+                }
             }
         }
         
         return $this->render('ChassorCoreBundle:Enigme:enigme-'.$enigme->getCode().'.html.twig',
             array(
-                'enigme' => $enigme,
-                'proposition' => $chassorEnigme
+                'enigme'       => $enigme,
+                'proposition'  => $chassorEnigme,
+                'dateProp'     => $dateProp
             ));
     }
     

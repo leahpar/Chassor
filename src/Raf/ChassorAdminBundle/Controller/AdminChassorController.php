@@ -11,8 +11,7 @@ class AdminChassorController extends Controller
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorUserBundle:Chassor')
-                      ->findBy(array('enabled' => true));
-       
+                      ->findAll2();
         return $this->render('ChassorAdminBundle:Chassor:lister.html.twig',
                 array(
                         'liste' => $liste

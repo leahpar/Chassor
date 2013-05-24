@@ -5,6 +5,10 @@ services:
 #    core.example:
 #        class: %core.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    ocb.enigme:
+        class: Raf\ChassorCoreBundle\OCB\OCBEnigme
+        
     paypal_im_received:
         class: Raf\ChassorCoreBundle\Event\PaypalListener
         arguments: ["@doctrine.orm.entity_manager"]

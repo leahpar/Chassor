@@ -9,4 +9,14 @@
 {% block enigme %}
 {% endblock %}
 
+{% if not proposition.valide %}
+    {% if enigme.delai > 0 %}
+        <p>Attention : il y a un délai de {{ enigme.delai }} heure(s) entre chaque proposition !</p>
+    {% endif %}
+    {% if dateProp is not null %}
+        <p>Prochaine proposition possible le {{ dateProp|date("d/m") }} à {{ dateProp|date("H:i") }}.</p>
+    {% endif %}
+{% endif %}
+
+
 {% endblock %}

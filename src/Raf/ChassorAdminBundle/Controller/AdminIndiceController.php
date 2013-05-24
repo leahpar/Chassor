@@ -54,7 +54,7 @@ class AdminIndiceController extends Controller
                 $em->flush();
                 
                 $this->get('session')->getFlashBag()->add('success',
-                        "Nouvel indice [".$indice->getEnigme()->getCode()."] OK.");
+                        "Indice [".$indice->getEnigme()->getCode()."] OK.");
                 
                 return $this->redirect($this->generateUrl('admin_indice_lister'));
             }
