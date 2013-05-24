@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 # Chassor
-use Raf\ChassorUserBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
 use Raf\ChassorCoreBundle\Entity\Enigme;
 
