@@ -53,7 +53,7 @@ class AdminEnigmeController extends Controller
                 $em->flush();
                 
                 $this->get('session')->getFlashBag()->add('success',
-                        "Nouvelle énigme [".$enigme->getCode()."] OK.");
+                        "Enigme [".$enigme->getCode()."] OK.");
     
                 return $this->redirect($this->generateUrl('admin_enigme_lister'));
             }

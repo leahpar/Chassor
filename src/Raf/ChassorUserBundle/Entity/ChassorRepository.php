@@ -4,6 +4,11 @@ namespace Raf\ChassorUserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Raf\ChassorUserBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
+use Raf\ChassorCoreBundle\Entity\Enigme;
+use Raf\ChassorCoreBundle\Entity\Indice;
+
 /**
  * ChassorRepository
  *
@@ -12,5 +17,65 @@ use Doctrine\ORM\EntityRepository;
  */
 class ChassorRepository extends EntityRepository
 {
- 
+    public function findAll2()
+    {
+/*
+SQl
+
+select
+    c.*,
+    count(*) as nb_indices,
+    sum(ce.valide) as nb_enigmes_res
+from
+    Chassor c
+    left join chassor_enigme ce ON ce.chassor_id = c.id
+    left join chassor_indice ci ON ci.chassor_id = c.id
+group by
+c.id 
+
+DQL ?
+
+select
+    c.*,
+    count(ci) as nb_indices,
+    count(ce) as nb_enigmes,
+    sum(ce.valide) as nb_enigmes_res
+from
+    Chassor c
+    left join ChassorEnigme ce ON ???
+    left join c.indices ci /* ON automatique 
+group by
+c.id 
+ */
+        /*
+        $qb = $this->getEntityManager()->createQuery('
+                select
+                    c.*,
+                    count(ci) as nb_indices,
+                    count(ce) as nb_enigmes,
+                    sum(ce.valide) as nb_enigmes_res
+                from
+                    Chassor c
+                    left join ChassorEnigme ce ON ???
+                    left join c.indices ci /* ON automatique 
+                group by
+                    c.id
+                ');
+        return $qb->getResult();
+        */
+        $qb = $this->createQueryBuilder('c')
+                
+                    ->leftJoin('c.indices', 'ci')
+                    ->leftJoin('c.enigmes', 'ce')
+                    
+                   ->addSelect('count(ci) as nb_indices')
+                
+                   ->addSelect('count(ce) as nb_enigmes')
+                   ->addSelect('sum(ce.valide) as nb_valides')
+                   
+                   ->groupBy('c')
+        ;
+        
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -7,14 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ChassorEnigme
  *
- * @ORM\Table()
+ * @ORM\Table(name="chassor_enigme")
  * @ORM\Entity(repositoryClass="Raf\ChassorCoreBundle\Entity\ChassorEnigmeRepository")
  */
 class ChassorEnigme
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Raf\ChassorUserBundle\Entity\Chassor")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorUserBundle\Entity\Chassor", inversedBy="enigmes")
      */
     private $chassor;
 
