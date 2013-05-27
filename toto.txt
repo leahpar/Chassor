@@ -5,7 +5,7 @@ php app/console generate:bundle
 php app/console generate:doctrine:entity
 
 # mettre à jour une entité
-php app/console doctrine:generate:entities ChassorUserBundle:Chassor
+php app/console doctrine:generate:entities ChassorCoreBundle:Chassor
 php app/console doctrine:generate:entities ChassorCoreBundle:Enigme
 php app/console doctrine:generate:entities ChassorCoreBundle:Transaction
 php app/console doctrine:generate:entities ChassorCoreBundle:ChassorEnigme

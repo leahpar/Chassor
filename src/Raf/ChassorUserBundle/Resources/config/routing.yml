@@ -1,3 +1,0 @@
-chassor_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ChassorBundle:Default:index }
