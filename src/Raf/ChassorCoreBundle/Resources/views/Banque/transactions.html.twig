@@ -14,11 +14,19 @@ Mon historique
 <tbody>
 {% set sum = 0 %}
 {% for t in transactions %}
-<tr>
+<tr 
+{% if     t.etat == 0 %}
+    {% set sum = sum + t.montant %}
+    class="success">
+{% elseif t.etat  > 0 %}
+    class="warning">
+{% elseif t.etat  < 0 %}
+    class="error">
+{% endif %}
     <td>{{ t.date|date("d/m/Y") }}</td>
     <td>{{ t.libelle }}</td>
     <td>{{ t.montant }}</td>
-    {% set sum = sum + t.montant %}
+    
 </tr>
 {% endfor %}
 </tbody>

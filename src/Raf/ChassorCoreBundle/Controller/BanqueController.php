@@ -34,19 +34,19 @@ class BanqueController extends Controller
      * @ParamConverter("user",  options={"mapping": {"user":  "id"}})
      * @ParamConverter("trans", options={"mapping": {"trans": "id"}})
      */
-    public function retourPaiementAction(Chassor $user, Transaction $trans, $tt)
+    public function retourPaiementAction(Chassor $user, Transaction $trans, $etat)
     {
         $em = $this->getDoctrine()->getManager();
         $transaction = $em->getRepository('ChassorCoreBundle:Transaction')
                           ->findOneBy(array('chassor' => $user, 'id' => $trans->getId()));
         if ($transaction != null)
         {
-            $transaction->setEtat($tt);
+            $transaction->setEtat($etat);
             $em->persist($transaction);
             $em->flush();
         }
         return new Response("OK", 200);
     }
     
-        
+    
 }

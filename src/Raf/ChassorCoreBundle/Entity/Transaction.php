@@ -12,6 +12,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Transaction
 {
+    static public $INSCRIPTION   = 500;
+    static public $PACK1         = 500;
+    static public $PACK2         = 1000;
+    static public $PACK3         = 2500;
+    static public $PACK4         = 5000;
+    static public $PACK5         = 10000;
+    
+    static public $ETAT_INIT     =  1;
+    static public $ETAT_ATTENTE  =  2;
+    static public $ETAT_VALIDE   =  0;
+    static public $ETAT_INVALIDE = -1;
+    
     /**
      * @var integer
      *
@@ -54,9 +66,16 @@ class Transaction
      *
      * @ORM\Column(name="etat", type="integer")
      */
-    private $etat = 0;
+    private $etat = 1;
 
 
+    public function __construct(Chassor $chassor = null)
+    {
+        $this->chassor = $chassor;
+        $this->date    = new \DateTime();
+        $this->etat    = Transaction::$ETAT_INIT;
+    }
+    
     /**
      * Get id
      *

@@ -1,4 +1,3 @@
 imports:
-    - { resource: @ChassorUserBundle/Resources/config/services.yml }
     - { resource: @ChassorCoreBundle/Resources/config/services.yml }
     - { resource: @ChassorAdminBundle/Resources/config/services.yml }

@@ -52,5 +52,5 @@ banque:
     defaults: { _controller: ChassorCoreBundle:Banque:lister }
 
 retour_paiement:
-    pattern:  /ipn/retour-paiement-42-{user}-{trans}-{tt}
+    pattern:  /ipn/retour-paiement-42-{user}-{trans}-{etat}
     defaults: { _controller: ChassorCoreBundle:Banque:retourPaiement }

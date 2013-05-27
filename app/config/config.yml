@@ -70,7 +70,6 @@ fos_user:
     user_class:    Raf\ChassorCoreBundle\Entity\Chassor
     service:
         mailer: fos_user.mailer.twig_swift
-    # Permet de renseigner le nouveau formulaire d'inscription
     registration:
         form:
             type: chassor_user_registration
@@ -79,7 +78,7 @@ fos_user:
             from_email:
                 address:        noreply@chassor.com
                 sender_name:    Chassor
-            template: ChassorUserBundle:Chassor:registration.email.twig
+            template: ChassorCoreBundle:Chassor:registration.email.twig
 
 liip_imagine:
     filter_sets:
