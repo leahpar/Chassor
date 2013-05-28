@@ -12,6 +12,7 @@ class AdminChassorController extends Controller
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Chassor')
                       ->findAll2();
+        
         return $this->render('ChassorAdminBundle:Chassor:lister.html.twig',
                 array(
                         'liste' => $liste

@@ -4,7 +4,10 @@ namespace Raf\ChassorCoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
+
 use Raf\ChassorCoreBundle\Entity\Indice;
+use Raf\ChassorCoreBundle\Entity\Transaction;
+use Raf\ChassorCoreBundle\Entity\Enigme;
 
 /**
  * Chassor
@@ -22,13 +25,6 @@ class Chassor extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="compte", type="decimal")
-     */
-    private $compte = 0;
 
     /**
      * @var boolean
@@ -65,6 +61,12 @@ class Chassor extends BaseUser
     private $indices;
     
     /**
+     * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Transaction", mappedBy="chassor")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $transactions;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\ChassorEnigme", mappedBy="chassor")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -80,29 +82,7 @@ class Chassor extends BaseUser
         return $this->id;
     }
 
-    /**
-     * Set compte
-     *
-     * @param float $compte
-     * @return Chassor
-     */
-    public function setCompte($compte)
-    {
-        $this->compte = $compte;
     
-        return $this;
-    }
-
-    /**
-     * Get compte
-     *
-     * @return float 
-     */
-    public function getCompte()
-    {
-        return $this->compte;
-    }
-
     /**
      * Set actif
      *
@@ -290,4 +270,94 @@ class Chassor extends BaseUser
     {
         return $this->enigmes;
     }
+
+    /**
+     * Add transactions
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\transaction $transactions
+     * @return Chassor
+     */
+    public function addTransaction(\Raf\ChassorCoreBundle\Entity\transaction $transactions)
+    {
+        $this->transactions[] = $transactions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove transactions
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\transaction $transactions
+     */
+    public function removeTransaction(\Raf\ChassorCoreBundle\Entity\transaction $transactions)
+    {
+        $this->transactions->removeElement($transactions);
+    }
+
+    /**
+     * Get transactions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
+    }
+    
+    
+    
+    
+    /**
+     * Get compte
+     *
+     * @return integer
+     */
+    public function getCompte()
+    {
+        $cpt = 0;
+        foreach($this->transactions as $t)
+        {
+            if ($t->getEtat() == Transaction::$ETAT_VALIDE)
+                $cpt += $t->getMontant();
+        }
+        return $cpt;
+    }
+    
+    /**
+     * Get count enigmes
+     *
+     * @return integer
+     */
+    public function getNbEnigmes()
+    {
+        return count($this->enigmes);
+    }
+    
+    /**
+     * Get count enigmes valices
+     *
+     * @return integer
+     */
+    public function getNbEnigmesValides()
+    {
+        $cpt = 0;
+        foreach ($this->enigmes as $e)
+        {
+            if ($e->getValide() == true)
+                    $cpt++;
+        }
+        return $cpt;
+    }
+    
+    /**
+     * Get count indices
+     *
+     * @return integer
+     */
+    public function getNbIndices()
+    {
+        return count($this->indices);
+    }
+    
+    
 }

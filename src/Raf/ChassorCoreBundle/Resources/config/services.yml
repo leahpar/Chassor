@@ -8,6 +8,8 @@ services:
 
     ocb.enigme:
         class: Raf\ChassorCoreBundle\OCB\OCBEnigme
+    ocb.acces:
+        class: Raf\ChassorCoreBundle\OCB\OCBAcces
         
     paypal_im_received:
         class: Raf\ChassorCoreBundle\Event\PaypalListener
