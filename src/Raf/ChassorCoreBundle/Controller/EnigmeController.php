@@ -15,6 +15,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
 use Raf\ChassorCoreBundle\Entity\Enigme;
+use Raf\ChassorCoreBundle\Entity\Transaction;
 
 class EnigmeController extends Controller
 {
@@ -42,19 +43,21 @@ class EnigmeController extends Controller
      */
     public function enigmeAction(Enigme $enigme)
     {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
+        // recuperation variables globales
+        $user   = $this->getUser();
+        $em     = $this->getDoctrine()->getManager();
+        $param  = $this->container->getParameter('enigme');
+        $ocb_e  = $this->get('ocb.enigme');
+        $ocb_a  = $this->get('ocb.acces');
         
         // controle de l'acces a l'enigme
-        $chassorEnigme = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
-                            ->findOneBy(array('chassor' => $user, 'enigme' => $enigme));
+        $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
         if ($chassorEnigme == null)
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
         }
         
         // gestion date
-        $ocb_e = $this->get('ocb.enigme');
         $dateCur  = new \DateTime();
         $dateProp = $ocb_e->prochaineProposition($enigme, $chassorEnigme);
     
@@ -86,10 +89,38 @@ class EnigmeController extends Controller
                 
                 if ($valide)
                 {
-                    // nouvelles enigmes
+                    // Debloque les nouvelles enigmes
                     $this->deverouillerAction($enigme, $user);
-                    // bonne reponse
+                    
+                    // Bonne reponse
                     $this->get('session')->getFlashBag()->add('success', 'Bonne réponse !');
+                    
+                    // Classement resultat 
+                    $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
+                                  ->findBy(array('enigme' => $enigme));
+                    $classement = count($enigmes);
+                    
+                    if ($classement == $param['gain']['niveau1'])
+                    {
+                        $gain = $param['gain']['gain1'];
+                    }
+                    elseif ($classement < $param['gain']['niveau2'])
+                    {
+                        $gain = $param['gain']['gain2'];
+                    }
+                    else
+                    {
+                        $gain = $param['gain']['gain3'];
+                    }
+                    
+                    // Transaction gain pieces
+                    $transaction = new Transaction($user);
+                    $transaction->setLibelle("Réponse énigme [".$enigme->getCode()."]");
+                    $transaction->setMontant($gain);
+                    $transaction->setEtat(Transaction::$ETAT_VALIDE);
+                    
+                    $em->persist($transaction);
+                    $em->flush();
                 }
                 else
                 {
