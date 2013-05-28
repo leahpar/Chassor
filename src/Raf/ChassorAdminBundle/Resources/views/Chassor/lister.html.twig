@@ -18,12 +18,12 @@
 <tbody>
 {% for chassor in liste %}
 <tr>
-    <td>{{ chassor[0].username }}</td>
-    <td>{{ chassor[0].email }}</td>
-    <td>{{ chassor[0].Compte }}</td>
-    <td>{{ chassor.nb_enigmes }}</td>
-    <td>{{ chassor.nb_valides }}</td>
-    <td>{{ chassor.nb_indices }}</td>
+    <td>{{ chassor.username }}</td>
+    <td>{{ chassor.email }}</td>
+    <td>{{ chassor.compte }}</td>
+    <td>{{ chassor.nbEnigmes }}</td>
+    <td>{{ chassor.nbEnigmesValides }}</td>
+    <td>{{ chassor.nbIndices }}</td>
 </tr>
 {% endfor %}
 </tbody>

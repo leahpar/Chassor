@@ -36,7 +36,7 @@ class Transaction
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", inversedBy="transactions")
      */
     private $chassor;
 
