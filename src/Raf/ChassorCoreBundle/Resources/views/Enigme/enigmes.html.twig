@@ -6,8 +6,8 @@
 <ul>
 {% for e in enigmes %}
 <li><a href="enigme-{{ e.enigme.code }}">
-    {{ e.enigme.code }} - {{ e.enigme.titre }}
-    {% if e.valide %}(OK){% else %}(...){% endif %}</a></li>
+    {{ e.enigme.code }}
+    {% if e.valide %}(validée){% else %}(en cours...){% endif %}</a></li>
 {% endfor %}
 </ul>
 

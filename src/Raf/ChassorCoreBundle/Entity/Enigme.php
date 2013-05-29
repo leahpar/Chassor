@@ -71,10 +71,15 @@ class Enigme
     private $difficulte = 2;
     
     /**
-     * @ORM\OneToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
      * @ORM\JoinColumn(nullable=true)
      */
     private $depend;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\ChassorEnigme", mappedBy="enigme")
+     */
+    private $chassorEnigmes;
 
     
     public function __construct()
