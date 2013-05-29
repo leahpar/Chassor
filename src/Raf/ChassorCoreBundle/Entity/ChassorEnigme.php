@@ -20,7 +20,7 @@ class ChassorEnigme
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme", inversedBy="chassorEnigmes")
      */
     private $enigme;
 
@@ -43,7 +43,7 @@ class ChassorEnigme
      *
      * @ORM\Column(name="tentative", type="integer")
      */
-    private $tentative = 0;
+    private $tentative = -1;
 
     /**
      * @var boolean

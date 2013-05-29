@@ -14,4 +14,14 @@ use Doctrine\ORM\EntityRepository;
 class EnigmeRepository extends EntityRepository
 {
 
+    public function findNew($em, Chassor $chassor)
+    {
+        $query = $em->createQuery('SELECT e FROM ChassorCoreBundle:Enigme e 
+                                   WHERE e NOT IN (
+                                   SELECT IDENTITY(ce1.enigme) FROM ChassorCoreBundle:ChassorEnigme ce1
+                                   WHERE ce1.chassor = :chassor)') 
+                    ->setParameter('chassor', $chassor);
+        
+        return $query->getResult();
+    }
 }

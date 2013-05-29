@@ -334,6 +334,22 @@ class Chassor extends BaseUser
     }
     
     /**
+     * Get tentatives enigmes
+     *
+     * @return integer
+     */
+    public function getNbTentatives()
+    {
+        $cpt = 0;
+        foreach ($this->enigmes as $e)
+        {
+            if ($e->getTentative() > 0)
+                    $cpt += $e->getTentative();
+        }
+        return $cpt;
+    }
+    
+    /**
      * Get count enigmes valices
      *
      * @return integer

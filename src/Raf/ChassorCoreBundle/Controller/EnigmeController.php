@@ -25,12 +25,27 @@ class EnigmeController extends Controller
     public function enigmesAction()
     {
         $user = $this->getUser();
+        $log  = $this->get('session')->getFlashBag();
+        $em   = $this->getDoctrine()->getManager();
         
-        // controle de l'acces a l'enigme
-        $enigmes = $this->getDoctrine()
-                        ->getManager()
-                        ->getRepository('ChassorCoreBundle:ChassorEnigme')
-                        ->findByChassor2($user);
+        // debloquage des enigmes (date)
+        $this->deverouillerDateAction($user);
+        
+        // Liste des enigmes disponibles
+        $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
+                      ->findByChassor2($user);
+        
+        // Nouvelles enigmes disponibles
+        foreach ($enigmes as $e)
+        {
+            if ($e->getTentative() < 0)
+            {
+                $log->add('info', 'Nouvelle énigme disponible : ['.$e->getEnigme()->getCode().'] !');
+                $e->setTentative(0);
+                $em->persist($e);
+            }
+        }
+        $em->flush();
         
         return $this->render('ChassorCoreBundle:Enigme:enigmes.html.twig',
             array(
@@ -182,14 +197,33 @@ class EnigmeController extends Controller
         
         foreach ($enigmes as $e)
         {
-            $chassorEnigme = new \Raf\ChassorCoreBundle\Entity\ChassorEnigme();
+            $chassorEnigme = new ChassorEnigme();
             $chassorEnigme->setChassor($user);
             $chassorEnigme->setEnigme($e);
             $em->persist($chassorEnigme);
-            $em->flush();
             $this->get('session')->getFlashBag()->add('info',
-                "L'énigme [".$e->getTitre()."] est débloquée !");
+                'L\'énigme ['.$e->getCode().'] est débloquée !');
         }
+        $em->flush();
+    }
+    
+    public function deverouillerDateAction(Chassor $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+    
+        $enigmes = $em->getRepository('ChassorCoreBundle:Enigme')
+                      ->findNew($em, $user);
+        $date = new \DateTime();
+        
+        foreach ($enigmes as $e)
+        {
+            if ($e->getDepend() == null && $e->getDate() <= $date)
+            $chassorEnigme = new ChassorEnigme();
+            $chassorEnigme->setChassor($user);
+            $chassorEnigme->setEnigme($e);
+            $em->persist($chassorEnigme);
+        }
+        $em->flush();
     }
     
 }
