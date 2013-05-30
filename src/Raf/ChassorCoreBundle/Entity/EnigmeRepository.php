@@ -14,13 +14,24 @@ use Doctrine\ORM\EntityRepository;
 class EnigmeRepository extends EntityRepository
 {
 
-    public function findNew($em, Chassor $chassor)
+    public function findNew($em, Chassor $chassor, \DateTime $date)
     {
         $query = $em->createQuery('SELECT e FROM ChassorCoreBundle:Enigme e 
-                                   WHERE e NOT IN (
-                                   SELECT IDENTITY(ce1.enigme) FROM ChassorCoreBundle:ChassorEnigme ce1
-                                   WHERE ce1.chassor = :chassor)') 
+                                   WHERE e.date <= :date
+                                   AND (
+                                    e.depend IS NULL
+                                    AND e NOT IN (
+                                    SELECT IDENTITY(ce1.enigme) FROM ChassorCoreBundle:ChassorEnigme ce1
+                                    WHERE ce1.chassor = :chassor)
+                                   ) OR (
+                                    e.depend IN (
+                                    SELECT IDENTITY(ce2.enigme) FROM ChassorCoreBundle:ChassorEnigme ce2
+                                    WHERE ce2.chassor = :chassor
+                                    AND ce2.valide = TRUE)
+                                   )') 
+                    ->setParameter('date',    $date)
                     ->setParameter('chassor', $chassor);
+        
         
         return $query->getResult();
     }
