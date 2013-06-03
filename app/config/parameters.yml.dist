@@ -13,3 +13,52 @@ parameters:
 
     locale:            fr
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    paypal:
+        islive:           true
+        live:
+            email:         "raf@chassor.fr"
+            url:           "https://www.paypal.com/cgi-bin/webscr"
+        sandbox:
+            email:         "raf@chassor.fr"
+            url:           "https://www.sandbox.paypal.com/cgi-bin/webscr"
+    transaction:
+        code_promo:       "AQZE12"
+        libelle:
+            inscription:   "Inscription"
+            inscriptionX:  "Inscription (code promo)"
+            pack1:         "Pack 500 Pièces"
+            pack2:         "Pack 1000 Pièces"
+            pack3:         "Pack 2500 Pièces"
+            pack4:         "Pack 5000 Pièces"
+            pack5:         "Pack 10000 Pièces"
+        prix: 
+            inscription:   5
+            inscriptionX:  4
+            pack1:         2
+            pack2:         3.5
+            pack3:         8
+            pack4:         15
+            pack5:         25
+        pieces:
+            inscription:   500
+            inscriptionX:  500
+            pack1:         500
+            pack2:         1000
+            pack3:         2500
+            pack4:         5000
+            pack5:         10000
+    enigme:
+        prix:
+            difficulte1:    1000
+            difficulte2:    5000
+            difficulte3:    10000
+        gain:
+            niveau1:       1
+            niveau2:       10
+            niveau3:       100
+            gain1:         300
+            gain2:         200
+            gain3:         100
+        indice:
+        prix:               300
