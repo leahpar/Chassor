@@ -5,6 +5,7 @@
 
 <h1>Enigme {{ enigme.code }}</h1>
 <h2>{{ enigme.titre }}</h2>
+<p>Difficulté {{ enigme.difficulte + 1 }}</p>
 
 {% block enigme %}
 {% endblock enigme %}
@@ -28,7 +29,7 @@
         {% if i.chassor is not null %}
         Indice : {{ i.indice }}
         {% else %}
-        acheter
+        <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}">acheter l'indice</a>
         {% endif %}
     </li>
     {% endfor %}

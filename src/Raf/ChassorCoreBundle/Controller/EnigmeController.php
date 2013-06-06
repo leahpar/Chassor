@@ -16,6 +16,7 @@ use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
 use Raf\ChassorCoreBundle\Entity\Enigme;
 use Raf\ChassorCoreBundle\Entity\Transaction;
+use Raf\ChassorCoreBundle\Entity\Indice;
 
 class EnigmeController extends Controller
 {
@@ -39,20 +40,6 @@ class EnigmeController extends Controller
         // Liste des enigmes disponibles
         $enigmes = $em->getRepository('ChassorCoreBundle:Enigme')
                       ->findByChassor2($user);
-        
-        // Nouvelles enigmes disponibles
-        /*
-        foreach ($enigmes as $e)
-        {
-            if ($e->getChassor() != null &&  $e->getChassor()->getTentative() < 0)
-            {
-                $log->add('info', 'Nouvelle énigme disponible : ['.$e->getCode().'] !');
-                $e->getChassor()->setTentative(0);
-                $em->persist($e);
-            }
-        }
-        $em->flush();
-        */
         
         // affichage
         return $this->render('ChassorCoreBundle:Enigme:enigmes.html.twig',
@@ -80,6 +67,7 @@ class EnigmeController extends Controller
         $param  = $this->container->getParameter('enigme');
         $ocb_e  = $this->get('ocb.enigme');
         $ocb_a  = $this->get('ocb.acces');
+        $log    = $this->get('session')->getFlashBag();
         
         // controle de l'acces a l'enigme
         $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
@@ -106,10 +94,10 @@ class EnigmeController extends Controller
             if ($dateProp != null) 
             {
                 // trop rapide
-                $this->get('session')->getFlashBag()->add(
-                        'warning',
-                        'Trop tôt ! Vous pourrez reproposer une autre solution le '
-                        .$dateProp->format('d/m').' à '.$dateProp->format('H:i'));
+                $log->add(
+                    'warning',
+                    'Trop tôt ! Vous pourrez reproposer une autre solution le '
+                    .$dateProp->format('d/m').' à '.$dateProp->format('H:i'));
             }
             else
             {
@@ -127,7 +115,7 @@ class EnigmeController extends Controller
                 if ($valide)
                 {
                     // Bonne reponse
-                    $this->get('session')->getFlashBag()->add('success', 'Bonne réponse !');
+                    $log->add('success', 'Bonne réponse !');
                     
                     // Classement resultat 
                     $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
@@ -157,7 +145,7 @@ class EnigmeController extends Controller
                 else
                 {
                     // mauvaise reponse
-                    $this->get('session')->getFlashBag()->add('error', 'Mauvaise réponse...');
+                    $log->add('error', 'Mauvaise réponse...');
                 }
             }
         }
@@ -188,13 +176,12 @@ class EnigmeController extends Controller
     public function enigmeImageAction(Enigme $enigme, $image_id)
     {
         // globales
-        $user = $this->getUser();
+        $user   = $this->getUser();
+        $em     = $this->getDoctrine()->getManager();
+        $ocb_a  = $this->get('ocb.acces');
         
         // controle de l'acces a l'enigme
-        $acces = $this->getDoctrine()
-                        ->getManager()
-                        ->getRepository('ChassorCoreBundle:ChassorEnigme')
-                        ->findBy(array('chassor' => $user, 'enigme' => $enigme));
+        $acces = controleAccesEnigme($em, $user, $enigme);
         
         // Réponse de type image
         $reponse = new Response();
@@ -248,6 +235,45 @@ class EnigmeController extends Controller
         $em->flush();
     }
     
+    public function indiceAchatAction(Enigme $enigme, Indice $indice)
+    {
+        // globales
+        $user   = $this->getUser();
+        $log    = $this->get('session')->getFlashBag();
+        $em     = $this->getDoctrine()->getManager();
+        $ocb_a  = $this->get('ocb.acces');
+        $prix   = $this->container->getParameter('enigme');
+        $prix   = $prix['indice']['prix'];
+        
+        // controle de l'acces a l'enigme
+        if ($ocb_a->controleAccesEnigme($em, $user, $enigme) == false)
+        {
+            throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
+        }
+        
+        // controle fonds nécessaire
+        if ($user->getCompte() < $prix)
+        {
+            $log->add('error', 'Vous n\'avez pas les fonds nécessaire !');
+        }
+        else
+        {
+            $log->add('success', 'Indice disponible');
+            
+            // Transaction d'achat
+            $transaction = new Transaction($user);
+            $transaction->setLibelle("Achat indice [".$indice->getEnigme()->getCode()."]");
+            $transaction->setMontant(0-$prix);
+            $transaction->setEtat(Transaction::$ETAT_VALIDE);
+            $em->persist($transaction);
+            
+            $user->addIndice($indice);
+            $em->flush();
+        }
+        // retour sur l'enigme
+        return $this->redirect('../enigme-'.$enigme->getCode());
+    }
+
 }
 
 

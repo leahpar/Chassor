@@ -36,24 +36,6 @@ class OCBAcces
         }
     }
     
-    /**
-     *
-     */
-    public function controleAccesIndice($em, $user, $enigme, $indice)
-    {
-        /* TODO : OCB::controleAccesIndice() */
-        return true;
-    }
-    
-    /**
-     *
-     */
-    public function controleCompteIndice($em, $user, $indice)
-    {
-        /* TODO : OCB::controleCompteIndice() */
-        return true;
-    }
-    
     
 }
  
