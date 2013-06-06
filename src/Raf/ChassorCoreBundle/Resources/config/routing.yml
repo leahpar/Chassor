@@ -8,6 +8,7 @@ chassor_homepage:
 index:
     pattern:  /
     defaults: { _controller: ChassorCoreBundle:Default:index }
+
 index2:
     pattern:  /index
     defaults: { _controller: ChassorCoreBundle:Default:index }
@@ -16,6 +17,9 @@ apropos:
     pattern:  /apropos
     defaults: { _controller: ChassorCoreBundle:Default:apropos }
 
+activation:
+    pattern:  /activation
+    defaults: { _controller: ChassorCoreBundle:Banque:activation }
 
 
 

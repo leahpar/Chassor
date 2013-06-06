@@ -22,7 +22,7 @@ class Indice
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
+     * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
      * @ORM\JoinColumn(nullable=false)
      */
     private $enigme;
@@ -33,6 +33,11 @@ class Indice
      * @ORM\Column(name="indice", type="string", length=255)
      */
     private $indice;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", mappedBy="indices")
+     */
+    private $chassors;
 
 
     /**
@@ -89,5 +94,55 @@ class Indice
     public function getIndice()
     {
         return $this->indice;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->chassors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add chassors
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Chassor $chassors
+     * @return Indice
+     */
+    public function addChassor(\Raf\ChassorCoreBundle\Entity\Chassor $chassors)
+    {
+        $this->chassors[] = $chassors;
+    
+        return $this;
+    }
+
+    /**
+     * Remove chassors
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Chassor $chassors
+     */
+    public function removeChassor(\Raf\ChassorCoreBundle\Entity\Chassor $chassors)
+    {
+        $this->chassors->removeElement($chassors);
+    }
+
+    /**
+     * Get chassors
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChassors()
+    {
+        return $this->chassors;
+    }
+    
+    /**
+     * Get chassor
+     *
+     * @return Chassor
+     */
+    public function getChassor()
+    {
+        return $this->chassors[0];
     }
 }

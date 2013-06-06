@@ -326,4 +326,16 @@ class Enigme
     {
         return $this->difficulte;
     }
+    
+    public function getChassor()
+    {
+        if (count($this->chassorEnigmes) == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return $this->chassorEnigmes[0];
+        }
+    }
 }

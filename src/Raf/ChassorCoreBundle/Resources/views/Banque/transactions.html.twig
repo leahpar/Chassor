@@ -23,7 +23,7 @@ Mon historique
 {% elseif t.etat  < 0 %}
     class="error">
 {% endif %}
-    <td>{{ t.date|date("d/m/Y") }}</td>
+    <td>{{ t.date|date("d/m") }}</td>
     <td>{{ t.libelle }}</td>
     <td>{{ t.montant }}</td>
     

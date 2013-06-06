@@ -152,5 +152,17 @@ class BanqueController extends Controller
                 $this->generateUrl('enigme', array('code' => $enigme->getCode())));
     }
     
+    public function activationAction()
+    {
+        $user = $this->getUser();
+        $em   = $this->getDoctrine()->getManager();
+        
+        /* TODO : formulaire + redirection paypal */
+        $user->addRole('ROLE_CHASSOR');
+        $em->flush();
+        
+        /* on le deconnecte pour prendre en compte le noueau role */
+        return $this->redirect($this->generateUrl('fos_user_security_logout'));
+    }
     
 }

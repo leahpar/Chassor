@@ -4,6 +4,8 @@ namespace Raf\ChassorCoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Raf\ChassorCoreBundle\Entity\Chassor;
+
 
 /**
  * EnigmeRepository
@@ -14,25 +16,46 @@ use Doctrine\ORM\EntityRepository;
 class EnigmeRepository extends EntityRepository
 {
 
-    public function findNew($em, Chassor $chassor, \DateTime $date)
+    public function findByChassor2(Chassor $chassor)
     {
-        $query = $em->createQuery('SELECT e FROM ChassorCoreBundle:Enigme e 
-                                   WHERE e.date <= :date
-                                   AND (
-                                    e.depend IS NULL
-                                    AND e NOT IN (
-                                    SELECT IDENTITY(ce1.enigme) FROM ChassorCoreBundle:ChassorEnigme ce1
-                                    WHERE ce1.chassor = :chassor)
-                                   ) OR (
-                                    e.depend IN (
-                                    SELECT IDENTITY(ce2.enigme) FROM ChassorCoreBundle:ChassorEnigme ce2
-                                    WHERE ce2.chassor = :chassor
-                                    AND ce2.valide = TRUE)
-                                   )') 
-                    ->setParameter('date',    $date)
-                    ->setParameter('chassor', $chassor);
+        $qb = $this->createQueryBuilder('e');
         
+        $qb->leftJoin('e.chassorEnigmes', 'ce', 'with', 'ce.chassor = :chassor')
+           ->setParameter('chassor', $chassor)
+           ->addSelect('ce');
+        
+        return $qb->getQuery()->getResult();
+    }
+    
+    /**
+     * function findNewEnigme
+     * Trouve les nouvelles énigmes disponible (date et bonne réponse)
+     * non déjà disponibles
+     */
+    public function findNewEnigme($em, Chassor $chassor, \DateTime $date)
+    {
+        $query = $em->createQuery(
+                'SELECT
+                    e
+                 FROM
+                    ChassorCoreBundle:Enigme e 
+                 WHERE
+                    e.date <= :date
+                 AND
+                    e NOT IN (
+                      SELECT IDENTITY(ce1.enigme) FROM ChassorCoreBundle:ChassorEnigme ce1
+                      WHERE ce1.chassor = :chassor)
+                 AND
+                    (e.depend IS NULL
+                  OR e.depend IN (
+                      SELECT IDENTITY(ce2.enigme) FROM ChassorCoreBundle:ChassorEnigme ce2
+                      WHERE ce2.chassor = :chassor
+                      AND ce2.valide = TRUE))'); 
+        
+        $query->setParameter('date',    $date)
+              ->setParameter('chassor', $chassor);
         
         return $query->getResult();
     }
+    
 }

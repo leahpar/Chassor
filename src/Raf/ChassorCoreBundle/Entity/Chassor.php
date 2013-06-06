@@ -55,7 +55,7 @@ class Chassor extends BaseUser
     private $adresse;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Indice")
+     * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Indice", inversedBy="chassors")
      * @ORM\JoinColumn(nullable=true)
      */
     private $indices;
@@ -202,6 +202,7 @@ class Chassor extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->indices = new \Doctrine\Common\Collections\ArrayCollection();
     }
     

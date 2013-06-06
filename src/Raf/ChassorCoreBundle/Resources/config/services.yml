@@ -6,6 +6,12 @@ services:
 #        class: %core.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
 
+    core.registration.form.type:
+        class: Raf\ChassorCoreBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+        - { name: form.type, alias: chassor_user_registration }
+        
     ocb.enigme:
         class: Raf\ChassorCoreBundle\OCB\OCBEnigme
     ocb.acces:

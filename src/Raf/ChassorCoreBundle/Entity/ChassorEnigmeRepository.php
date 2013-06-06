@@ -4,7 +4,6 @@ namespace Raf\ChassorCoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
-use Raf\ChassorCoreBundle\Entity\Chassor;
 
 /**
  * ChassorEnigmeRepository
@@ -14,17 +13,6 @@ use Raf\ChassorCoreBundle\Entity\Chassor;
  */
 class ChassorEnigmeRepository extends EntityRepository
 {
-    public function findByChassor2(Chassor $chassor)
-    {
-        $qb = $this->createQueryBuilder('a');
-        
-        $qb->leftJoin('a.enigme', 'en')
-           ->addSelect('en');
-           
-        $qb->where('a.chassor = :chassor')
-           ->setParameter('chassor', $chassor);
-        
-        return $qb->getQuery()->getResult();
-    }
+
 
 }

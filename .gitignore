@@ -1,16 +1,25 @@
+# divers
 /web/bundles/
 /app/bootstrap.php.cache
-/app/cache/*
-/app/logs/*
-/app/config/parameters.yml
 /build/
 /vendor/
 /bin/
 /composer.phar
+/src/Acme/
+
+# cache + logs
+/app/cache/*
+/app/logs/*
+
+# parameters
+/app/config/parameters.yml
+
+# data
 /web/images/*
 /web/media/*
+/src/Raf/ChassorCoreBundle/Resources/views/EnigmeData/*
+
 /MDD.txt
-/src/Acme/
 /.project
 /.settings/
 /.buildpath

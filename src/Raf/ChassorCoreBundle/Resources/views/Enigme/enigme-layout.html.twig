@@ -7,8 +7,9 @@
 <h2>{{ enigme.titre }}</h2>
 
 {% block enigme %}
-{% endblock %}
+{% endblock enigme %}
 
+{# Délai de réponse #}
 {% if not proposition.valide %}
     {% if enigme.delai > 0 %}
         <p>Attention : il y a un délai de {{ enigme.delai }} heure(s) entre chaque proposition !</p>
@@ -18,5 +19,22 @@
     {% endif %}
 {% endif %}
 
+{# indices #}
+{% if indices|length > 0 %}
+    <p>Indice disponible pour cette énigme :</p>
+    <ul>
+    {% for i in indices %}
+    <li>
+        {% if i.chassor is not null %}
+        Indice : {{ i.indice }}
+        {% else %}
+        acheter
+        {% endif %}
+    </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Pas d'indice disponible pour cette énigme.</p>
+{% endif  %}
 
-{% endblock %}
+{% endblock body %}

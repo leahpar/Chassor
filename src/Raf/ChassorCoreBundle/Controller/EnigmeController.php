@@ -23,7 +23,6 @@ class EnigmeController extends Controller
      * function enigmesAction
      * - Liste les enigmes disponibles pour l'user
      * - Appelle this->deverouillerEnigmesDate pour deverouiller les enigmes sur la date
-     * - Cree une notification pour les nouvelles enigmes disponibles
      * 
      * @Secure(roles="ROLE_CHASSOR")
      */   
@@ -34,24 +33,26 @@ class EnigmeController extends Controller
         $log  = $this->get('session')->getFlashBag();
         $em   = $this->getDoctrine()->getManager();
         
-        // debloquage des (éventuelles) enigmes sur la date
-        $this->deverouillerEnigmesDate($user);
+        // debloquage des (éventuelles) nouvelles enigmes disponibles
+        $this->deverouillerEnigmes($user);
         
         // Liste des enigmes disponibles
-        $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
+        $enigmes = $em->getRepository('ChassorCoreBundle:Enigme')
                       ->findByChassor2($user);
         
         // Nouvelles enigmes disponibles
+        /*
         foreach ($enigmes as $e)
         {
-            if ($e->getTentative() < 0)
+            if ($e->getChassor() != null &&  $e->getChassor()->getTentative() < 0)
             {
-                $log->add('info', 'Nouvelle énigme disponible : ['.$e->getEnigme()->getCode().'] !');
-                $e->setTentative(0);
+                $log->add('info', 'Nouvelle énigme disponible : ['.$e->getCode().'] !');
+                $e->getChassor()->setTentative(0);
                 $em->persist($e);
             }
         }
         $em->flush();
+        */
         
         // affichage
         return $this->render('ChassorCoreBundle:Enigme:enigmes.html.twig',
@@ -67,7 +68,6 @@ class EnigmeController extends Controller
      * - Gere la proposition de reponse
      *      - Controle delai de reponse
      *      - Correction réposne
-     *      - Appelle $this->deverouillerEnigmes pour déverouiller les nouvelles enigmes
      *      - Créé une transaction si bonne réponse
      * 
      * @Secure(roles="ROLE_CHASSOR")
@@ -87,6 +87,13 @@ class EnigmeController extends Controller
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
         }
+        
+        // visibilité enigme
+        if ($chassorEnigme->getTentative() < 0)
+        {
+            $chassorEnigme->setTentative(0);
+        }
+        
         
         // gestion date
         $dateCur  = new \DateTime();
@@ -119,9 +126,6 @@ class EnigmeController extends Controller
                 
                 if ($valide)
                 {
-                    // Debloque les nouvelles enigmes
-                    $this->deverouillerEnigmes($enigme, $user);
-                    
                     // Bonne reponse
                     $this->get('session')->getFlashBag()->add('success', 'Bonne réponse !');
                     
@@ -156,13 +160,18 @@ class EnigmeController extends Controller
                     $this->get('session')->getFlashBag()->add('error', 'Mauvaise réponse...');
                 }
             }
-            $em->flush();
         }
+        $em->flush();
+        
+        // selection indices disponibles
+        $indices = $em->getRepository('ChassorCoreBundle:Indice')
+                      ->findByChassor2($user, $enigme);
         
         // affichage
-        return $this->render('ChassorCoreBundle:Enigme:enigme-'.$enigme->getCode().'.html.twig',
+        return $this->render('ChassorCoreBundle:EnigmeData:enigme-'.$enigme->getCode().'.html.twig',
             array(
                 'enigme'       => $enigme,
+                'indices'      => $indices,
                 'proposition'  => $chassorEnigme,
                 'dateProp'     => $dateProp
             ));
@@ -172,7 +181,7 @@ class EnigmeController extends Controller
     /**
      * function enigmeImageAction
      * - Gestion de l'affichage des images de l'énigme
-     * - Contrôle des l'accès à l'énigme (E404 / E403)
+     * - Contrôle des l'accès à l'énigme (404 / 403)
      * 
      * @Secure(roles="ROLE_CHASSOR")
      */
@@ -216,17 +225,17 @@ class EnigmeController extends Controller
     
     /**
      * function deverouillerEnigmes
-     * - Appelé si bonne réponse sur une énigme
-     * - Déverouille les enigmes dépendante de l'enigme en cours
+     * - Déverrouille les énigmes sur la date et bonnes réponses pour le chassor
      */
-    public function deverouillerEnigmes(Enigme $enigme, Chassor $user)
+    public function deverouillerEnigmes(Chassor $user)
     {
         // Globales
         $em = $this->getDoctrine()->getManager();
-        
-        // Selection des enigmes dépendantes
+    
+        // Sélection des nouvelles enigmes disponibles
+        $date = new \DateTime();
         $enigmes = $em->getRepository('ChassorCoreBundle:Enigme')
-                      ->findBy(array('depend' => $enigme));
+                      ->findNewEnigme($em, $user, $date);
         
         // Ajout énigme au chassor
         foreach ($enigmes as $e)
@@ -235,37 +244,6 @@ class EnigmeController extends Controller
             $chassorEnigme->setChassor($user);
             $chassorEnigme->setEnigme($e);
             $em->persist($chassorEnigme);
-            $this->get('session')->getFlashBag()->add('info',
-                'L\'énigme ['.$e->getCode().'] est débloquée !');
-        }
-        $em->flush();
-    }
-    
-    /**
-     * function deverouillerEnigmesDate
-     * - Déverrouille les énigmes sur la date pour le chassor
-     * - Seulement les énigmes sans dépendance
-     */
-    public function deverouillerEnigmesDate(Chassor $user)
-    {
-        // Globales
-        $em = $this->getDoctrine()->getManager();
-    
-        // Sélection des nouvelles enigmes
-        $date = new \DateTime();
-        $enigmes = $em->getRepository('ChassorCoreBundle:Enigme')
-                      ->findNew($em, $user, $date);
-        
-        // Ajout énigme au chassor
-        foreach ($enigmes as $e)
-        {
-//            if ($e->getDepend() == null && $e->getDate() <= $date)
-//            {
-                $chassorEnigme = new ChassorEnigme();
-                $chassorEnigme->setChassor($user);
-                $chassorEnigme->setEnigme($e);
-                $em->persist($chassorEnigme);
-//            }
         }
         $em->flush();
     }

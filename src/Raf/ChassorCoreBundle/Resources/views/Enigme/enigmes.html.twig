@@ -5,9 +5,25 @@
 
 <ul>
 {% for e in enigmes %}
-<li><a href="enigme-{{ e.enigme.code }}">
-    {{ e.enigme.code }}
-    {% if e.valide %}(validée){% else %}(en cours...){% endif %}</a></li>
+<li>
+    {# si pas de chassor => enigme bloquée #}
+    {% if e.chassor is null %}
+        {{ e.code }}
+        {% if e.depend is null %}({{ e.date|date("d/m") }})
+        {% else %}({{ e.depend.code }})
+        {% endif %}
+    {# sinon => engime disponible #}
+    {% else %}
+        <a href="enigme-{{ e.code }}">{{ e.code }}</a>
+        {% if e.chassor.tentative < 0 %}
+            (nouveau !)
+        {% elseif e.chassor.valide %}
+            (validée)
+        {% else %}
+            (en cours)
+        {% endif %}
+    {% endif %}
+</li>
 {% endfor %}
 </ul>
 
