@@ -13,7 +13,9 @@ class RegistrationFormType extends BaseType
 
         $builder->add('nom',     'text')
                 ->add('prenom',  'text')
-                ->add('adresse', 'textarea')
+                ->add('rue',     'text')
+                ->add('CP',      'integer')
+                ->add('ville',   'text')
         ;
     }
 

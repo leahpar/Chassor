@@ -50,9 +50,23 @@ class Chassor extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="text")
+     * @ORM\Column(name="rue", type="string", length=255)
      */
-    private $adresse;
+    private $rue;
+    
+    /**
+     * @var Integer
+     *
+     * @ORM\Column(name="codePostal", type="integer")
+     */
+    private $CP;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
     
     /**
      * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Indice", inversedBy="chassors")
@@ -104,29 +118,6 @@ class Chassor extends BaseUser
     public function getActif()
     {
         return $this->actif;
-    }
-
-    /**
-     * Set adresse
-     *
-     * @param string $adresse
-     * @return Chassor
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-    
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string 
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
     }
 
     /**
@@ -376,5 +367,73 @@ class Chassor extends BaseUser
         return count($this->indices);
     }
     
+
+    /**
+     * Set rue
+     *
+     * @param string $rue
+     * @return Chassor
+     */
+    public function setRue($rue)
+    {
+        $this->rue = $rue;
     
+        return $this;
+    }
+
+    /**
+     * Get rue
+     *
+     * @return string 
+     */
+    public function getRue()
+    {
+        return $this->rue;
+    }
+
+    /**
+     * Set CP
+     *
+     * @param integer $cP
+     * @return Chassor
+     */
+    public function setCP($cP)
+    {
+        $this->CP = $cP;
+    
+        return $this;
+    }
+
+    /**
+     * Get CP
+     *
+     * @return integer 
+     */
+    public function getCP()
+    {
+        return $this->CP;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     * @return Chassor
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string 
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
 }

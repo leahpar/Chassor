@@ -52,6 +52,13 @@ class Enigme
     /**
      * @var string
      *
+     * @ORM\Column(name="codeInterne", type="string", length=10)
+     */
+    private $codeInterne;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="reponses", type="string", length=255, nullable=true)
      */
     private $reponses;
@@ -337,5 +344,61 @@ class Enigme
         {
             return $this->chassorEnigmes[0];
         }
+    }
+
+    /**
+     * Set codeInterne
+     *
+     * @param string $codeInterne
+     * @return Enigme
+     */
+    public function setCodeInterne($codeInterne)
+    {
+        $this->codeInterne = $codeInterne;
+    
+        return $this;
+    }
+
+    /**
+     * Get codeInterne
+     *
+     * @return string 
+     */
+    public function getCodeInterne()
+    {
+        return $this->codeInterne;
+    }
+
+    /**
+     * Add chassorEnigmes
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $chassorEnigmes
+     * @return Enigme
+     */
+    public function addChassorEnigme(\Raf\ChassorCoreBundle\Entity\ChassorEnigme $chassorEnigmes)
+    {
+        $this->chassorEnigmes[] = $chassorEnigmes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove chassorEnigmes
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $chassorEnigmes
+     */
+    public function removeChassorEnigme(\Raf\ChassorCoreBundle\Entity\ChassorEnigme $chassorEnigmes)
+    {
+        $this->chassorEnigmes->removeElement($chassorEnigmes);
+    }
+
+    /**
+     * Get chassorEnigmes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChassorEnigmes()
+    {
+        return $this->chassorEnigmes;
     }
 }

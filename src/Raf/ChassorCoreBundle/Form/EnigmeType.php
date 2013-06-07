@@ -12,6 +12,7 @@ class EnigmeType extends AbstractType
     {
         $builder
             ->add('code',        'text')
+            ->add('codeInterne', 'text')
             ->add('titre',       'text')
             ->add('commentaire', 'textarea', array('required' => false))
             ->add('reponses',    'text',     array('required' => false))
@@ -23,7 +24,7 @@ class EnigmeType extends AbstractType
             ->add('depend',      'entity',   array('required' => false,
                                                    'empty_value' => '',
                                                    'class' => 'ChassorCoreBundle:Enigme',
-                                                   'property' => 'code',
+                                                   'property' => 'codeInterne',
                                                    'attr' => array('class' => 'myselect2')))
             ->add('difficulte',  'choice', array('choices' => array('N1' => 'Niveau 1',
                                                                     'N2' => 'Niveau 2',

@@ -9,6 +9,7 @@
 <thead>
 <tr>
     <th class="sort" data-sort="string">Enigme</th>
+    <th class="sort" data-sort="string">Code Interne</th>
     <th class="sort" data-sort="string">Depend</th>
     <th class="sort" data-sort="string">Titre</th>
     <th class="sort" data-sort="date"  >Date</th>
@@ -24,6 +25,7 @@
 <tr>
     <td>{{ enigme.code }}</td>
     <td>{%if enigme.depend %} {{  enigme.depend.code }} {% endif %}</td>
+    <td>{{ enigme.codeInterne }}</td>
     <td>{{ enigme.titre }}</td>
     <td>{{ enigme.date|date("d/m") }}</td>
     <td>{{ enigme.commentaire|nl2br }}</td>
