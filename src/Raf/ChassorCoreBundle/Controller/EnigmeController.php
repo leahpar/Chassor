@@ -30,9 +30,13 @@ class EnigmeController extends Controller
     public function enigmesAction()
     {
         // globales
-        $user = $this->getUser();
-        $log  = $this->get('session')->getFlashBag();
-        $em   = $this->getDoctrine()->getManager();
+        $user  = $this->getUser();
+        $log   = $this->get('session')->getFlashBag();
+        $em    = $this->getDoctrine()->getManager();
+        $ocb_m = $this->get('ocb.message');
+        
+        // affichage messages
+        $ocb_m->gestionMessages($user, $log, $em);
         
         // debloquage des (éventuelles) nouvelles enigmes disponibles
         $this->deverouillerEnigmes($user);

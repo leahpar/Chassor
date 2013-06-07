@@ -34,3 +34,16 @@ admin_chassor_lister:
     pattern:  /chassors
     defaults: { _controller: ChassorAdminBundle:AdminChassor:lister }
     
+admin_message_lister:
+    pattern:  /messages
+    defaults: { _controller: ChassorAdminBundle:AdminMessage:lister }
+
+admin_message_ajouter:
+    pattern:  /message-ajout
+    defaults: { _controller: ChassorAdminBundle:AdminMessage:ajouter }
+
+admin_message_modifier:
+    pattern:  /messages/{id}
+    defaults: { _controller: ChassorAdminBundle:AdminMessage:modifier }
+
+    

@@ -10,7 +10,7 @@ php app/console doctrine:generate:entities ChassorCoreBundle:Enigme
 php app/console doctrine:generate:entities ChassorCoreBundle:Transaction
 php app/console doctrine:generate:entities ChassorCoreBundle:ChassorEnigme
 php app/console doctrine:generate:entities ChassorCoreBundle:Indice
-
+php app/console doctrine:generate:entities ChassorCoreBundle:Message
 
 
 # generation formulaire
@@ -41,7 +41,3 @@ php app/console fos:user:deactivate monutilisateur
 
 php app/console fos:user:promote raf ROLE_ADMIN
 php app/console fos:user:demote testuser ROLE_ADMIN
-
-
-
-php app/console doctrine:generate:entities ChassorBundle:Chassor

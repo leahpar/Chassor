@@ -16,6 +16,8 @@ services:
         class: Raf\ChassorCoreBundle\OCB\OCBEnigme
     ocb.acces:
         class: Raf\ChassorCoreBundle\OCB\OCBAcces
+    ocb.message:
+        class: Raf\ChassorCoreBundle\OCB\OCBMessage
         
     paypal_im_received:
         class: Raf\ChassorCoreBundle\Event\PaypalListener

@@ -44,6 +44,7 @@
             <li {% if app.request.attributes.get('_route') == 'admin_enigme_lister'      %}class="active"{% endif %}><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
             <li {% if app.request.attributes.get('_route') == 'admin_indice_lister'      %}class="active"{% endif %}><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
             <li {% if app.request.attributes.get('_route') == 'admin_transaction_lister' %}class="active"{% endif %}><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
+            <li {% if app.request.attributes.get('_route') == 'admin_message_lister'     %}class="active"{% endif %}><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
             {% endif %}
             <li class="divider-vertical"></li>
             <li {% if app.request.attributes.get('_route') == 'apropos' %}class="active"{% endif %}><a href="{{ path('apropos') }}">A propos</a></li>

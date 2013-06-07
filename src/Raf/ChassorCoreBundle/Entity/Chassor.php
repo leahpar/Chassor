@@ -75,6 +75,12 @@ class Chassor extends BaseUser
     private $indices;
     
     /**
+     * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Message", inversedBy="chassors")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $messages;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Transaction", mappedBy="chassor")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -435,5 +441,38 @@ class Chassor extends BaseUser
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Message $messages
+     * @return Chassor
+     */
+    public function addMessage(\Raf\ChassorCoreBundle\Entity\Message $messages)
+    {
+        $this->messages[] = $messages;
+    
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \Raf\ChassorCoreBundle\Entity\Message $messages
+     */
+    public function removeMessage(\Raf\ChassorCoreBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }
