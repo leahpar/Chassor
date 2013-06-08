@@ -4,7 +4,10 @@ namespace Raf\ChassorCoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Raf\ChassorCoreBundle\Entity\Enigme;
 use Raf\ChassorCoreBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\Indice;
+
 
 class DefaultController extends Controller
 {

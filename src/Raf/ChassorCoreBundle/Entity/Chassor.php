@@ -8,6 +8,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 use Raf\ChassorCoreBundle\Entity\Indice;
 use Raf\ChassorCoreBundle\Entity\Transaction;
 use Raf\ChassorCoreBundle\Entity\Enigme;
+use JMS\SecurityExtraBundle\Security\Util\String;
 
 /**
  * Chassor
@@ -46,6 +47,13 @@ class Chassor extends BaseUser
      * @ORM\Column(name="prenom", type="text", type="string", length=255)
      */
     private $prenom;
+    
+    /**
+     * @var String
+     * 
+     * @ORM\Column(name="parrain", type="text", type="string", length=255, nullable=true)
+     */
+    private $parrain;
 
     /**
      * @var string
@@ -474,5 +482,28 @@ class Chassor extends BaseUser
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Set parrain
+     *
+     * @param string $parrain
+     * @return Chassor
+     */
+    public function setParrain($parrain)
+    {
+        $this->parrain = $parrain;
+    
+        return $this;
+    }
+
+    /**
+     * Get parrain
+     *
+     * @return string 
+     */
+    public function getParrain()
+    {
+        return $this->parrain;
     }
 }

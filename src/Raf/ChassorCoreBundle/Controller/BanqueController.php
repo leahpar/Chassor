@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\Transaction;
+use Raf\ChassorCoreBundle\Entity\Enigme;
+use Raf\ChassorCoreBundle\Entity\Indice;
 
 # Securite
 use JMS\SecurityExtraBundle\Annotation\Secure;
@@ -30,6 +32,7 @@ class BanqueController extends Controller
                 'transactions' => $transactions
             ));
     }
+    
     /*
      * @ParamConverter("user",  options={"mapping": {"user":  "id"}})
      * @ParamConverter("trans", options={"mapping": {"trans": "id"}})
@@ -48,6 +51,9 @@ class BanqueController extends Controller
         return new Response("OK", 200);
     }
     
+    /**
+     * @Secure(roles="ROLE_CHASSOR")
+     */
     public function achatPiecesAction()
     {
         // recuperation variables POST
@@ -94,6 +100,9 @@ class BanqueController extends Controller
         return $this->redirect($url);
     }
     
+    /**
+     * @Secure(roles="ROLE_CHASSOR")
+     */
     public function achatIndiceAction(Enigme $enigme, Indice $indice)
     {
         // Globales
@@ -154,8 +163,26 @@ class BanqueController extends Controller
     
     public function activationAction()
     {
-        $user = $this->getUser();
-        $em   = $this->getDoctrine()->getManager();
+        $user  = $this->getUser();
+        $em    = $this->getDoctrine()->getManager();
+        $tran  = $this->container->getParameter('transaction');
+        
+        
+        // inscription parrain
+        if ($user->getParrain() != null)
+        {
+            $parrain = $em->getRepository('ChassorCoreBundle:Chassor')
+                          ->findParrain($user->getParrain());
+            if ($parrain != null)
+            {
+                // construction transaction
+                $transaction = new Transaction($parrain);
+                $transaction->setLibelle('Parrainage de '.$user->getUsername());
+                $transaction->setMontant($tran['pieces']['parrain']);
+                $transaction->setEtat(Transaction::$ETAT_VALIDE);
+                $em->persist($transaction);
+            }
+        }
         
         /* TODO : formulaire + redirection paypal */
         $user->addRole('ROLE_CHASSOR');

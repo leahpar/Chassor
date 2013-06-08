@@ -30,4 +30,15 @@ class ChassorRepository extends EntityRepository
         
         return $qb->getQuery()->getResult();
     }
+    
+    public function findParrain($parrain)
+    {
+        $qb = $this->createQueryBuilder('c')
+                   ->where('c.username = :parrain')
+                   ->orWhere('c.email = :parrain')
+                   ->setParameter('parrain', $parrain)
+        ;
+    
+        return $qb->getQuery()->getSingleResult();
+    }
 }

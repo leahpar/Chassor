@@ -239,6 +239,9 @@ class EnigmeController extends Controller
         $em->flush();
     }
     
+    /**
+     * @Secure(roles="ROLE_CHASSOR")
+     */
     public function indiceAchatAction(Enigme $enigme, Indice $indice)
     {
         // globales

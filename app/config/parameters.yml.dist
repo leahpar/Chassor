@@ -48,6 +48,8 @@ parameters:
             pack3:         2500
             pack4:         5000
             pack5:         10000
+            parrain:       200
+            
     enigme:
         prix:
             difficulte1:    1000
@@ -61,4 +63,4 @@ parameters:
             gain2:         200
             gain3:         100
         indice:
-            prix:               300
+            prix:          300
