@@ -38,8 +38,12 @@ enigmeImage:
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeImage }
 
 indiceAchat:
-    path:      /enigmes/indice-{code}-{indice}
+    path:      /enigmes/achat-indice-{code}-{indice}
     defaults:  { _controller: ChassorCoreBundle:Enigme:indiceAchat }
+
+enigmeAchat:
+    path:      /enigmes/achat-enigme-{code}
+    defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeAchat }
 
 
 #-- La banque -----------------------------

@@ -171,7 +171,8 @@ class EnigmeController extends Controller
                 'indices'      => $indices,
                 'proposition'  => $chassorEnigme,
                 'dateProp'     => $dateProp,
-                'prixIndice'   => $prixIn
+                'prixIndice'   => $prixIn,
+                'prixEnigme'   => $prixEn
             ));
     }
     
@@ -287,7 +288,54 @@ class EnigmeController extends Controller
         return $this->redirect('../enigme-'.$enigme->getCode());
     }
 
+    /**
+     * @Secure(roles="ROLE_CHASSOR")
+     */
+    public function enigmeAchatAction(Enigme $enigme)
+    {
+        // globales
+        $user   = $this->getUser();
+        $log    = $this->get('session')->getFlashBag();
+        $em     = $this->getDoctrine()->getManager();
+        $ocb_a  = $this->get('ocb.acces');
+        $prix   = $this->container->getParameter('enigme');
+        $prix   = $prix['prix']['difficulte'.$enigme->getDifficulte()];
+        
+        // controle de l'acces a l'enigme
+        $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
+        if ($chassorEnigme == null)
+        {
+            throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
+        }
+        
+        // controle fonds nécessaire
+        if ($user->getCompte() < $prix)
+        {
+            $log->add('error', 'Vous n\'avez pas les fonds nécessaire !');
+        }
+        else
+        {
+            $log->add('success', 'Réponse achetée');
+            
+            // Transaction d'achat
+            $transaction = new Transaction($user);
+            $transaction->setLibelle("Achat réponse énigme [".$enigme->getCode()."]");
+            $transaction->setMontant(0-$prix);
+            $transaction->setEtat(Transaction::$ETAT_VALIDE);
+            $em->persist($transaction);
+            
+            // réponse
+            $chassorEnigme->setReponse($enigme->getReponses());
+            $chassorEnigme->setValide(true);
+            $chassorEnigme->setDate(new \DateTime());
+            
+            $em->persist($chassorEnigme);
+            $em->flush();
+        }
+        // retour sur l'enigme
+        return $this->redirect('../enigme-'.$enigme->getCode());
     }
+}
 
 
 

@@ -5,38 +5,48 @@
 
 <h1>Enigme {{ enigme.code }}</h1>
 <h2>{{ enigme.titre }}</h2>
-<p>Difficulté {{ enigme.difficulte + 1 }}</p>
+<p>Difficulté {{ enigme.difficulte }}</p>
 
 {% block enigme %}
 {% endblock enigme %}
 
-{# Délai de réponse #}
 {% if not proposition.valide %}
+
+    {# Délai de réponse #}
     {% if enigme.delai > 0 %}
         <p>Attention : il y a un délai de {{ enigme.delai }} heure(s) entre chaque proposition !</p>
     {% endif %}
     {% if dateProp is not null %}
         <p>Prochaine proposition possible le {{ dateProp|date("d/m") }} à {{ dateProp|date("H:i") }}.</p>
     {% endif %}
-{% endif %}
 
-{# indices #}
-{% if indices|length > 0 %}
-    <p>Indice disponible pour cette énigme :</p>
-    <ul>
-    {% for i in indices %}
-    <li>
-        {% if i.chassor is not null %}
-        Indice : {{ i.indice }}
-        {% else %}
-        <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
-            onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice</a>
-        {% endif %}
-    </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Pas d'indice disponible pour cette énigme.</p>
-{% endif  %}
+
+    
+    {# partie achat #}
+    
+    {# indices #}
+    {% if indices|length > 0 %}
+        <p>Indice disponible pour cette énigme :</p>
+        <ul>
+        {% for i in indices %}
+        <li>
+            {% if i.chassor is not null %}
+            Indice : {{ i.indice }}
+            {% else %}
+            <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
+                onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice pour {{ prixIndice }} pièces</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Pas d'indice disponible pour cette énigme.</p>
+    {% endif  %}
+    
+    {# enigme #}
+    <a href="{{ path('enigmeAchat', {'code': enigme.code}) }}"
+       onClick="return confirm('Le débloquage de la réponse à cette énigme vous coutera {{ prixEnigme }} pièces.')">acheter la réponse pour {{ prixEnigme }} pièces</a>
+
+{% endif %}
 
 {% endblock body %}
