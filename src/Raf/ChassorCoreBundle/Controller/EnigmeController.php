@@ -72,7 +72,7 @@ class EnigmeController extends Controller
         $ocb_e  = $this->get('ocb.enigme');
         $ocb_a  = $this->get('ocb.acces');
         $log    = $this->get('session')->getFlashBag();
-        
+                
         // controle de l'acces a l'enigme
         $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
         if ($chassorEnigme == null)
@@ -85,7 +85,6 @@ class EnigmeController extends Controller
         {
             $chassorEnigme->setTentative(0);
         }
-        
         
         // gestion date
         $dateCur  = new \DateTime();
@@ -159,13 +158,20 @@ class EnigmeController extends Controller
         $indices = $em->getRepository('ChassorCoreBundle:Indice')
                       ->findByChassor2($user, $enigme);
         
+        // affichage des prix
+        
+        $prixIn = $param['indice']['prix'];
+        $prixEn = $param['prix']['difficulte'.$enigme->getDifficulte()];
+        
+        
         // affichage
         return $this->render('ChassorCoreBundle:EnigmeData:enigme-'.$enigme->getCode().'.html.twig',
             array(
                 'enigme'       => $enigme,
                 'indices'      => $indices,
                 'proposition'  => $chassorEnigme,
-                'dateProp'     => $dateProp
+                'dateProp'     => $dateProp,
+                'prixIndice'   => $prixIn
             ));
     }
     
@@ -185,7 +191,7 @@ class EnigmeController extends Controller
         $ocb_a  = $this->get('ocb.acces');
         
         // controle de l'acces a l'enigme
-        $acces = controleAccesEnigme($em, $user, $enigme);
+        $acces = $ocb_a->controleAccesEnigme($em, $user, $enigme);
         
         // Réponse de type image
         $reponse = new Response();
@@ -281,7 +287,7 @@ class EnigmeController extends Controller
         return $this->redirect('../enigme-'.$enigme->getCode());
     }
 
-}
+    }
 
 
 

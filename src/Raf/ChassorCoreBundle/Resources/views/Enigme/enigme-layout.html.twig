@@ -29,7 +29,8 @@
         {% if i.chassor is not null %}
         Indice : {{ i.indice }}
         {% else %}
-        <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}">acheter l'indice</a>
+        <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
+            onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice</a>
         {% endif %}
     </li>
     {% endfor %}
