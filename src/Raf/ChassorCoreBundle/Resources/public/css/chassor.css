@@ -1,11 +1,58 @@
-#container
-{
-    margin-top : 50px;   
-    z-index: 10;
+body {
+  background: url(../img/bg_body.png);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  -webkit-font-smoothing: antialiased;
 }
-
-
-.stupid .sort
-{
-    cursor: pointer;
+a {
+  text-decoration: none;
+}
+.mainHeader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 57px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #3a3a3a;
+  text-align: center;
+}
+.mainHeader ul {
+  position: absolute;
+  top: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+.mainHeader ul li {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  float: left;
+  text-align: left;
+}
+.mainHeader ul li a {
+  display: inline-block;
+  font-size: 18px;
+  color: #929292;
+  padding-top: 15px;
+  font-family: din;
+}
+.mainHeader ul li a:hover {
+  color: #fff;
+}
+.mainHeader .mainNav {
+  left: 0px;
+}
+.mainHeader .mainNav li a {
+  margin-left: 25px;
+}
+.mainHeader .mainNav li a:hover {
+  color: #fff;
+}
+.mainHeader .userNav {
+  right: 0px;
+}
+.mainHeader .userNav li a {
+  margin-right: 25px;
 }

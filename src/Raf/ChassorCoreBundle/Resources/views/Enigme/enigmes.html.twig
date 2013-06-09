@@ -3,17 +3,19 @@
 
 {% block body %}
 
-<ul>
+<ul class="enigmes">
 {% for e in enigmes %}
 <li>
     {# si pas de chassor => enigme bloquée #}
     {% if e.chassor is null %}
+        {{ e.codeInterne|slice(0,1) }}    {# slice = substr #}
         {{ e.code }}
         {% if e.depend is null %}({{ e.date|date("d/m") }})
         {% else %}({{ e.depend.code }})
         {% endif %}
     {# sinon => engime disponible #}
     {% else %}
+        {{ e.codeInterne|slice(0,1) }}    {# slice = substr #}
         <a href="enigme-{{ e.code }}">{{ e.code }}</a>
         {% if e.chassor.tentative < 0 %}
             (nouveau !)
@@ -27,4 +29,4 @@
 {% endfor %}
 </ul>
 
-{% endblock %}
+{% endblock body %}

@@ -17,6 +17,10 @@ apropos:
     pattern:  /apropos
     defaults: { _controller: ChassorCoreBundle:Default:apropos }
 
+contact:
+    pattern:  /contact
+    defaults: { _controller: ChassorCoreBundle:Default:contact }
+
 activation:
     pattern:  /activation
     defaults: { _controller: ChassorCoreBundle:Banque:activation }

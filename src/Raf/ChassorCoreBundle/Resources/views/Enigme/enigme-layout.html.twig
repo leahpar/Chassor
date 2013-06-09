@@ -1,5 +1,3 @@
-{%extends "ChassorCoreBundle::layout.html.twig" %}
-
 
 {% block body %}
 
@@ -33,8 +31,8 @@
         <li>
             {% if i.chassor is not null %}
                 Indice : {{ i.indice }}
-            {% elseif x = 0 %}
-                {% x = 1 %}
+            {% elseif x == 0 %}
+                {% set x = 1 %}
                 <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
                     onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice pour {{ prixIndice }} pièces</a>
             {% else %}

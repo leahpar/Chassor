@@ -72,6 +72,8 @@ class EnigmeController extends Controller
         $ocb_e  = $this->get('ocb.enigme');
         $ocb_a  = $this->get('ocb.acces');
         $log    = $this->get('session')->getFlashBag();
+        
+        $classement = 0;
                 
         // controle de l'acces a l'enigme
         $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);

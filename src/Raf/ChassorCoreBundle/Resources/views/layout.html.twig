@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-1000">
+    
     <title>{% block title %}Chassor{% endblock %}</title>
 
     <!-- les css -->
     {% stylesheets filter='cssrewrite'
-        'bundles/chassorcore/bootstrap/bootstrap.css'
-        'bundles/chassorcore/bootstrap/bootstrap-responsive.css'
+        'bundles/chassorcore/css/bootstrap/bootstrap.css'
+        'bundles/chassorcore/css/bootstrap/bootstrap-responsive.css'
         'bundles/chassorcore/css/*.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -16,73 +23,73 @@
 </head>
 
 <body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a>
+        or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+        </p>
+    <![endif]-->
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="{{ path('index') }}">Chassor</a>
-          <p class="navbar-text pull-right">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
-               - {{ app.user.compte }} Pièces
-               - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-            {% else %}
-              <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-               - <a href="{{ path('fos_user_registration_register') }}">Inscription</a>
-            {% endif %}
-          </p>
-          
-          <ul class="nav">
-            {% if is_granted("ROLE_CHASSOR") %}
-            <li class="divider-vertical"></li>
-            <li {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}><a href="{{ path('enigmes') }}">Mes enigmes</a></li>
-            <li {% if app.request.attributes.get('_route') == 'banque'  %}class="active"{% endif %}><a href="{{ path('banque') }}">Ma banque</a></li>
-            {% endif %}
-            {% if is_granted("ROLE_ADMIN") %}
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
-                <li><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
-                <li><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
-                <li><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
-                <li><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
-              </ul>
-            </li>
-            {% endif %}
-            <li class="divider-vertical"></li>
-            <li {% if app.request.attributes.get('_route') == 'apropos' %}class="active"{% endif %}><a href="{{ path('apropos') }}">A propos</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <header class="mainHeader">
     
-    <div id="container" class="container">
+        <ul class="mainNav">
+        {% if is_granted("ROLE_CHASSOR") %}
+        <li><a href="{{ path('enigmes') }}" {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}>Mes &Eacute;nigmes</a></li>
+        {% endif %}
+        <li><a href="{{ path('apropos') }}" {% if app.request.attributes.get('_route') == 'apropos'  %}class="active"{% endif %}>&Agrave; propos</a></li>
+        <li><a href="/blog">Le blog</a></li>
+        <li><a href="{{ path('contact') }}" {% if app.request.attributes.get('_route') == 'contact'  %}class="active"{% endif %}>Contact</a></li>
+        </ul>
+        
+        <a href="{{ path('index') }}"><img src="{{ asset('bundles/chassorcore/img/header_logo.png') }}" class="logo" alt="logo" /></a>
+        
+        <ul class="userNav">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <li><a href="{{ path('fos_user_profile_show') }}"><img src="" />{{ app.user.username }}</a></li>
+        <li><a href="{{ path('banque') }}"><img src="" />{{ app.user.compte }} pièces</a></li>
+        <li><a href="#" class="btnjaune"><img src="" /> acheter des pièces</a></li>
+        {% endif %}
+        </ul>
+       
+    </header>
+   
+    <ul>
+        {% if is_granted("ROLE_ADMIN") %}
+        <li><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
+        <li><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
+        <li><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
+        <li><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
+        <li><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
+        {% endif %}
+        
+        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+        <li><a href="{{ path('fos_user_security_login')        }}">Connexion</a></li>
+        <li><a href="{{ path('fos_user_security_logout')       }}">Déconnexion</a></li>
+    </ul>
     
-        <div id="flash_msg"> <!-- les flash messages -->
-        {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
-        {% for message in app.session.flashbag.get(type) %}
-        <div class="alert alert-{{ type }}">
-            <a class="close" data-dismiss="alert" href="#">&times;</a>
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endfor %}
-        </div>
-        
-        {% block body %}
-        {% endblock body %}
-        
-        
+    <div id="flash_msg"> <!-- les flash messages -->
+    {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
+    {% for message in app.session.flashbag.get(type) %}
+    <div class="alert alert-{{ type }}">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        {{ message }}
     </div>
+    {% endfor %}
+    {% endfor %}
+    </div>
+        
+    {% block body %}
+    {% endblock body %}
 
     <!-- les js -->
     {# jQuery depuis le CDN de Google, ou fallback sur une copie locale #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{{ asset('bundles/chassorcore/jquery/jquery-1.9.1.min.js') }}"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="{{ asset('bundles/chassorcore/js/jquery/jquery-1.9.1.min.js') }}"><\/script>')</script>
     
     {% javascripts
-        'bundles/chassorcore/bootstrap/bootstrap.js'
+        'bundles/chassorcore/js/bootstrap/*min.js'
+        'bundles/chassorcore/js/plugins/*.js'
         'bundles/chassorcore/js/*.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
