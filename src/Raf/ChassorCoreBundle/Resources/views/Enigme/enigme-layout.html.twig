@@ -28,13 +28,20 @@
     {% if indices|length > 0 %}
         <p>Indice disponible pour cette énigme :</p>
         <ul>
+        {% set x = 0 %}
         {% for i in indices %}
         <li>
             {% if i.chassor is not null %}
-            Indice : {{ i.indice }}
+                Indice : {{ i.indice }}
+            {% elseif x = 0 %}
+                {% x = 1 %}
+                <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
+                    onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice pour {{ prixIndice }} pièces</a>
             {% else %}
-            <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
-                onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice pour {{ prixIndice }} pièces</a>
+                <disabled>
+                <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
+                    onClick="return confirm('Le débloquage de cet indice vous coutera {{ prixIndice }} pièces.')">acheter l'indice pour {{ prixIndice }} pièces</a>
+                </disabled>
             {% endif %}
         </li>
         {% endfor %}
@@ -46,6 +53,9 @@
     {# enigme #}
     <a href="{{ path('enigmeAchat', {'code': enigme.code}) }}"
        onClick="return confirm('Le débloquage de la réponse à cette énigme vous coutera {{ prixEnigme }} pièces.')">acheter la réponse pour {{ prixEnigme }} pièces</a>
+
+{% else %}
+    {% include 'ChassorCoreBundle:EnigmeData:enigme-' ~ enigme.code ~ 'b.html' ignore missing %}
 
 {% endif %}
 

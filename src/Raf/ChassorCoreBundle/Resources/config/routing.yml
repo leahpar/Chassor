@@ -33,6 +33,10 @@ enigme:
     path:      /enigme-{code}
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigme }
 
+enigmeX:       # validation enigme double
+    path:      /enigmeX-{code}
+    defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeX }
+
 enigmeImage:
     path:      /enigmes/{code}-{image_id}.jpg
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeImage }

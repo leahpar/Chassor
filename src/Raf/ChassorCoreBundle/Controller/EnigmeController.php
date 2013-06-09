@@ -172,7 +172,8 @@ class EnigmeController extends Controller
                 'proposition'  => $chassorEnigme,
                 'dateProp'     => $dateProp,
                 'prixIndice'   => $prixIn,
-                'prixEnigme'   => $prixEn
+                'prixEnigme'   => $prixEn,
+                'classement'   => $classement
             ));
     }
     
@@ -335,6 +336,74 @@ class EnigmeController extends Controller
         // retour sur l'enigme
         return $this->redirect('../enigme-'.$enigme->getCode());
     }
+    
+    /**
+     * @Secure(roles="ROLE_CHASSOR")
+     */
+    public function enigmeXAction(Enigme $enigme)
+    {
+        // globales
+        $user   = $this->getUser();
+        $log    = $this->get('session')->getFlashBag();
+        $em     = $this->getDoctrine()->getManager();
+        $ocb_a  = $this->get('ocb.acces');
+        
+        // controle de l'acces a l'enigme
+        $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
+        if ($chassorEnigme == null)
+        {
+            throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
+        }
+        
+        // gestion reponse
+        $request = $this->get('request');
+        $valide = false;
+        if ($request->getMethod() == 'POST')
+        {
+            // correction reponse
+            $reponse = $this->get('request')->request->get('reponse');
+            $valide = $ocb_e->reponseValide($enigme, $reponse);
+    
+            $chassorEnigme->setValide($valide);
+            $chassorEnigme->setTentative($chassorEnigme->getTentative() + 1);
+            $chassorEnigme->setDate(new \DateTime());
+            $chassorEnigme->setReponse(mysql_real_escape_string($reponse));
+            $em->persist($chassorEnigme);
+    
+            if ($valide)
+            {
+                // Classement resultat
+                $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
+                              ->findBy(array('enigme' => $enigme));
+                $classement = count($enigmes);
+    
+                if ($classement == $param['gain']['niveau1'])
+                {
+                    $gain = $param['gain']['gain1'];
+                }
+                elseif ($classement < $param['gain']['niveau2'])
+                {
+                    $gain = $param['gain']['gain2'];
+                }
+                else
+                {
+                    $gain = $param['gain']['gain3'];
+                }
+    
+                // Transaction gain pieces
+                $transaction = new Transaction($user);
+                $transaction->setLibelle("Réponse énigme [".$enigme->getCode()."]");
+                $transaction->setMontant($gain);
+                $transaction->setEtat(Transaction::$ETAT_VALIDE);
+                $em->persist($transaction);
+            }
+            $em->flush();
+        }
+        
+        return new Response(($valide) ? 'OK' :'KO');
+        
+    }
+    
 }
 
 

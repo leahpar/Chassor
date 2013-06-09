@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}Chassor{% endblock %}</title>
+
+    <!-- les css -->
+    {% stylesheets filter='cssrewrite'
+        'bundles/chassorcore/bootstrap/bootstrap.css'
+        'bundles/chassorcore/bootstrap/bootstrap-responsive.css'
+        'bundles/chassorcore/css/*.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    
+</head>
+
+<body>
+
+    <div id="container" class="container">
+        {% block body %}
+        {% endblock body %}
+    </div>
+        
+    <!-- les js -->
+    {# jQuery depuis le CDN de Google, ou fallback sur une copie locale #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ asset('bundles/chassorcore/jquery/jquery-1.9.1.min.js') }}"><\/script>')</script>
+    
+    {% javascripts
+        'bundles/chassorcore/bootstrap/bootstrap.js'
+        'bundles/chassorcore/js/*.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+</body>    
+</html>
+
