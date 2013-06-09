@@ -7,6 +7,13 @@ use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
  
 class OCBEnigme
 {
+    private $ocb_chaine;
+    
+    public function __construct($ocb_chaine)
+    {
+        $this->ocb_chaine = $ocb_chaine;
+    }
+    
     /**
      * Verifie la date de prochaine proposition
      * 
@@ -38,15 +45,10 @@ class OCBEnigme
      */
     public function reponseValide(Enigme $enigme, $reponse)
     {
-        $correction = explode("|", $enigme->getReponses());
-        if (in_array($reponse, explode('|', $enigme->getReponses())))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return in_array(
+            $this->ocb_chaine->normaliza($reponse),
+            explode('|', $enigme->getReponses())
+        );
     }
 }
  

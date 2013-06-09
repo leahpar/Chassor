@@ -22,7 +22,8 @@ class EnigmeRepository extends EntityRepository
         
         $qb->leftJoin('e.chassorEnigmes', 'ce', 'with', 'ce.chassor = :chassor')
            ->setParameter('chassor', $chassor)
-           ->addSelect('ce');
+           ->addSelect('ce')
+           ->orderBy('e.code');
         
         return $qb->getQuery()->getResult();
     }

@@ -39,12 +39,16 @@
             <li {% if app.request.attributes.get('_route') == 'banque'  %}class="active"{% endif %}><a href="{{ path('banque') }}">Ma banque</a></li>
             {% endif %}
             {% if is_granted("ROLE_ADMIN") %}
-            <li class="divider-vertical"></li>
-            <li {% if app.request.attributes.get('_route') == 'admin_chassor_lister'     %}class="active"{% endif %}><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
-            <li {% if app.request.attributes.get('_route') == 'admin_enigme_lister'      %}class="active"{% endif %}><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
-            <li {% if app.request.attributes.get('_route') == 'admin_indice_lister'      %}class="active"{% endif %}><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
-            <li {% if app.request.attributes.get('_route') == 'admin_transaction_lister' %}class="active"{% endif %}><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
-            <li {% if app.request.attributes.get('_route') == 'admin_message_lister'     %}class="active"{% endif %}><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
+                <li><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
+                <li><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
+                <li><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
+                <li><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
+              </ul>
+            </li>
             {% endif %}
             <li class="divider-vertical"></li>
             <li {% if app.request.attributes.get('_route') == 'apropos' %}class="active"{% endif %}><a href="{{ path('apropos') }}">A propos</a></li>

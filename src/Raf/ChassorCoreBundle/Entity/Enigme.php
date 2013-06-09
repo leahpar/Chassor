@@ -370,6 +370,16 @@ class Enigme
     }
 
     /**
+     * Get codeInterne2
+     *
+     * @return string
+     */
+    public function getCodeInterne2()
+    {
+        return $this->codeInterne.' '.$this->titre;
+    }
+    
+    /**
      * Add chassorEnigmes
      *
      * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $chassorEnigmes
@@ -400,5 +410,17 @@ class Enigme
     public function getChassorEnigmes()
     {
         return $this->chassorEnigmes;
+    }
+    
+    /**
+     * Get bonneReponse
+     * Pour récupérer LA bonne réponse
+     * 
+     * @return string
+     */
+    public function getBonneReponse()
+    {
+        $liste = explode('|', $this->reponses);
+        return $liste[0];
     }
 }

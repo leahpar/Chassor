@@ -24,8 +24,8 @@
 {% for enigme in liste %}
 <tr>
     <td>{{ enigme.code }}</td>
-    <td>{%if enigme.depend %} {{  enigme.depend.code }} {% endif %}</td>
     <td>{{ enigme.codeInterne }}</td>
+    <td>{%if enigme.depend %} {{  enigme.depend.codeInterne }} {% endif %}</td>
     <td>{{ enigme.titre }}</td>
     <td>{{ enigme.date|date("d/m") }}</td>
     <td>{{ enigme.commentaire|nl2br }}</td>

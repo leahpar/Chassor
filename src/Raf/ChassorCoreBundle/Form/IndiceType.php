@@ -13,7 +13,7 @@ class IndiceType extends AbstractType
         $builder
             ->add('enigme', 'entity',   array('empty_value' => '',
                                               'class' => 'ChassorCoreBundle:Enigme',
-                                              'property' => 'code',
+                                              'property' => 'codeInterne2',
                                               'attr' => array('class' => 'myselect2')))
             ->add('indice', 'text')
         ;

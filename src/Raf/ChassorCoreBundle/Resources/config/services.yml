@@ -12,8 +12,11 @@ services:
         tags:
         - { name: form.type, alias: chassor_user_registration }
         
+    ocb.chaine:
+        class: Raf\ChassorCoreBundle\OCB\OCBChaine
     ocb.enigme:
         class: Raf\ChassorCoreBundle\OCB\OCBEnigme
+        arguments: [@ocb.chaine]
     ocb.acces:
         class: Raf\ChassorCoreBundle\OCB\OCBAcces
     ocb.message:
