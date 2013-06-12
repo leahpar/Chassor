@@ -63,3 +63,7 @@ banque:
 retour_paiement:
     pattern:  /ipn/retour-paiement-42-{user}-{trans}-{etat}
     defaults: { _controller: ChassorCoreBundle:Banque:retourPaiement }
+
+achat_pieces:
+    pattern:  /achat-pieces
+    defaults: { _controller: ChassorCoreBundle:Banque:achatPieces }

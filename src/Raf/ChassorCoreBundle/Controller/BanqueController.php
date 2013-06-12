@@ -57,23 +57,26 @@ class BanqueController extends Controller
     public function achatPiecesAction()
     {
         // recuperation variables POST
-        $type  = $request->request->get('type');
-        $promo = $request->request->get('promo');
+        $type  = $this->get('request')->request->get('type');
+        $promo = $this->get('request')->request->get('promo');
     
         $user  = $this->getUser();
     
         // recuperation variables globales
         $tran  = $this->container->getParameter('transaction');
         $ppal  = $this->container->getParameter('paypal');
+        
+        var_dump($ppal);
+        return;
     
         // gestion sandbox paypal
         if ($ppal['islive'])
         {
-            $ppal = $ppal['live'];
+            $pp_mode = 'live';
         }
         else
         {
-            $ppal = $ppal['sandbox'];
+            $pp_mode = 'sandbox';
         }
     
         // code promo
@@ -89,8 +92,8 @@ class BanqueController extends Controller
         $transaction->setEtat(Transaction::$ETAT_ATTENTE);
     
         // construction de l'url
-        $url  = $ppal['url'];
-        $url .= '?business='.urlencode($ppal['url']);
+        $url  = $ppal[$pp_mode]['url'];
+        $url .= '?business='.urlencode($ppal[$pp_mode]['email']);
         $url .= '&item_name='.urlencode($tran['libelle'][$type]);
         $url .= '&amount='.$tran['prix'][$type];
         $url .= '&currency_code=EUR';

@@ -6,15 +6,15 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class PaypalListener {
 
-    private $om;
+    private $em;
 
-    public function __construct(ObjectManager $om) {
-        $this->om = $om;
+    public function __construct(ObjectManager $em) {
+        $this->em = $em;
     }
 
     public function onIPNReceive(PayPalEvent $event) {
         $ipn = $event->getIPN();
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->$em;
         
         // recherche de la transaction
         $transaction = $ipn->getIpnData();
