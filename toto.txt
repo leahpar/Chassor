@@ -41,3 +41,9 @@ php app/console fos:user:deactivate monutilisateur
 
 php app/console fos:user:promote raf ROLE_ADMIN
 php app/console fos:user:demote testuser ROLE_ADMIN
+
+
+# GIT
+
+git fetch --all
+git reset --hard origin/master

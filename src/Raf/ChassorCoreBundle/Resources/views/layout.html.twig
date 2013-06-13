@@ -93,7 +93,7 @@
         
         <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
         <li><a href="{{ path('fos_user_security_login')        }}">Connexion</a></li>
-        <li><a href="{{ path('fos_user_security_logout')       }}">Déconnexion</a></li>
+        <li><a href="{{ path('fos_user_security_logout')       }}">Dï¿½connexion</a></li>
     </ul>
     
     {# Les flash messages #}
@@ -128,6 +128,16 @@
     <script>
     $(document).ready(function() { $(".stupid").stupidtable(); });
     </script>
+    
+    {# analytics #}
+    <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-6228803-8', 'chassor.com');
+	  ga('send', 'pageview');
+	</script>
 
 </body>    
 </html>
