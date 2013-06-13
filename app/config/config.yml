@@ -90,7 +90,7 @@ liip_imagine:
 orderly_pay_pal_ipn:
     islive:  false
     
-    email:   %paypal%
+    email:   xx
     url:     xx
     debug:   true
     

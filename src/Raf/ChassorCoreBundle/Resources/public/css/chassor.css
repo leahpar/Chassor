@@ -1,58 +1,194 @@
 body {
-  background: url(../img/bg_body.png);
-  padding-top: 100px;
-  padding-bottom: 100px;
-  -webkit-font-smoothing: antialiased;
+ background: url(../img/bg_body.png) ;/*fixed;*/
+ padding-top: 100px;
+ padding-bottom: 100px;
+ -webkit-font-smoothing: antialiased;
+ box-shadow: inset 0px -50px 360px rgba(0, 0, 0, 0.2);
 }
 a {
-  text-decoration: none;
+ text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ font-weight: normal;
 }
 .mainHeader {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 57px;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid #3a3a3a;
-  text-align: center;
+ position: fixed;
+ top: 0px;
+ left: 0px;
+ width: 100%;
+ height: 57px;
+ z-index: 1000;
+ background: url(../img/bg_header.jpg);
+ border-bottom: 1px solid #3a3a3a;
+ text-align: center;
 }
 .mainHeader ul {
-  position: absolute;
-  top: 0px;
-  padding: 0px;
-  margin: 0px;
+ position: absolute;
+ top: 0px;
+ padding: 0px;
+ margin: 0px;
 }
 .mainHeader ul li {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-  float: left;
-  text-align: left;
+ margin: 0px;
+ padding: 0px;
+ list-style: none;
+ float: left;
+ text-align: left;
 }
 .mainHeader ul li a {
-  display: inline-block;
-  font-size: 18px;
-  color: #929292;
-  padding-top: 15px;
-  font-family: din;
+ display: inline-block;
+ font-size: 18px;
+ color: #929292;
+ margin-top: 15px;
+ font-family: din;
 }
 .mainHeader ul li a:hover {
-  color: #fff;
+ color: #fff;
 }
 .mainHeader .mainNav {
-  left: 0px;
+ left: 0px;
 }
 .mainHeader .mainNav li a {
-  margin-left: 25px;
+ margin-left: 25px;
 }
 .mainHeader .mainNav li a:hover {
-  color: #fff;
+ color: #fff;
+}
+.mainHeader .mainNav li a.active {
+ font-family: dinM;
+ color: #dadada;
+ height: 54px;
+ background: url(../img/header_mainnav_active_onglet.png) no-repeat center bottom;
 }
 .mainHeader .userNav {
-  right: 0px;
+ right: 0px;
 }
 .mainHeader .userNav li a {
-  margin-right: 25px;
+ margin-right: 25px;
+ margin-top: 20px;
+ font-family: dinM;
+ font-size: 15px;
+ line-height: 18px;
 }
+.mainHeader .userNav li a.btnjaune {
+ color: #ab7100;
+ margin-top: 11px;
+}
+.mainHeader .userNav li a.btnjaune img {
+ top: 1px;
+}
+.mainHeader .userNav li a.btnjaune:hover {
+ color: #795000;
+}
+.mainHeader .userNav li a img {
+ position: relative;
+ top: -2px;
+ margin-right: 5px;
+}
+.btnjaune {
+ display: block;
+ padding: 6px 10px 4px 10px;
+ height: 23px;
+ color: #ab7100;
+ border-radius: 5px;
+ box-shadow: inset 0px 1px 0px #ffe4af, 0px 2px 0px #ce8c0b, 0px 7px 5px rgba(0, 0, 0, 0.65);
+ text-shadow: 0px 1px 0px #ffe4af;
+ background-image: linear-gradient(bottom, #f29d27 0%, #f9ce68 100%);
+ background-image: -o-linear-gradient(bottom, #f29d27 0%, #f9ce68 100%);
+ background-image: -moz-linear-gradient(bottom, #f29d27 0%, #f9ce68 100%);
+ background-image: -webkit-linear-gradient(bottom, #f29d27 0%, #f9ce68 100%);
+ background-image: -ms-linear-gradient(bottom, #f29d27 0%, #f9ce68 100%);
+ background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f29d27), color-stop(1, #f9ce68));
+}
+.btnjaune:hover {
+ color: #795000;
+}
+.mainWrapper {
+ width: 90%;
+ margin: 100px auto;
+ outline: 0px dashed blue;
+ text-align: center;
+}
+.enigme {
+ outline: 0px dotted yellow;
+ margin: 30px;
+ display: inline-block;
+ vertical-align: top;
+ text-align: center;
+}
+.enigme a {
+ display: block;
+ position: relative;
+ width: 235px;
+ height: 165px;
+ box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.enigme a .sceau {
+ position: absolute;
+ left: 93px;
+ top: 60px;
+}
+.enigme a .corner {
+ position: absolute;
+ top: -2px;
+ right: -2px;
+}
+.enigme a .lock {
+ position: absolute;
+ top: 0px;
+ left: 0px;
+ width: 100%;
+ height: 100%;
+ z-index: 10;
+ background: rgba(0, 0, 0, 0.6);
+ font-family: dinM;
+ font-size: 15px;
+ color: #d9d9d9;
+}
+.enigme a .lock figure {
+ display: inline-block;
+ background: #dedede;
+ padding: 15px 18px;
+ margin-top: 55px;
+ margin-bottom: 5px;
+ border-radius: 100px;
+}
+.enigme a.locked {
+ cursor: default;
+}
+.enigme h1 {
+ margin-top: 20px;
+ margin-bottom: 0px;
+ font-family: dinM;
+ font-size: 19px;
+ color: #d9d9d9;
+}
+.enigme h2 {
+ margin: 0px;
+ font-family: din;
+ font-size: 13px;
+ color: #878787;
+ text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+ .userNav {
+   display: none;
+ }
+ .mainNav {
+   display: none;
+ }
+}
+@media only screen and (max-width: 400px) {
+ .userNav {
+   display: none;
+ }
+ .mainNav {
+   display: none;
+ }
+}
+

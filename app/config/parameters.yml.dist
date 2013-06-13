@@ -14,24 +14,27 @@ parameters:
     locale:            fr
     secret:            ThisTokenIsNotSoSecretChangeIt
 
+    # Paypal
     paypal:
-        islive:           true
+        islive:            false
         live:
-            email:         "raf@chassor.fr"
+            email:         "leahpar@wanadoo.fr"
             url:           "https://www.paypal.com/cgi-bin/webscr"
         sandbox:
-            email:         "raf@chassor.fr"
+            email:         "leahpar@wanadoo.fr"
             url:           "https://www.sandbox.paypal.com/cgi-bin/webscr"
+    
+    # transactions
     transaction:
         code_promo:       "AQZE12"
         libelle:
             inscription:   "Inscription"
             inscriptionX:  "Inscription (code promo)"
-            pack1:         "Pack 500 Pièces"
-            pack2:         "Pack 1000 Pièces"
-            pack3:         "Pack 2500 Pièces"
-            pack4:         "Pack 5000 Pièces"
-            pack5:         "Pack 10000 Pièces"
+            pack1:         "Pack 500 Pieces"
+            pack2:         "Pack 1000 Pieces"
+            pack3:         "Pack 2500 Pieces"
+            pack4:         "Pack 5000 Pieces"
+            pack5:         "Pack 10000 Pieces"
         prix: 
             inscription:   5
             inscriptionX:  4
@@ -48,8 +51,6 @@ parameters:
             pack3:         2500
             pack4:         5000
             pack5:         10000
-            parrain:       200
-            
     enigme:
         prix:
             difficulte1:    1000

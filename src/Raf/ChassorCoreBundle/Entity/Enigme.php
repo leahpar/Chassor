@@ -43,9 +43,9 @@ class Enigme
     private $commentaire;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="code", type="string", length=10)
+     * @ORM\Column(name="code", type="integer")
      */
     private $code;
 

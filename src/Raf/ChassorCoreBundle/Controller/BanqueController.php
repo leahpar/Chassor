@@ -54,21 +54,20 @@ class BanqueController extends Controller
     /**
      * @Secure(roles="ROLE_CHASSOR")
      */
-    public function achatPiecesAction()
+    public function achatPiecesAction($type)
     {
-        // recuperation variables POST
-        $type  = $this->get('request')->request->get('type');
-        $promo = $this->get('request')->request->get('promo');
-    
         $user  = $this->getUser();
-    
+        $em = $this->getDoctrine()->getManager();
+        
+        $a = explode('-', $type);
+        $type  = $a[0];
+        $promo = (count($a) > 1) ? $a[1] : "";
+
         // recuperation variables globales
         $tran  = $this->container->getParameter('transaction');
         $ppal  = $this->container->getParameter('paypal');
         
-        var_dump($ppal);
-        return;
-    
+        
         // gestion sandbox paypal
         if ($ppal['islive'])
         {
@@ -85,11 +84,14 @@ class BanqueController extends Controller
             $type = $type.'X';
         }
     
+        
         // construction transaction
-        $transaction = new \Transaction($user);
+        $transaction = new Transaction($user);
         $transaction->setLibelle($tran['libelle'][$type]);
-        $transaction->setMontant($tran['prix'][$type]);
+        $transaction->setMontant($tran['pieces'][$type]);
         $transaction->setEtat(Transaction::$ETAT_ATTENTE);
+        $em->persist($transaction);
+        $em->flush();
     
         // construction de l'url
         $url  = $ppal[$pp_mode]['url'];
@@ -98,8 +100,11 @@ class BanqueController extends Controller
         $url .= '&amount='.$tran['prix'][$type];
         $url .= '&currency_code=EUR';
         $url .= '&custom='.$transaction->getId();
+        $url .= '&cmd=_xclick';
     
         // on envoie l'user chez paypal
+
+        //return new Response($url);
         return $this->redirect($url);
     }
     

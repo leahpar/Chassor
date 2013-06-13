@@ -4,9 +4,13 @@
 {% block body %}
 <h1>Ma banque</h1>
 
-<div>
-Acheter des PO <a href="#">ICI</a>
-</div>
+<ul>
+    <li><a href="{{ path('achat', { 'type': 'pack1' }) }}">Pack 500 Pièces</a></li>
+    <li><a href="{{ path('achat', { 'type': 'pack2' }) }}">Pack 1000 Pièces</a></li>
+    <li><a href="{{ path('achat', { 'type': 'pack3' }) }}">Pack 2500 Pièces</a></li>
+    <li><a href="{{ path('achat', { 'type': 'pack4' }) }}">Pack 5000 Pièces</a></li>
+    <li><a href="{{ path('achat', { 'type': 'pack5' }) }}">Pack 10000 Pièces</a></li>
+</ul>
 
 <div>
 Mon historique
@@ -14,18 +18,29 @@ Mon historique
 <tbody>
 {% set sum = 0 %}
 {% for t in transactions %}
+{#
 <tr 
 {% if     t.etat == 0 %}
     {% set sum = sum + t.montant %}
-    class="success">
+    class="success"
 {% elseif t.etat  > 0 %}
-    class="warning">
+    class="warning"
 {% elseif t.etat  < 0 %}
-    class="error">
+    class="error"
 {% endif %}
+>
+#}
+<tr>
     <td>{{ t.date|date("d/m") }}</td>
     <td>{{ t.libelle }}</td>
     <td>{{ t.montant }}</td>
+{% if     t.etat == 0 %}
+    <td>Validé</td>
+{% elseif t.etat  > 0 %}
+    <td>En attende de validation</td>
+{% elseif t.etat  < 0 %}
+    <td>Refusé</td>
+{% endif %}
     
 </tr>
 {% endfor %}
@@ -35,12 +50,16 @@ Mon historique
     <th>Date</th>
     <th>Libellé</th>
     <th>Montant</th>
+    <th>Status</th>
 </tr>
+{#
 <tr>
     <th>{{ "now"|date("d/m/Y") }}</th>
     <th>Total</th>
     <th>{{ sum }}</th>
+    <th></th>
 </tr>
+#}
 </thead>
 </table>
 </div>

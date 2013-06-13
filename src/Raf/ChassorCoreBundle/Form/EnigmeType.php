@@ -11,7 +11,7 @@ class EnigmeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('code',        'text')
+            ->add('code',        'integer')
             ->add('codeInterne', 'text')
             ->add('titre',       'text')
             ->add('commentaire', 'textarea', array('required' => false))

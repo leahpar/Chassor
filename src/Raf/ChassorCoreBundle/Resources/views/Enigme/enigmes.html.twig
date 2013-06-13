@@ -2,31 +2,46 @@
 
 
 {% block body %}
+<div class="mainWrapper">
 
-<ul class="enigmes">
 {% for e in enigmes %}
-<li>
-    {# si pas de chassor => enigme bloquée #}
-    {% if e.chassor is null %}
-        {{ e.codeInterne|slice(0,1) }}    {# slice = substr #}
-        {{ e.code }}
-        {% if e.depend is null %}({{ e.date|date("d/m") }})
-        {% else %}({{ e.depend.code }})
+<article class="enigme">
+    
+    {% if e.chassor is null %}   {# si pas de chassor => enigme bloqu�e #}
+        <a href="#" class="locked">
+        <div class="lock"><figure>
+        <img src="{{ asset('bundles/chassorcore/img/enigme_lock.png') }}" alt="&Eacute;nigme verrouill&eacute;e" />
+        </figure><br/>
+        {% if e.depend is null %}
+            ({{ e.date|date("d/m") }})
+        {% else %}
+            (&Eacute;nigme {{ e.depend.code }})
         {% endif %}
+        </div>
+        <img src="{{ asset('bundles/chassorcore/img/enveloppe.jpg') }}" class="enveloppe" alt="&Eacute;nigme {{ e.code }}" />
+        </a>
+        <h1>&Eacute;nigme {{ e.code }}</h1>
+        <h2>Verrouill&eacute;e</h2>
+
     {# sinon => engime disponible #}
     {% else %}
-        {{ e.codeInterne|slice(0,1) }}    {# slice = substr #}
-        <a href="enigme-{{ e.code }}">{{ e.code }}</a>
+        <a href="enigme-{{ e.code }}">
+        <img src="{{ asset('bundles/chassorcore/img/enveloppe.jpg') }}" class="enveloppe" alt="&Eacute;nigme {{e.code }}" />
+        <img src="{{ asset('bundles/chassorcore/img/sceau_' ~ e.codeInterne|slice(0,1) ~ '.png') }}" class="sceau" />
+
         {% if e.chassor.tentative < 0 %}
-            (nouveau !)
+            <img src="{{ asset('bundles/chassorcore/img/enveloppe_new.png') }}" class="corner" />
         {% elseif e.chassor.valide %}
-            (validée)
-        {% else %}
-            (en cours)
+            <img src="{{ asset('bundles/chassorcore/img/enveloppe_ok.png') }}" class="corner" />
         {% endif %}
+        </a>
+        <h1>&Eacute;nigme {{ e.code }}</h1>
     {% endif %}
-</li>
+</article>
 {% endfor %}
-</ul>
+
+<div class="clearfix"></div>
+</div>
 
 {% endblock body %}
+

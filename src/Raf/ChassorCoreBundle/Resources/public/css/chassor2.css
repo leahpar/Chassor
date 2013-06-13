@@ -1,21 +1,10 @@
-#container
-{
-    margin-top : 50px;   
-    z-index: 10;
-}
-
-
-.stupid .sort
+tupid .sort
 {
     cursor: pointer;
 }
 
-.enigmes li
+table
 {
-    display: inline-block;
-    width: 200px;
-    padding: 5px 10px 5px 10px;
-    margin: 20px;
-    text-decoration: none;
-    background: #999;
+   background-color: #EAEAEA;
 }
+

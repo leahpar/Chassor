@@ -60,10 +60,6 @@ banque:
     pattern:  /banque
     defaults: { _controller: ChassorCoreBundle:Banque:lister }
 
-retour_paiement:
-    pattern:  /ipn/retour-paiement-42-{user}-{trans}-{etat}
-    defaults: { _controller: ChassorCoreBundle:Banque:retourPaiement }
-
-achat_pieces:
-    pattern:  /achat-pieces
+achat:
+    pattern:  /banque/achat-{type}
     defaults: { _controller: ChassorCoreBundle:Banque:achatPieces }

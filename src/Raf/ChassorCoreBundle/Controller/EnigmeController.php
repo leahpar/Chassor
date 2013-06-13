@@ -167,7 +167,7 @@ class EnigmeController extends Controller
         
         
         // affichage
-        return $this->render('ChassorCoreBundle:EnigmeData:enigme-'.$enigme->getCode().'.html.twig',
+        return $this->render('ChassorCoreBundle:EnigmeData:enigme-'.$enigme->getCodeInterne().'.html.twig',
             array(
                 'enigme'       => $enigme,
                 'indices'      => $indices,
