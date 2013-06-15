@@ -15,6 +15,8 @@
     <!-- les css -->
     {% stylesheets filter='cssrewrite'
         'bundles/chassorcore/css/*.css'
+        'bundles/chassorcore/css/bootstrap/bootstrap.css'
+        'bundles/chassorcore/css/bootstrap/bootstrap-responsive.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
@@ -110,8 +112,8 @@
     {# utilisateur enregistré mais pas actif #}
     {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
     <div class="alert alert-info">
-        Votre inscription n'est pas terminée.
-        <a href="{{ path('fos_user_registration_confirmed') }}" >Par ici !</a>
+        Votre inscription n'est pas terminée. Si vous n'avez pas encore payé, c'est <a href="{{ path('fos_user_registration_confirmed') }}" >par ici !</a>
+        sinon attendez... en cas de soucis bla bla bla...
     </div>
     {% endif %}
     

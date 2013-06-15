@@ -22,7 +22,7 @@ services:
         arguments: [@doctrine.orm.entity_manager]
     ocb.message:
         class: Raf\ChassorCoreBundle\OCB\OCBMessage
-        arguments: [@doctrine.orm.entity_manager, @logger]
+        arguments: [@doctrine.orm.entity_manager, @session]
         
     paypal_im_received:
         class: Raf\ChassorCoreBundle\Event\PaypalListener

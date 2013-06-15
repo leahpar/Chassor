@@ -1,8 +1,12 @@
 <?php
 namespace Raf\ChassorCoreBundle\Event;
 
+use Orderly\PayPalIpnBundle\Ipn;
 use Orderly\PayPalIpnBundle\Event\PayPalEvent;
 use Doctrine\Common\Persistence\ObjectManager;
+use Raf\ChassorCoreBundle\Entity\Transaction;
+use Raf\ChassorCoreBundle\Entity\Chassor;
+
 
 class PaypalListener {
 
@@ -16,7 +20,7 @@ class PaypalListener {
 
     public function onIPNReceive(PayPalEvent $event) {
         $ipn = $event->getIPN();
-        $em = $this->$em;
+        $em = $this->em;
         
         // recherche de la transaction
         $transaction = $ipn->getIpnData();

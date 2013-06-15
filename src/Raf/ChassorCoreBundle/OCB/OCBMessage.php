@@ -11,10 +11,10 @@ class OCBMessage
     private $em;
     private $log;
     
-    public function __construct($em, $log)
+    public function __construct($em, $session)
     {
         $this->em  = $em;
-        $this->log = $log;
+        $this->log = $session->getFlashBag();
     }
     
     public function gestionMessages(Chassor $user)
