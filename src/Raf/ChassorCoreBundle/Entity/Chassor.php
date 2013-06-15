@@ -1,7 +1,6 @@
 <?php
 
 namespace Raf\ChassorCoreBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 
@@ -9,6 +8,7 @@ use Raf\ChassorCoreBundle\Entity\Indice;
 use Raf\ChassorCoreBundle\Entity\Transaction;
 use Raf\ChassorCoreBundle\Entity\Enigme;
 use JMS\SecurityExtraBundle\Security\Util\String;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * Chassor
@@ -16,7 +16,7 @@ use JMS\SecurityExtraBundle\Security\Util\String;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Raf\ChassorCoreBundle\Entity\ChassorRepository")
  */
-class Chassor extends BaseUser
+class Chassor extends BaseUser implements EquatableInterface
 {
     /**
      * @var integer
@@ -47,7 +47,7 @@ class Chassor extends BaseUser
      * @ORM\Column(name="prenom", type="text", type="string", length=255)
      */
     private $prenom;
-    
+
     /**
      * @var String
      * 
@@ -61,45 +61,45 @@ class Chassor extends BaseUser
      * @ORM\Column(name="rue", type="string", length=255)
      */
     private $rue;
-    
+
     /**
      * @var Integer
      *
      * @ORM\Column(name="codePostal", type="integer")
      */
     private $CP;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=255)
      */
     private $ville;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Indice", inversedBy="chassors")
      * @ORM\JoinColumn(nullable=true)
      */
     private $indices;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Message", inversedBy="chassors")
      * @ORM\JoinColumn(nullable=true)
      */
     private $messages;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Transaction", mappedBy="chassor")
      * @ORM\JoinColumn(nullable=true)
      */
     private $transactions;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\ChassorEnigme", mappedBy="chassor")
      * @ORM\JoinColumn(nullable=true)
      */
     private $enigmes;
-    
+
     /**
      * Get id
      *
@@ -110,7 +110,6 @@ class Chassor extends BaseUser
         return $this->id;
     }
 
-    
     /**
      * Set actif
      *
@@ -120,7 +119,7 @@ class Chassor extends BaseUser
     public function setActif($actif)
     {
         $this->actif = $actif;
-    
+
         return $this;
     }
 
@@ -143,7 +142,7 @@ class Chassor extends BaseUser
     public function setTel($tel)
     {
         $this->tel = $tel;
-    
+
         return $this;
     }
 
@@ -166,7 +165,7 @@ class Chassor extends BaseUser
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -189,7 +188,7 @@ class Chassor extends BaseUser
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-    
+
         return $this;
     }
 
@@ -210,7 +209,7 @@ class Chassor extends BaseUser
         parent::__construct();
         $this->indices = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add indices
      *
@@ -220,7 +219,7 @@ class Chassor extends BaseUser
     public function addIndice(\Raf\ChassorCoreBundle\Entity\Indice $indices)
     {
         $this->indices[] = $indices;
-    
+
         return $this;
     }
 
@@ -250,10 +249,11 @@ class Chassor extends BaseUser
      * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes
      * @return Chassor
      */
-    public function addEnigme(\Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes)
+    public function addEnigme(
+            \Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes)
     {
         $this->enigmes[] = $enigmes;
-    
+
         return $this;
     }
 
@@ -262,7 +262,8 @@ class Chassor extends BaseUser
      *
      * @param \Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes
      */
-    public function removeEnigme(\Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes)
+    public function removeEnigme(
+            \Raf\ChassorCoreBundle\Entity\ChassorEnigme $enigmes)
     {
         $this->enigmes->removeElement($enigmes);
     }
@@ -283,10 +284,11 @@ class Chassor extends BaseUser
      * @param \Raf\ChassorCoreBundle\Entity\transaction $transactions
      * @return Chassor
      */
-    public function addTransaction(\Raf\ChassorCoreBundle\Entity\transaction $transactions)
+    public function addTransaction(
+            \Raf\ChassorCoreBundle\Entity\transaction $transactions)
     {
         $this->transactions[] = $transactions;
-    
+
         return $this;
     }
 
@@ -295,7 +297,8 @@ class Chassor extends BaseUser
      *
      * @param \Raf\ChassorCoreBundle\Entity\transaction $transactions
      */
-    public function removeTransaction(\Raf\ChassorCoreBundle\Entity\transaction $transactions)
+    public function removeTransaction(
+            \Raf\ChassorCoreBundle\Entity\transaction $transactions)
     {
         $this->transactions->removeElement($transactions);
     }
@@ -309,10 +312,7 @@ class Chassor extends BaseUser
     {
         return $this->transactions;
     }
-    
-    
-    
-    
+
     /**
      * Get compte
      *
@@ -321,14 +321,13 @@ class Chassor extends BaseUser
     public function getCompte()
     {
         $cpt = 0;
-        foreach($this->transactions as $t)
-        {
+        foreach ($this->transactions as $t) {
             if ($t->getEtat() == Transaction::$ETAT_VALIDE)
                 $cpt += $t->getMontant();
         }
         return $cpt;
     }
-    
+
     /**
      * Get count enigmes
      *
@@ -338,7 +337,7 @@ class Chassor extends BaseUser
     {
         return count($this->enigmes);
     }
-    
+
     /**
      * Get tentatives enigmes
      *
@@ -347,14 +346,13 @@ class Chassor extends BaseUser
     public function getNbTentatives()
     {
         $cpt = 0;
-        foreach ($this->enigmes as $e)
-        {
+        foreach ($this->enigmes as $e) {
             if ($e->getTentative() > 0)
-                    $cpt += $e->getTentative();
+                $cpt += $e->getTentative();
         }
         return $cpt;
     }
-    
+
     /**
      * Get count enigmes valices
      *
@@ -363,14 +361,13 @@ class Chassor extends BaseUser
     public function getNbEnigmesValides()
     {
         $cpt = 0;
-        foreach ($this->enigmes as $e)
-        {
+        foreach ($this->enigmes as $e) {
             if ($e->getValide() == true)
-                    $cpt++;
+                $cpt++;
         }
         return $cpt;
     }
-    
+
     /**
      * Get count indices
      *
@@ -380,7 +377,6 @@ class Chassor extends BaseUser
     {
         return count($this->indices);
     }
-    
 
     /**
      * Set rue
@@ -391,7 +387,7 @@ class Chassor extends BaseUser
     public function setRue($rue)
     {
         $this->rue = $rue;
-    
+
         return $this;
     }
 
@@ -414,7 +410,7 @@ class Chassor extends BaseUser
     public function setCP($cP)
     {
         $this->CP = $cP;
-    
+
         return $this;
     }
 
@@ -437,7 +433,7 @@ class Chassor extends BaseUser
     public function setVille($ville)
     {
         $this->ville = $ville;
-    
+
         return $this;
     }
 
@@ -460,7 +456,7 @@ class Chassor extends BaseUser
     public function addMessage(\Raf\ChassorCoreBundle\Entity\Message $messages)
     {
         $this->messages[] = $messages;
-    
+
         return $this;
     }
 
@@ -469,7 +465,8 @@ class Chassor extends BaseUser
      *
      * @param \Raf\ChassorCoreBundle\Entity\Message $messages
      */
-    public function removeMessage(\Raf\ChassorCoreBundle\Entity\Message $messages)
+    public function removeMessage(
+            \Raf\ChassorCoreBundle\Entity\Message $messages)
     {
         $this->messages->removeElement($messages);
     }
@@ -493,7 +490,7 @@ class Chassor extends BaseUser
     public function setParrain($parrain)
     {
         $this->parrain = $parrain;
-    
+
         return $this;
     }
 
@@ -506,4 +503,19 @@ class Chassor extends BaseUser
     {
         return $this->parrain;
     }
+    
+    
+    public function isEqualTo(\Symfony\Component\Security\Core\User\UserInterface $user)
+    {
+        /*
+        if (count($user->getRoles()) != count($this->getRoles()))
+                return false;
+        
+        foreach($user->getRoles() as $role)
+            if (!in_array($role, $this->getRoles()))
+                return false;
+        */
+        return false;
+    }
+
 }

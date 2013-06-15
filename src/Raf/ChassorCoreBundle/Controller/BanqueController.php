@@ -33,26 +33,8 @@ class BanqueController extends Controller
             ));
     }
     
-    /*
-     * @ParamConverter("user",  options={"mapping": {"user":  "id"}})
-     * @ParamConverter("trans", options={"mapping": {"trans": "id"}})
-     */
-    public function retourPaiementAction(Chassor $user, Transaction $trans, $etat)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $transaction = $em->getRepository('ChassorCoreBundle:Transaction')
-                          ->findOneBy(array('chassor' => $user, 'id' => $trans->getId()));
-        if ($transaction != null)
-        {
-            $transaction->setEtat($etat);
-            $em->persist($transaction);
-            $em->flush();
-        }
-        return new Response("OK", 200);
-    }
-    
     /**
-     * @Secure(roles="ROLE_CHASSOR")
+     * @Secure(roles="ROLE_USER")
      */
     public function achatPiecesAction($type)
     {
@@ -121,7 +103,7 @@ class BanqueController extends Controller
         $log    = $this->get('session')->getFlashBag();
     
         // Controle acces enigme
-        if ($ocb->controleAccesEnigme($em, $user, $enigme) == false)
+        if ($ocb->controleAccesEnigme($user, $enigme) == false)
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
         }
@@ -169,35 +151,8 @@ class BanqueController extends Controller
                 $this->generateUrl('enigme', array('code' => $enigme->getCode())));
     }
     
-    public function activationAction()
+    public function retourPaiementAction()
     {
-        $user  = $this->getUser();
-        $em    = $this->getDoctrine()->getManager();
-        $tran  = $this->container->getParameter('transaction');
-        
-        
-        // inscription parrain
-        if ($user->getParrain() != null)
-        {
-            $parrain = $em->getRepository('ChassorCoreBundle:Chassor')
-                          ->findParrain($user->getParrain());
-            if ($parrain != null)
-            {
-                // construction transaction
-                $transaction = new Transaction($parrain);
-                $transaction->setLibelle('Parrainage de '.$user->getUsername());
-                $transaction->setMontant($tran['pieces']['parrain']);
-                $transaction->setEtat(Transaction::$ETAT_VALIDE);
-                $em->persist($transaction);
-            }
-        }
-        
-        /* TODO : formulaire + redirection paypal */
-        $user->addRole('ROLE_CHASSOR');
-        $em->flush();
-        
-        /* on le deconnecte pour prendre en compte le noueau role */
-        return $this->redirect($this->generateUrl('fos_user_security_logout'));
+        return $this->render('ChassorCoreBundle:Banque:retourPaiement.html.twig');
     }
-    
 }

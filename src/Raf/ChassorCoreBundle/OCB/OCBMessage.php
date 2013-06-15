@@ -8,17 +8,26 @@ use Raf\ChassorCoreBundle\Entity\Chassor;
 
 class OCBMessage
 {
-    public function gestionMessages(Chassor $user, $log, $em)
+    private $em;
+    private $log;
+    
+    public function __construct($em, $log)
+    {
+        $this->em  = $em;
+        $this->log = $log;
+    }
+    
+    public function gestionMessages(Chassor $user)
     {
         // Liste des enigmes disponibles
-        $messages = $em->getRepository('ChassorCoreBundle:Message')
-                       ->findByChassor2($em, $user);
+        $messages = $this->em->getRepository('ChassorCoreBundle:Message')
+                             ->findByChassor2($this->em, $user);
         foreach ($messages as $m)
         {
-            $log->add('info', $m->getMessage());
+            $this->log->add('info', $m->getMessage());
             $user->addMessage($m);
         }
-        $em->flush();
+        $this->em->flush();
     }
 }
  

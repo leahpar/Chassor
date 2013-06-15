@@ -90,12 +90,12 @@ liip_imagine:
 orderly_pay_pal_ipn:
     islive:  false
     
-    email:   xx
-    url:     xx
+    email:   leahpar@wanadoo.fr
+    url:     https://www.paypal.com/cgi-bin/webscr
     debug:   true
     
-    sandbox_email:   xx
-    sandbox_url:     xx
+    sandbox_email:   leahpar@wanadoo.fr
+    sandbox_url:     https://www.sandbox.paypal.com/cgi-bin/webscr
     sandbox_debug:   true
     # ORM
     drivers:

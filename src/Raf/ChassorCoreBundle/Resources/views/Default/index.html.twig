@@ -2,5 +2,35 @@
 
 
 {% block body %}
-Hello world !
+
+<div class="mainWrapper">
+    <div class="mainContent">
+        <img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
+        <p class="titre"><img src="{{ asset('bundles/chassorcore/img/home_titre.png') }}" /></p>
+        <div class="texte">
+        <p>Nulla facilisi. Proin ut massa neque. Suspendisse fermentum malesuada neque ac molestie. Proin id malesuada enim, eget mollis diam. Aenean in dui vitae ligula interdum malesuada. Quisque pretium egestas urna, id consequat nulla blandit nec. Suspendisse non lacus in odio sagittis tincidunt et vitae leo. Sed bibendum convallis odio.</p>
+        <p>Nam blandit hendrerit mattis. Maecenas eu augue sed ipsum interdum tincidunt in eu purus. Etiam tortor felis, facilisis nec eros quis, tincidunt dignissim nisi. In sed sem sit amet nulla interdum tristique. Vivamus sed neque a sapien porta viverra. Aliquam nec purus magna. Fusce at mi in felis pretium vulputate.</p>
+    </div>
+    
+    {% if not is_granted("ROLE_CHASSOR") %}
+    <div class="linksContainer">
+        <a href="#" class="go"><span><strong>5</strong>&euro;</span>
+            Crééer mon compte
+            <img src="{{ asset('bundles/chassorcore/img/home_links_a_arrow.png') }}" class="arrow" /></a>
+        <a href="#" class="more"><img src="{{ asset('bundles/chassorcore/img/home_links_a_more_arrow.png') }}" class="arrow" />
+            En savoir plus sur Chassor</a>
+        <div class="clearfix"></div>
+    </div>
+    <p class="why">
+        <a href="#" class="box">Pourquoi l'inscription à Chassor est-elle payante ?
+        <span>
+        <strong>Pour faire un chouette trésor !</strong><br/>
+        Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
+        <img src="img/box_onlget.png" />
+        </span>
+        </a>
+    </p>
+    {% endif %}
+</div>
+
 {% endblock %}

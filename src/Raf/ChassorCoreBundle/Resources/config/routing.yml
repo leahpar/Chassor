@@ -21,11 +21,6 @@ contact:
     pattern:  /contact
     defaults: { _controller: ChassorCoreBundle:Default:contact }
 
-activation:
-    pattern:  /activation
-    defaults: { _controller: ChassorCoreBundle:Banque:activation }
-
-
 
 #-- Les enigmes -----------------------------
 
@@ -63,3 +58,8 @@ banque:
 achat:
     pattern:  /banque/achat-{type}
     defaults: { _controller: ChassorCoreBundle:Banque:achatPieces }
+    
+retourPaiement:
+    pattern:  /banque/retourPaiement
+    defaults: { _controller: ChassorCoreBundle:Banque:retourPaiement }
+

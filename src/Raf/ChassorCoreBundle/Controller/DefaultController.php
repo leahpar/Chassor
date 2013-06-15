@@ -23,7 +23,7 @@ class DefaultController extends Controller
         	$ocb_m = $this->get('ocb.message');
         	
         	// affichage messages
-        	$ocb_m->gestionMessages($user, $log, $em);
+        	$ocb_m->gestionMessages($user);
     	}
     	
         return $this->render('ChassorCoreBundle:Default:index.html.twig');

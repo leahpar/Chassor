@@ -200,4 +200,14 @@ class Transaction
     {
         return $this->etat;
     }
+    
+    
+    public function getType()
+    {
+        if (strpos($this->libelle, 'nscription') > 0)
+        {
+            return 1;
+        }
+        return 2;
+    }
 }

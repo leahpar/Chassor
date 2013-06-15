@@ -26,7 +26,7 @@ class EnigmeController extends Controller
      * - Appelle this->deverouillerEnigmesDate pour deverouiller les enigmes sur la date
      * 
      * @Secure(roles="ROLE_CHASSOR")
-     */   
+     */
     public function enigmesAction()
     {
         // globales
@@ -36,7 +36,7 @@ class EnigmeController extends Controller
         $ocb_m = $this->get('ocb.message');
         
         // affichage messages
-        $ocb_m->gestionMessages($user, $log, $em);
+        $ocb_m->gestionMessages($user);
         
         // debloquage des (éventuelles) nouvelles enigmes disponibles
         $this->deverouillerEnigmes($user);
@@ -76,7 +76,7 @@ class EnigmeController extends Controller
         $classement = 0;
                 
         // controle de l'acces a l'enigme
-        $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
+        $chassorEnigme = $ocb_a->controleAccesEnigme2($user, $enigme);
         if ($chassorEnigme == null)
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
@@ -195,7 +195,7 @@ class EnigmeController extends Controller
         $ocb_a  = $this->get('ocb.acces');
         
         // controle de l'acces a l'enigme
-        $acces = $ocb_a->controleAccesEnigme($em, $user, $enigme);
+        $acces = $ocb_a->controleAccesEnigme($user, $enigme);
         
         // Réponse de type image
         $reponse = new Response();
@@ -263,7 +263,7 @@ class EnigmeController extends Controller
         $prix   = $prix['indice']['prix'];
         
         // controle de l'acces a l'enigme
-        if ($ocb_a->controleAccesEnigme($em, $user, $enigme) == false)
+        if ($ocb_a->controleAccesEnigme($user, $enigme) == false)
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
         }
@@ -305,7 +305,7 @@ class EnigmeController extends Controller
         $prix   = $prix['prix']['difficulte'.$enigme->getDifficulte()];
         
         // controle de l'acces a l'enigme
-        $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
+        $chassorEnigme = $ocb_a->controleAccesEnigme2($user, $enigme);
         if ($chassorEnigme == null)
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
@@ -351,7 +351,7 @@ class EnigmeController extends Controller
         $ocb_a  = $this->get('ocb.acces');
         
         // controle de l'acces a l'enigme
-        $chassorEnigme = $ocb_a->controleAccesEnigme2($em, $user, $enigme);
+        $chassorEnigme = $ocb_a->controleAccesEnigme2($user, $enigme);
         if ($chassorEnigme == null)
         {
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");

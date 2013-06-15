@@ -14,8 +14,6 @@
 
     <!-- les css -->
     {% stylesheets filter='cssrewrite'
-        'bundles/chassorcore/css/bootstrap/bootstrap.css'
-        'bundles/chassorcore/css/bootstrap/bootstrap-responsive.css'
         'bundles/chassorcore/css/*.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -58,7 +56,7 @@
         <a href="{{ path('index') }}"><img src="{{ asset('bundles/chassorcore/img/header_logo.png') }}" class="logo" alt="logo" /></a>
         
         <ul class="userNav">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% if is_granted("ROLE_CHASSOR") %}
         <li>
             <a href="{{ path('fos_user_profile_show') }}">
             <img src="{{ asset('bundles/chassorcore/img/header_user_icon.png') }}" />
@@ -72,10 +70,11 @@
             </a>
         </li>
         <li>
-            <a href="#" class="btnjaune">
+            <a href="{{ path('banque') }}" class="btnjaune">
             <img src="{{ asset('bundles/chassorcore/img/header_achat_icon.png') }}" />
             acheter des pi&egrave;ces</a>
         </li>
+        {% else %}
         {% endif %}
         </ul>
        
@@ -93,7 +92,7 @@
         
         <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
         <li><a href="{{ path('fos_user_security_login')        }}">Connexion</a></li>
-        <li><a href="{{ path('fos_user_security_logout')       }}">D�connexion</a></li>
+        <li><a href="{{ path('fos_user_security_logout')       }}">Déconnexion</a></li>
     </ul>
     
     {# Les flash messages #}
@@ -107,9 +106,21 @@
     {% endfor %}
     {% endfor %}
     </div>
-        
+    
+    {# utilisateur enregistré mais pas actif #}
+    {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
+    <div class="alert alert-info">
+        Votre inscription n'est pas terminée.
+        <a href="{{ path('fos_user_registration_confirmed') }}" >Par ici !</a>
+    </div>
+    {% endif %}
+    
     {% block body %}
     {% endblock body %}
+    
+    <div class="footer">
+        <p>&copy; Chassor Rouen 2013 - Tous droits réservés - <a href="#">Règlement</a> - <a href="#">Partenaires</a></p>
+    </div>
 
     <!-- les js -->
     {# jQuery depuis le CDN de Google, ou fallback sur une copie locale #}
@@ -124,10 +135,8 @@
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     
-    <!-- js de mise en page -->
-    <script>
-    $(document).ready(function() { $(".stupid").stupidtable(); });
-    </script>
+    {% block script %}
+    {% endblock script %}
     
     {# analytics #}
     <script>

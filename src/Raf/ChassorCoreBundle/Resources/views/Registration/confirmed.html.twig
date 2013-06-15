@@ -4,5 +4,18 @@
 
 {% block fos_user_content %}
     <p>Bienvenue {{ user.username }}, votre compte est créé.</p>
-    <p>Pour finaliser votre inscription, il faut payer : <a href="{{ path("activation") }}">Finaliser mon inscription</a></p>
+    <input id="codePromo" type="text" placeholder="code promotionnel" />
+    <p>Pour finaliser votre inscription, il faut payer : <a id="lienInscription" href="{{ path("achat", {type: 'inscription'}) }}">Finaliser mon inscription</a></p>
+    
 {% endblock fos_user_content %}
+
+
+{% block script %}
+<script>
+var _href = $('#lienInscription').attr('href'); 
+$('input[id=codePromo]').change(function()
+{ 
+    $('#lienInscription').attr('href', _href + '-' + $('#codePromo').val().substr(0,6))
+});
+</script>
+{% endblock script %}
