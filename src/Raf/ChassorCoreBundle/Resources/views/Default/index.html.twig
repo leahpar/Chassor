@@ -1,10 +1,11 @@
+{% set bodyClass = 'red' %}
 {%extends "ChassorCoreBundle::layout.html.twig" %}
 
 
 {% block body %}
 
-<div class="mainWrapper">
-    <div class="mainContent">
+<div class="redWrapper">
+    <div class="content">
         <img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
         <p class="titre"><img src="{{ asset('bundles/chassorcore/img/home_titre.png') }}" /></p>
         <div class="texte">
@@ -32,5 +33,5 @@
     </p>
     {% endif %}
 </div>
-
+</div>
 {% endblock %}

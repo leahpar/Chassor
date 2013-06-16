@@ -51,6 +51,7 @@ parameters:
             pack3:         2500
             pack4:         5000
             pack5:         10000
+            parrain:       100
     enigme:
         prix:
             difficulte1:    1000

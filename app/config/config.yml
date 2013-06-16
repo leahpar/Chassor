@@ -90,11 +90,11 @@ liip_imagine:
 orderly_pay_pal_ipn:
     islive:  false
     
-    email:   leahpar@wanadoo.fr
+    email:   paiement@chassor.com
     url:     https://www.paypal.com/cgi-bin/webscr
     debug:   true
     
-    sandbox_email:   leahpar@wanadoo.fr
+    sandbox_email:   paiement@chassor.com
     sandbox_url:     https://www.sandbox.paypal.com/cgi-bin/webscr
     sandbox_debug:   true
     # ORM

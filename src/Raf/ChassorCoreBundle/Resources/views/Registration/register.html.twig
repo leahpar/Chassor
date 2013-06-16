@@ -1,8 +1,85 @@
+{% set bodyClass = 'red' %}
 {% extends "ChassorCoreBundle::layout-user.html.twig" %}
 
 {% block fos_user_content %}
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-    {{ form_widget(form) }}
-        <input type="submit" value="Inscription" class="btn btn-primary" />
-</form>
+    <div class="redWrapper">
+       <div class="content">
+       <img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
+       
+       <div class="intro">
+       <h1>Alors c'est décidé ? Vous vous lancez avec nous sur la piste du trésor de Chassor ?</h1>
+       <p>Créez votre compte, validez votre inscription et réglez les 5€ de frais d'inscription sur Paypal avec votre compte Paypal ou votre carte bancaire.</p>
+       </div>
+       
+       <div class="redContent">
+       <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+        {{ form_widget(form._token) }}
+        <div id="fos_user_registration_form">
+        <div>
+       <label for="fos_user_registration_form_username" class="required">Nom d'utilisateur</label>
+        {{ form_widget(form.username) }}
+        {{ form_errors(form.username) }}
+        </div>
+        <div>
+        <label for="fos_user_registration_form_email" class="required">Adresse e-mail</label>
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+        </div>
+        <div class="spacer"></div>
+        <div>
+        <label for="fos_user_registration_form_plainPassword_first" class="required">Mot de passe</label>
+        {{ form_widget(form.plainPassword.first) }}
+        {{ form_errors(form.plainPassword.first) }}
+        </div>
+        <div>
+        <label for="fos_user_registration_form_plainPassword_second" class="required">Répétez le mot de passe</label>
+        {{ form_widget(form.plainPassword.second) }}
+        {{ form_errors(form.plainPassword.second) }}
+        </div>
+        <div class="spacer"></div>
+        <div>
+        <label for="fos_user_registration_form_nom" class="required">Nom</label>
+        {{ form_widget(form.nom) }}
+        {{ form_errors(form.nom) }}
+        </div>
+        <div>
+        <label for="fos_user_registration_form_prenom" class="required">Prénom</label>
+        {{ form_widget(form.prenom) }}
+        {{ form_errors(form.prenom) }}
+        </div>
+        <div>
+        <label for="fos_user_registration_form_rue" class="required">Adresse</label>
+        {{ form_widget(form.rue) }}
+        {{ form_errors(form.rue) }}
+        </div>
+        <div>
+        <label for="fos_user_registration_form_CP" class="required">Code postal / ville</label>
+        {{ form_widget(form.CP) }}
+        {{ form_widget(form.ville) }}
+        {{ form_errors(form.CP) }}
+        {{ form_errors(form.ville) }}
+        </div>
+        <div class="spacer"></div>
+        <div>
+        <label for="fos_user_registration_form_parrain">E-mail du parrain</label>
+        {{ form_widget(form.parrain) }}
+        {{ form_errors(form.parrain) }}
+        </div>
+        </div>
+        <input type="submit" value="Créer mon compte" class="btn btn-primary inputSubmit" />
+        <div class="clearfix"></div>
+       </form>
+       </div>
+       
+       <p class="why">
+        <a href="#" class="box">Pourquoi l'inscription à Chassor est-elle payante ?
+        <span>
+        <strong>Pour faire un chouette trésor !</strong><br/>
+        Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
+        <img src="img/box_onlget.png" />
+        </span>
+        </a>
+       </p>
+       </div>
+</div>
 {% endblock fos_user_content %}
