@@ -1,0 +1,64 @@
+
+<header class="mainHeader">
+
+    <a href="{{ path('index') }}"><img src="{{ asset('bundles/chassorcore/img/header_logo.png') }}" class="mainLogo" alt="logo" /></a>
+
+    <ul class="mainNav">
+    
+    {% if is_granted("ROLE_CHASSOR") %}
+    <li>
+        <a href="{{ path('enigmes') }}" {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}>
+        Mes &Eacute;nigmes</a>
+    </li>
+    {% endif %}
+    <li>
+        <a href="{{ path('apropos') }}" {% if app.request.attributes.get('_route') == 'apropos'  %}class="active"{% endif %}>
+        &Agrave; propos</a>
+    </li>
+    <li>
+        <a href="/blog">
+        Le blog</a>
+    </li>
+    <li>
+        <a href="{{ path('contact') }}" {% if app.request.attributes.get('_route') == 'contact'  %}class="active"{% endif %}>
+        Contact</a>
+    </li>
+    </ul>
+    
+    
+    <ul class="userNav">
+    {% if is_granted("ROLE_USER") %}
+        <li>
+            <a href="{{ path('fos_user_profile_show') }}">
+            <img src="{{ asset('bundles/chassorcore/img/header_user_icon.png') }}" />
+            {{ app.user.username }}
+            </a>
+        </li>
+        {% if is_granted("ROLE_CHASSOR") %}
+        <li>
+            <a href="{{ path('banque') }}">
+            <img src="{{ asset('bundles/chassorcore/img/header_user_po.png') }}" />
+            {{ app.user.compte }} pi&egrave;ces
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('banque') }}" class="btnjaune">
+            <img src="{{ asset('bundles/chassorcore/img/header_achat_icon.png') }}" />
+            acheter des pi&egrave;ces</a>
+        </li>
+        {%  endif %}
+    {% else %}
+        <div class="loginbox">
+            <form action="{{ path("fos_user_security_check") }}" method="post">
+            {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />#}
+            <span>Identifiez-vous :</span>
+            <input type="text" id="username" name="_username" required="required" placeholder="Pseudo ou e-mail" />
+            <input type="password" id="password" name="_password" required="required" placeholder="Mot de passe" />
+            <input type="image" id="_submit" name="_submit" src="{{ asset('bundles/chassorcore/img/home_login_submit_icon.png') }}" class="submit" />
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
+    </ul>
+   
+</header>

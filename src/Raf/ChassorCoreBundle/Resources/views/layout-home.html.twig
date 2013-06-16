@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale = 0.9,maximum-scale = 0.9" />
+
+    
+    <title>{% block title %}Chassor{% endblock %}</title>
+
+    <!-- les css -->
+    {% stylesheets filter='cssrewrite'
+        'bundles/chassorcore/css/commun/*.css'
+        'bundles/chassorcore/css/chassorHome.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a>
+        or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+        to improve your experience.
+        </p>
+    <![endif]-->
+
+    {% include "ChassorCoreBundle::layout-header.html.twig" %}
+   
+    {# TODO : supprimer menu temporaire #}
+    <ul>
+        {% if is_granted("ROLE_ADMIN") %}
+        <li><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
+        <li><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
+        <li><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
+        <li><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
+        <li><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
+        {% endif %}
+        
+        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+        <li><a href="{{ path('fos_user_security_login')        }}">Connexion</a></li>
+        <li><a href="{{ path('fos_user_security_logout')       }}">Déconnexion</a></li>
+    </ul>
+    
+    {# Les flash messages #}
+    <div id="flash_msg">
+    {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
+    {% for message in app.session.flashbag.get(type) %}
+    <div class="alert alert-{{ type }}">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    </div>
+    
+    {# utilisateur enregistré mais pas actif #}
+    {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
+    <div class="alert alert-info">
+        Votre inscription n'est pas terminée. Si vous n'avez pas encore payé, c'est <a href="{{ path('fos_user_registration_confirmed') }}" >par ici !</a>
+        sinon attendez... en cas de soucis bla bla bla...
+    </div>
+    {% endif %}
+    
+    {% block body %}
+    {% endblock body %}
+    
+    <div class="footer">
+        <p>&copy; Chassor Rouen 2013 - Tous droits réservés - <a href="#">Règlement</a> - <a href="#">Partenaires</a></p>
+    </div>
+
+    <!-- les js -->
+    {# jQuery depuis le CDN de Google, ou fallback sur une copie locale #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ asset('bundles/chassorcore/js/jquery/jquery-1.9.1.min.js') }}"><\/script>')</script>
+    
+    {% javascripts
+        'bundles/chassorcore/js/plugins/*.js'
+        'bundles/chassorcore/js/*.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    {% block script %}
+    {% endblock script %}
+    
+    {# analytics #}
+    <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-6228803-8', 'chassor.com');
+	  ga('send', 'pageview');
+	</script>
+
+</body>    
+</html>
+
+
