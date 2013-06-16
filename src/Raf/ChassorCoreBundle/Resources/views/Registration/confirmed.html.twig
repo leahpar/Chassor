@@ -1,42 +1,39 @@
-{% set bodyClass = 'red' %}
-{% extends "ChassorCoreBundle::layout-user.html.twig" %}
+{%extends "ChassorCoreBundle::layout-red.html.twig" %}
+
+{% block content %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <div class="redWrapper">
-       <div class="content">
-       <img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
-       
-       <div class="intro">
-       <h1>Félicitations {{ user.username }}, votre compte est créé ! Pour le valider il vous fait maintenant régler les frais d'inscription.</h1>
-       <p>Réglez les 5&euro; de frais d'inscription sur Paypal avec votre compte Paypal ou votre carte bancaire. Règlement fiable et sécurisé, Chassor n'a pas accès à vos coordonnées bancaires.</p>
-       <p>&nbsp;</p>
-       </div>
-       
-       <div class="redContent">
-       <form action="/register/"  method="POST" class="fos_user_registration_register">
-        <div id="fos_user_registration_form">
-        <div>
-       <label for="codePromo">Code promo</label>
-       <input type="text" id="codePromo" name="codePromo" maxlength="255" />
-        </div>
-        <a href="{{ path("achat", {type: 'inscription'}) }}" id="lienInscription" class="go submit">
-            <span><strong>5</strong>&euro;</span>Valider mon compte<img src="{{ asset('bundles/chassorcore/img/home_links_a_arrow.png') }}" class="arrow" /></a>
-        <div class="clearfix"></div>
-       </form>
-       </div>
+   
+   <div class="intro">
+   <h1>Félicitations {{ user.username }}, votre compte est créé ! Pour le valider il vous fait maintenant régler les frais d'inscription.</h1>
+   <p>Réglez les 5&euro; de frais d'inscription sur Paypal avec votre compte Paypal ou votre carte bancaire. Règlement fiable et sécurisé, Chassor n'a pas accès à vos coordonnées bancaires.</p>
+   <p>&nbsp;</p>
    </div>
-       
-       <p class="why">
-        <a href="#" class="box">Pourquoi l'inscription à Chassor est-elle payante ?
-        <span>
-        <strong>Pour faire un chouette trésor !</strong><br/>
-        Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
-        <img src="{{ asset('bundles/chassorcore/img/box_onlget.png') }}'" />
-        </span>
-        </a>
-       </p>
+   
+   <div class="redContent">
+   <form>
+    <div>
+   <label for="codePromo">Code promo</label>
+   <input type="text" id="codePromo" name="codePromo" maxlength="255" />
+    </div>
+    <a href="{{ path("achat", {type: 'inscription'}) }}" id="lienInscription" class="go submit">
+        <span><strong>5</strong>&euro;</span>Valider mon compte<img src="{{ asset('bundles/chassorcore/img/home_links_a_arrow.png') }}" class="arrow" /></a>
+    <div class="clearfix"></div>
+   </form>
    </div>
-       
+          
+   <p class="why">
+    <a href="#" class="box">Pourquoi l'inscription à Chassor est-elle payante ?
+    <span>
+    <strong>Pour faire un chouette trésor !</strong><br/>
+    Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
+    <img src="{{ asset('bundles/chassorcore/img/box_onlget.png') }}'" />
+    </span>
+    </a>
+   </p>
+   
 {% endblock fos_user_content %}
+
+{% endblock content %}

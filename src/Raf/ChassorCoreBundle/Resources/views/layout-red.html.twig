@@ -1,0 +1,14 @@
+{% set bodyClass = 'red' %}
+{%extends "ChassorCoreBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="redWrapper">
+<div class="content">
+<img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
+
+{% block content %}
+{% endblock content %}
+
+</div>
+<div class="clearfix"></div>
+{% endblock body %}

@@ -1,8 +1,9 @@
+{% set bodyClass = 'red' %}
 {% extends "ChassorAdminBundle::admin-layout.html.twig" %}
  
 {% block body %}
 
-<div class="well">
+<div class="redWrapper">
 <form method="post" {{ form_enctype(form) }}>
 
     {{ form_widget(form) }}

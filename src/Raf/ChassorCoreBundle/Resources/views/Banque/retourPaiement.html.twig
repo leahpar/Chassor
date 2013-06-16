@@ -1,10 +1,16 @@
-{%extends "ChassorCoreBundle::layout.html.twig" %}
+{%extends "ChassorCoreBundle::layout-red.html.twig" %}
 
 
-{% block body %}
-<div>
-Nous vous remercions de votre paiement.
-Votre transaction est en cours de traitement, elle sera finalisée dans les plus bref délais.
-Vous recevrez par email un avis accusant réception de votre achat.
-</div>
-{% endblock %}
+{% block content %}
+   <div class="intro">
+   <h1>Fantastique ! Votre compte est validé !</h1>
+   <p>Merci de votre confiance. Nous espérons que Chassor vous passionnera autant que nous<br /> et vous souhaitons bonne chance.</p>
+   
+   <p>Votre transaction est en cours de traitement, elle sera finalisée dans les plus bref délais.
+   Vous recevrez par email un avis accusant réception de votre achat.</p>
+
+   <!--<p>Vous pouvez désormais vous connecter grâce à vos identifiants et vous frotter à vos premières énigmes !</p>-->
+   <p>Rendez-vous le <strong>1er juillet 2013</strong> pour le lancement de la chasse au trésor !</p>
+   </div>
+   </div>
+{% endblock content %}

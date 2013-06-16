@@ -1,16 +1,12 @@
-{% set bodyClass = 'red' %}
-{%extends "ChassorCoreBundle::layout.html.twig" %}
+{%extends "ChassorCoreBundle::layout-red.html.twig" %}
 
-
-{% block body %}
-
-<div class="redWrapper">
-    <div class="content">
-        <img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
+{% block content %}
         <p class="titre"><img src="{{ asset('bundles/chassorcore/img/home_titre.png') }}" /></p>
         <div class="texte">
-        <p>Nulla facilisi. Proin ut massa neque. Suspendisse fermentum malesuada neque ac molestie. Proin id malesuada enim, eget mollis diam. Aenean in dui vitae ligula interdum malesuada. Quisque pretium egestas urna, id consequat nulla blandit nec. Suspendisse non lacus in odio sagittis tincidunt et vitae leo. Sed bibendum convallis odio.</p>
-        <p>Nam blandit hendrerit mattis. Maecenas eu augue sed ipsum interdum tincidunt in eu purus. Etiam tortor felis, facilisis nec eros quis, tincidunt dignissim nisi. In sed sem sit amet nulla interdum tristique. Vivamus sed neque a sapien porta viverra. Aliquam nec purus magna. Fusce at mi in felis pretium vulputate.</p>
+        <p>Chassor est une <strong>chasse au trésor géante</strong> organisée dans l'agglomération Rouennaise pendant l'été 2013. <strong>&Agrave; partir du 1er juillet</strong>, lancez-vous à la recherche du trésor <strong>caché quelque part dans l'agglo.</strong></p>
+        <p>Sur ce site vous retrouverez <strong>plus d'une vingtaine d'énigmes</strong> qui vous entraineront aux quatre coins de la ville à la découverte de lieux historiques, insolites et parfois méconnus.</p>
+        <p>Pour réussir il vous faudra chercher, décoder, réfléchir, vous déplacer, vous tromper parfois. Seul <strong>le meilleur</strong> d'entre-vous, le plus rapide, le plus malin mettra la main sur le trésor.</p>
+        <p>Avis aux curieux, aux passionnés d'histoires, aux amateurs de casse-tête, au amoureux de Rouen, aux résolveurs d'énigmes, à tous ceux qui veulent s'amuser cet été : <strong>Chassor débarque à Rouen.</strong></p>
     </div>
     
     {% if not is_granted("ROLE_CHASSOR") %}
@@ -27,11 +23,10 @@
         <span>
         <strong>Pour faire un chouette trésor !</strong><br/>
         Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
-        <img src="img/box_onlget.png" />
+        <img src="{{ asset('bundles/chassorcore/img/box_onlget.png') }}" />
         </span>
         </a>
     </p>
     {% endif %}
-</div>
-</div>
-{% endblock %}
+
+{% endblock content %}
