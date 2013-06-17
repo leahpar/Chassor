@@ -2,10 +2,6 @@
 {% extends "ChassorCoreBundle::layout-user.html.twig" %}
 
 {% block fos_user_content %}
-    <div class="redWrapper">
-       <div class="content">
-       <img src="{{ asset('bundles/chassorcore/img/home_logo_chassor.png') }}" class="logo" />
-       
        <div class="intro">
        <h1>Alors c'est décidé ? Vous vous lancez avec nous sur la piste du trésor de Chassor ?</h1>
        <p>Créez votre compte, validez votre inscription et réglez les 5€ de frais d'inscription sur Paypal avec votre compte Paypal ou votre carte bancaire.</p>
@@ -76,10 +72,9 @@
         <span>
         <strong>Pour faire un chouette trésor !</strong><br/>
         Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
-        <img src="img/box_onlget.png" />
+        <img src="{{ asset('bundles/chassorcore/img/box_onglet.png') }}" />
         </span>
         </a>
        </p>
-       </div>
-</div>
+
 {% endblock fos_user_content %}

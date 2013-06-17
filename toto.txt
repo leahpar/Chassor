@@ -47,3 +47,9 @@ php app/console fos:user:demote testuser ROLE_ADMIN
 
 git fetch --all
 git reset --hard origin/master
+
+
+
+# PROD
+rm -rf cache/*
+php app/console assetic:dump --env=prod --no-debug
