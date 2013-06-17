@@ -277,6 +277,27 @@ h6 {
  font-size: 14px;
  color: #fff;
 }
+.redWrapper .content .textContent {
+ text-align: left;
+}
+.redWrapper .content .textContent h1 {
+ text-align: center;
+ font-family: din;
+ font-size: 35px;
+ color: #f9ae18;
+ margin-top: 0px;
+}
+.redWrapper .content .textContent h2 {
+ font-family: din;
+ font-size: 20px;
+ color: #f9ae18;
+ margin-top: 0px;
+}
+.redWrapper .content .textContent p {
+ font-family: din;
+ font-size: 15px;
+ color: #fff;
+}
 .redWrapper .content .redContent {
  padding: 8px;
  border-radius: 10px;

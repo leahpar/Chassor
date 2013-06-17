@@ -21,6 +21,13 @@ contact:
     pattern:  /contact
     defaults: { _controller: ChassorCoreBundle:Default:contact }
 
+reglement:
+    pattern:  /reglement
+    defaults: { _controller: ChassorCoreBundle:Default:reglement }
+    
+partenaires:
+    pattern:  /partenaires
+    defaults: { _controller: ChassorCoreBundle:Default:partenaires }
 
 #-- Les enigmes -----------------------------
 

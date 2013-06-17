@@ -11,10 +11,10 @@
     
     {% if not is_granted("ROLE_CHASSOR") %}
     <div class="linksContainer">
-        <a href="#" class="go"><span><strong>5</strong>&euro;</span>
-            Crééer mon compte
+        <a href="{{ path('fos_user_registration_register') }}" class="go"><span><strong>5</strong>&euro;</span>
+            Créer mon compte
             <img src="{{ asset('bundles/chassorcore/img/home_links_a_arrow.png') }}" class="arrow" /></a>
-        <a href="#" class="more"><img src="{{ asset('bundles/chassorcore/img/home_links_a_more_arrow.png') }}" class="arrow" />
+        <a href="{{ path('apropos') }}" class="more"><img src="{{ asset('bundles/chassorcore/img/home_links_a_more_arrow.png') }}" class="arrow" />
             En savoir plus sur Chassor</a>
         <div class="clearfix"></div>
     </div>

@@ -88,7 +88,7 @@ liip_imagine:
 
 # PaypalIpnBundle Configuration
 orderly_pay_pal_ipn:
-    islive:  false
+    islive:  true
     
     email:   paiement@chassor.com
     url:     https://www.paypal.com/cgi-bin/webscr

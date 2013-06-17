@@ -36,4 +36,12 @@ class DefaultController extends Controller
     {
         return $this->render('ChassorCoreBundle:Default:contact.html.twig');
     }
+    public function reglementAction()
+    {
+        return $this->render('ChassorCoreBundle:Default:reglement.html.twig');
+    }
+    public function PartenairesAction()
+    {
+        return $this->render('ChassorCoreBundle:Default:partenaires.html.twig');
+    }
 }

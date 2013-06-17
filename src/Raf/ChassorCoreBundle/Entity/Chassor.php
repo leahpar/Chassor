@@ -2,7 +2,7 @@
 
 namespace Raf\ChassorCoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Model\User as BaseUser;
 
 use Raf\ChassorCoreBundle\Entity\Indice;
 use Raf\ChassorCoreBundle\Entity\Transaction;

@@ -6,42 +6,52 @@
     <ul class="mainNav">
     
     {% if is_granted("ROLE_CHASSOR") %}
+    {#
     <li>
         <a href="{{ path('enigmes') }}" {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}>
         Mes &Eacute;nigmes</a>
     </li>
+    #}
     {% endif %}
     <li>
         <a href="{{ path('apropos') }}" {% if app.request.attributes.get('_route') == 'apropos'  %}class="active"{% endif %}>
         &Agrave; propos</a>
     </li>
+    {#
     <li>
         <a href="/blog">
         Le blog</a>
     </li>
+    #}
     </ul>
     
     
     <ul class="userNav">
     {% if is_granted("ROLE_USER") %}
         <li>
-            <a href="{{ path('fos_user_profile_show') }}">
+            {# <a href="{{ path('fos_user_profile_show') }}"> #}
+            <a href="#">
             <img src="{{ asset('bundles/chassorcore/img/header_user_icon.png') }}" />
-            {{ app.user.username }}
+            {{ app.user.username }} - Rendez-vous le 1er juillet !
             </a>
         </li>
+      
         {% if is_granted("ROLE_CHASSOR") %}
+        {#
         <li>
             <a href="{{ path('banque') }}">
             <img src="{{ asset('bundles/chassorcore/img/header_user_po.png') }}" />
             {{ app.user.compte }} pi&egrave;ces
             </a>
         </li>
+        #}
+        {#
         <li>
             <a href="{{ path('banque') }}" class="btnjaune">
             <img src="{{ asset('bundles/chassorcore/img/header_achat_icon.png') }}" />
             acheter des pi&egrave;ces</a>
         </li>
+        #}
         {%  endif %}
     {% else %}
         <div class="loginbox">
