@@ -1,10 +1,18 @@
-{% extends "ChassorCoreBundle::layout-user.html.twig" %}
+{%extends "ChassorCoreBundle::layout-red.html.twig" %}
 
+{% block content %}
 {% block fos_user_content %}
+
 {% if error %}
     <div>{{ error|trans }}</div>
 {% endif %}
 
+<div class="intro">
+       <h1>Identification</h1>
+               </div>
+       
+       <div class="redContent">
+       
 <form action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
@@ -18,13 +26,12 @@
     <input type="password" id="password" name="_password" required="required" />
     </div>
     
-    <div>
-    <label for="remember_me">Se souvenir de moi</label>
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    </div>
-    
-    <input type="submit" id="_submit" name="_submit" value="Connexion" class="btn btn-primary"/><br/>
-    
+    <input type="submit" id="_submit" name="_submit"  value="Connexion" class="inputSubmit" /><br/><br/>
+    	    
     <a href="{{ path("fos_user_resetting_request") }}">Mot de passe oublié ?</a>
 </form>
+</div>
+
 {% endblock fos_user_content %}
+{% endblock content %}
+

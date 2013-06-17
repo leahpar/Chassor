@@ -1,6 +1,6 @@
-{% set bodyClass = 'red' %}
-{% extends "ChassorCoreBundle::layout-user.html.twig" %}
+{%extends "ChassorCoreBundle::layout-red.html.twig" %}
 
+{% block content %}
 {% block fos_user_content %}
        <div class="intro">
        <h1>Alors c'est décidé ? Vous vous lancez avec nous sur la piste du trésor de Chassor ?</h1>
@@ -78,3 +78,5 @@
        </p>
 
 {% endblock fos_user_content %}
+{% endblock content %}
+

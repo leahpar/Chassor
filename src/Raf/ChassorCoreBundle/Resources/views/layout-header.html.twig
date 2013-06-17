@@ -6,6 +6,10 @@
     <ul class="mainNav">
     
     {% if is_granted("ROLE_CHASSOR") %}
+    <li>
+        <a href="{{ path('index') }}" {% if app.request.attributes.get('_route') == 'index'  %}class="active"{% endif %}>
+        Accueil</a>
+    </li>
     {#
     <li>
         <a href="{{ path('enigmes') }}" {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}>
@@ -26,8 +30,8 @@
     </ul>
     
     
-    <ul class="userNav">
     {% if is_granted("ROLE_USER") %}
+        <ul class="userNav">
         <li>
             {# <a href="{{ path('fos_user_profile_show') }}"> #}
             <a href="#">
@@ -53,6 +57,7 @@
         </li>
         #}
         {%  endif %}
+        </ul>
     {% else %}
         <div class="loginbox">
             <form action="{{ path("fos_user_security_check") }}" method="post">
@@ -65,6 +70,6 @@
         </div>
         <div class="clearfix"></div>
     {% endif %}
-    </ul>
+    
    
 </header>

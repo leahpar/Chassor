@@ -298,6 +298,9 @@ h6 {
  font-size: 15px;
  color: #fff;
 }
+.redWrapper .content .textContent a {
+ color: #f9ae18;
+}
 .redWrapper .content .redContent {
  padding: 8px;
  border-radius: 10px;
@@ -308,6 +311,9 @@ h6 {
  background-image: -webkit-linear-gradient(bottom, #ba0006 0%, #a90003 100%);
  background-image: -ms-linear-gradient(bottom, #ba0006 0%, #a90003 100%);
  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ba0006), color-stop(1, #a90003));
+}
+.redWrapper .content .redContent a {
+ color: #fff;
 }
 .redWrapper .content .texte {
  text-align: justify;
@@ -327,9 +333,6 @@ h6 {
 .redWrapper .content .texte p {
  margin-top: 0px;
  margin-bottom: 20px;
-}
-.redWrapper .content .texte p strong {
- color: #f9ae18;
 }
 .redWrapper .content .linksContainer {
  padding: 8px;
@@ -507,6 +510,15 @@ h6 {
  background-image: -ms-linear-gradient(bottom, #f58f0b 0%, #fbc334 100%);
  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f58f0b), color-stop(1, #fbc334));
 }
+.redWrapper .whitebloc {
+ background: #e8e8e8;
+ padding: 20px;
+ border-radius: 5px;
+ box-shadow: 0px 2px 0px #d9d9d9, inset 0px 1px 0px #ffffff, 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
+.redWrapper .whitebloc .partner {
+ margin: 0px 5px;
+}
 .footer {
  background: #be0c0f;
  position: relative;
@@ -549,6 +561,9 @@ h6 {
  margin-bottom: 15px;
  margin-top: 15px;
 }
+#flash_msg:empty {
+ display: none;
+}
 #flash_msg .alert {
  width: 65%;
  max-width: 700px;
@@ -558,6 +573,9 @@ h6 {
  font-family: din;
  font-size: 20px;
  color: #f9ae18;
+}
+#flash_msg .alert a {
+ color: #fff;
 }
 @media only screen and (max-width: 500px) {
  .mainHeader .mainLogo {
