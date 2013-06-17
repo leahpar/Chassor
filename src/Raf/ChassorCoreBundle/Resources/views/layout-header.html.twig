@@ -5,11 +5,12 @@
 
     <ul class="mainNav">
     
-    {% if is_granted("ROLE_CHASSOR") %}
     <li>
         <a href="{{ path('index') }}" {% if app.request.attributes.get('_route') == 'index'  %}class="active"{% endif %}>
         Accueil</a>
     </li>
+    
+    {% if is_granted("ROLE_CHASSOR") %}
     {#
     <li>
         <a href="{{ path('enigmes') }}" {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}>
