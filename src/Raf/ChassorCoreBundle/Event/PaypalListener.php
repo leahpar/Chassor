@@ -60,7 +60,7 @@ class PaypalListener {
             {
                 $parrain = $em->getRepository('ChassorCoreBundle:Chassor')
                               ->findParrain($user->getParrain());
-                if ($parrain != null)
+                if ($parrain != null && $parrain != $user)
                 {
                     // construction transaction
                     $transaction = new Transaction($parrain);
@@ -72,7 +72,6 @@ class PaypalListener {
             }
             $user->addRole('ROLE_CHASSOR');
             $em->persist($user);
-            $em->persist($parrain);
         }
         
         $em->flush();

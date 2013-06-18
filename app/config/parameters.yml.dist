@@ -16,12 +16,12 @@ parameters:
 
     # Paypal
     paypal:
-        islive:            false
+        islive:            true
         live:
-            email:         "leahpar@wanadoo.fr"
+            email:         "paiement@chassor.com"
             url:           "https://www.paypal.com/cgi-bin/webscr"
         sandbox:
-            email:         "leahpar@wanadoo.fr"
+            email:         "paiement@chassor.com"
             url:           "https://www.sandbox.paypal.com/cgi-bin/webscr"
     
     # transactions

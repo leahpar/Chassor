@@ -158,10 +158,10 @@ class Transaction
     /**
      * Set chassor
      *
-     * @param \Raf\ChassorBundle\Entity\Chassor $chassor
+     * @param \Raf\ChassorCoreBundle\Entity\Chassor $chassor
      * @return Transaction
      */
-    public function setChassor(\Raf\ChassorBundle\Entity\Chassor $chassor = null)
+    public function setChassor(\Raf\ChassorCoreBundle\Entity\Chassor $chassor = null)
     {
         $this->chassor = $chassor;
     
@@ -171,7 +171,7 @@ class Transaction
     /**
      * Get chassor
      *
-     * @return \Raf\ChassorBundle\Entity\Chassor 
+     * @return \Raf\ChassorCoreBundle\Entity\Chassor 
      */
     public function getChassor()
     {
