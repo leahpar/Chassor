@@ -9,7 +9,7 @@
         <p>Avis aux curieux, aux passionnés d'histoires, aux amateurs de casse-tête, au amoureux de Rouen, aux résolveurs d'énigmes, à tous ceux qui veulent s'amuser cet été : <strong>Chassor débarque à Rouen.</strong></p>
     </div>
     
-    {% if not is_granted("ROLE_CHASSOR") %}
+    {% if not is_granted("ROLE_USER") %}
     <div class="linksContainer">
         <a href="{{ path('fos_user_registration_register') }}" class="go"><span><strong>5</strong>&euro;</span>
             Créer mon compte
