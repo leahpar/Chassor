@@ -1,3 +1,5 @@
+/* divers */
+
 .admin .stupid .sort
 {
     cursor: pointer;
@@ -7,7 +9,44 @@
 {
     margin-top : 57px;
     text-align : center;
+    
 }
+
+/* menu */
+
+.admin ul {
+  list-style-type: none;
+  padding-top : 20px;
+}
+ 
+.admin li {
+  font-family: din;
+  height: 25px;
+  display: inline-block;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+  color: #929292;  
+}
+ 
+.admin li:last-child {
+  border-right: none;
+}
+ 
+.admin li a {
+  text-decoration: none;
+  color: #ccc;
+}
+.admin li.active a {
+ font-family: dinM;
+ color: #fff;
+}
+
+.admin li a:hover {
+ color: #fff;
+}
+
+
+/* les tableaux */
 .admin table
 {
     width : 90%;
@@ -23,7 +62,7 @@
     font-weight: normal;
     color: #fff;
     padding: 10px 8px;
-    border-bottom: 2px solid #6678b1;
+    border-bottom: 2px solid #dd6e01;
 }
 .admin td
 {

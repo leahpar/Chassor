@@ -28,6 +28,12 @@
         Le blog</a>
     </li>
     #}
+    {% if is_granted("ROLE_ADMIN") %}
+    <li>
+        <a href="{{ path('admin_accueil') }}" {% if app.request.attributes.get('_route')|slice(0, 5)  == 'admin' %} class="active" {% endif %}>
+        Admin</a>
+    </li>
+    {% endif %}
     </ul>
     
     

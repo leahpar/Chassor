@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function accueilAction()
     {
-        return $this->render('ChassorAdminBundle:Default:index.html.twig');
+        return $this->redirect($this->generateUrl('admin_chassor_lister'));
     }
 }
