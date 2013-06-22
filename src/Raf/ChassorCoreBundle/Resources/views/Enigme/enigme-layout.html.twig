@@ -1,6 +1,4 @@
 
-{% block body %}
-
 <h1>Enigme {{ enigme.code }}</h1>
 <h2>{{ enigme.titre }}</h2>
 <p>Difficulté {{ enigme.difficulte }}</p>
@@ -56,5 +54,3 @@
     {% include 'ChassorCoreBundle:EnigmeData:enigme-' ~ enigme.code ~ 'b.html' ignore missing %}
 
 {% endif %}
-
-{% endblock body %}

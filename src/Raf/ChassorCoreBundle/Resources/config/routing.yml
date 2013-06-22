@@ -44,7 +44,7 @@ enigmeX:       # validation enigme double
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeX }
 
 enigmeImage:
-    path:      /enigmes/{code}-{image_id}.jpg
+    path:      /enigmes/{codeInterne}-{image_id}.jpg
     defaults:  { _controller: ChassorCoreBundle:Enigme:enigmeImage }
 
 indiceAchat:
