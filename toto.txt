@@ -52,4 +52,5 @@ git reset --hard origin/master
 
 # PROD
 rm -rf cache/*
+php app/console assets:install web --symlink
 php app/console assetic:dump --env=prod --no-debug

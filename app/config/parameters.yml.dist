@@ -13,6 +13,8 @@ parameters:
 
     locale:            fr
     secret:            ThisTokenIsNotSoSecretChangeIt
+    
+    ga_tracking:           "XX-XX-XX"
 
     # Paypal
     paypal:
