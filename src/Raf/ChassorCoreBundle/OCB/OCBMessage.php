@@ -24,7 +24,7 @@ class OCBMessage
                              ->findByChassor2($this->em, $user);
         foreach ($messages as $m)
         {
-            $this->log->add('info', $m->getMessage());
+            $this->log->add('chassor', $m->getMessage());
             $user->addMessage($m);
         }
         $this->em->flush();

@@ -1,11 +1,11 @@
 {% extends "ChassorAdminBundle::admin-layout.html.twig" %}
  
-{% block body %}
+{% block adminContent %}
 
 <h1>Les énigmes</h1>
-<a class="btn" href="{{ path('admin_enigme_ajouter') }}"><i class="icon-plus" title="ajouter"></i></a>
+<a class="btn" href="{{ path('admin_enigme_ajouter') }}">(+)</a>
 
-<table class="table table-striped table-hover table-condensed table-bordered stupid">
+<table class="stupid">
 <thead>
 <tr>
     <th class="sort" data-sort="int"   >Enigme</th>
@@ -33,11 +33,11 @@
     <td>{{ enigme.delai }}</td>
     <td>{{ enigme.difficulte }}</td>
     <td>
-        <a class="btn" href="{{ path('admin_enigme_modifier',  {'id': enigme.id }) }}"><i class="icon-pencil" title="modifier"></i></a>
+        <a class="btn" href="{{ path('admin_enigme_modifier',  {'id': enigme.id }) }}">(M)</a>
     </td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
  
-{% endblock %}
+{% endblock adminContent %}

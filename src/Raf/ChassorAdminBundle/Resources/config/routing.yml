@@ -1,6 +1,6 @@
 admin_accueil:
     pattern:  /
-    defaults: { _controller: ChassorAdminBundle:AdminChassor:lister }
+    defaults: { _controller: ChassorAdminBundle:Default:accueil }
 
 admin_enigme_lister:
     pattern:  /enigmes

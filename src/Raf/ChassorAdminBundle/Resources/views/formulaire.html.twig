@@ -1,15 +1,10 @@
-{% set bodyClass = 'red' %}
 {% extends "ChassorAdminBundle::admin-layout.html.twig" %}
  
-{% block body %}
-
-<div class="redWrapper">
+{% block adminContent %}
 <form method="post" {{ form_enctype(form) }}>
 
     {{ form_widget(form) }}
-    <input type="submit" class="btn btn-primary" />
+    <input type="submit" value="Créer" class="btn btn-primary inputSubmit" />
 </form>
-</div>
 
-
-{% endblock %}
+{% endblock adminContent %}

@@ -101,6 +101,7 @@ class Message
     public function __construct()
     {
         $this->chassors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->date = new \DateTime();
     }
     
     /**

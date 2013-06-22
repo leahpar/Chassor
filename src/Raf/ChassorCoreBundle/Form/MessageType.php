@@ -11,8 +11,11 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('message')
-            ->add('date')
+            ->add('message',     'text')
+            ->add('date',        'date',     array('required' => false,
+                                                   'widget' => 'single_text',
+                                                   'format' => 'dd/MM/yyyy',
+                                                   'invalid_message' => 'Format attendu : "dd/mm/yyyy"'))
         ;
     }
 

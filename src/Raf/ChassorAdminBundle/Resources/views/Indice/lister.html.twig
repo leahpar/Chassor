@@ -1,11 +1,11 @@
 {% extends "ChassorAdminBundle::admin-layout.html.twig" %}
  
-{% block body %}
+{% block adminContent %}
 
 <h1>Les indices</h1>
-<a class="btn" href="{{ path('admin_indice_ajouter') }}"><i class="icon-plus" title="ajouter"></i></a>
+<a class="btn" href="{{ path('admin_indice_ajouter') }}">(+)</a>
 
-<table class="table table-striped table-hover table-condensed table-bordered stupid">
+<table class="stupid">
 <thead>
 <tr>
     <th class="sort" data-sort="string">Enigme</th>
@@ -19,11 +19,11 @@
     <td>{{ indice.enigme.code }}</td>
     <td>{{ indice.indice }}</td>
     <td>
-        <a class="btn" href="{{ path('admin_indice_modifier',  {'id': indice.id }) }}"><i class="icon-pencil" title="modifier"></i></a>
+        <a class="btn" href="{{ path('admin_indice_modifier',  {'id': indice.id }) }}">(M)</a>
     </td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
  
-{% endblock %}
+{% endblock adminContent %}

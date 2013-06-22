@@ -573,6 +573,8 @@ h6 {
  font-family: din;
  font-size: 20px;
  color: #f9ae18;
+ border-bottom: 1px solid #dd5401;
+ 
 }
 #flash_msg .alert a {
  color: #fff;

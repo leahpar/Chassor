@@ -1,4 +1,4 @@
-{% spaceless %}
+{#% spaceless %#}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,6 +17,7 @@
     <!-- les css -->
     {% stylesheets filter='cssrewrite'
         'bundles/chassorcore/css/*.css'
+        'bundles/chassoradmin/css/*.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
@@ -36,24 +37,36 @@
     {% include "ChassorCoreBundle::layout-header.html.twig" %}
    
     {# Les flash messages #}
-    <div id="flash_msg">
-    {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
-    {% for message in app.session.flashbag.get(type) %}
-    <div class="alert alert-{{ type }}">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endfor %}
-    {# utilisateur enregistré mais pas actif #}
-    {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
-    <div class="alert alert-info">
-        Votre inscription n'est pas finalisée.<br/>
-        Si vous n'avez pas encore payé votre inscription, c'est <a href="{{ path('fos_user_registration_confirmed') }}" >par ici</a>.
-        Sinon la transaction est en cours de traitement, nous n'avons simplement pas encore reçu le pigeon voyageur.<br/>
-        En cas de soucis, vous pouvez nous contacter à l'adresse <a href="mailto:contact@chassor.com">contact@chassor.com</a>.
-    </div>
-    {% endif %}
-    </div>
+        {# messages techniques #}
+        <div id="flash_msg">
+        {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
+        {% for message in app.session.flashbag.get(type) %}
+        <div class="alert alert-{{ type }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endfor %}
+        
+        {# utilisateur enregistré mais pas actif #}
+        {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
+        <div class="alert alert-info">
+            Votre inscription n'est pas finalisée.<br/>
+            Si vous n'avez pas encore payé votre inscription, c'est <a href="{{ path('fos_user_registration_confirmed') }}" >par ici</a>.
+            Sinon la transaction est en cours de traitement, nous n'avons simplement pas encore reçu le pigeon voyageur.<br/>
+            En cas de soucis, vous pouvez nous contacter à l'adresse <a href="mailto:contact@chassor.com">contact@chassor.com</a>.
+        </div>
+        {% endif %}
+        </div>
+        
+        {# messages chassor #}
+        <div id="chassor_msg">
+        {% for type in ['chassor'] %}
+        {% for message in app.session.flashbag.get(type) %}
+        <div class="alert alert-{{ type }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endfor %}
     {# Les flash messages #}
     
     
@@ -112,5 +125,5 @@
 
 </body>    
 </html>
-{% endspaceless %}
+{#% endspaceless %#}
 

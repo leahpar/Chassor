@@ -1,0 +1,130 @@
+.admin .stupid .sort
+{
+    cursor: pointer;
+}
+
+.admin
+{
+    margin-top : 57px;
+    text-align : center;
+}
+.admin table
+{
+    width : 90%;
+    font-size: 12px;
+    /*background: #fff;*/
+    margin: 45px;
+    border-collapse: collapse;
+    text-align: left;
+}
+.admin th
+{
+    font-size: 14px;
+    font-weight: normal;
+    color: #fff;
+    padding: 10px 8px;
+    border-bottom: 2px solid #6678b1;
+}
+.admin td
+{
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    padding: 6px 8px;
+}
+.admin tbody tr:hover td
+{
+     color: #dd6e01;
+}
+
+
+
+.adminContent form {
+ padding: 10px 0px 5px 0px;
+}
+.adminContent form ul {
+ padding-left: 0px;
+ margin-top: 5px;
+}
+.adminContent form ul li {
+ list-style: none;
+ font-size: 12px;
+ color: #fff;
+ text-transform: uppercase;
+}
+.adminContent form div {
+ margin-bottom: 5px;
+}
+.adminContent form div label {
+ width: 50%;
+ max-width: 180px;
+ display: inline-block;
+ margin-right: 10px;
+ text-align: right;
+ font-family: din;
+ font-size: 15px;
+ color: #f9ae18;
+}
+.adminContent form div input,
+.adminContent form div select {
+ width: 50%;
+ max-width: 350px;
+ height: 37px;
+ background: #9b0102;
+ border: 0px;
+ padding: 0px 10px;
+ font-family: din;
+ font-size: 15px;
+ color: #fff;
+ box-shadow: inset 0px -1px 0px #cf0d13, inset 0px 1px 0px #870001;
+ border-radius: 5px;
+}
+.adminContent form div input:focus {
+ background: #8a0002;
+ outline: 0px;
+}
+.adminContent form div textarea {
+ width: 50%;
+ max-width: 350px;
+ height: 137px;
+ background: #9b0102;
+ border: 0px;
+ padding: 0px 10px;
+ font-family: din;
+ font-size: 15px;
+ color: #fff;
+ box-shadow: inset 0px -1px 0px #cf0d13, inset 0px 1px 0px #870001;
+ border-radius: 5px;
+}
+.adminContent form div textarea:focus {
+ background: #8a0002;
+ outline: 0px;
+}
+
+.adminContent form div .spacer {
+ height: 10px;
+}
+.adminContent form .submit {
+ margin-top: 10px;
+ margin-right: 10px;
+}
+.adminContent form .inputSubmit {
+ text-align: left;
+ position: relative;
+ width: 260px;
+ padding: 12px 15px 12px 50px;
+ border: 0px;
+ margin-top: 10px;
+ font-family: dinM;
+ font-size: 20px;
+ color: #c40e11;
+ text-decoration: none;
+ text-shadow: 0px 1px 0px #fbc434;
+ border-radius: 7px;
+ box-shadow: inset 0px 1px 0px #ffd072, inset 0px -3px 0px #dd5401, 0px 5px 5px #790103;
+ background-image: linear-gradient(bottom, #f58f0b 0%, #fbc334 100%);
+ background-image: -o-linear-gradient(bottom, #f58f0b 0%, #fbc334 100%);
+ background-image: -moz-linear-gradient(bottom, #f58f0b 0%, #fbc334 100%);
+ background-image: -webkit-linear-gradient(bottom, #f58f0b 0%, #fbc334 100%);
+ background-image: -ms-linear-gradient(bottom, #f58f0b 0%, #fbc334 100%);
+ background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f58f0b), color-stop(1, #fbc334));
+}
