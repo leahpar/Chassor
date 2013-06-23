@@ -159,9 +159,11 @@ class EnigmeController extends Controller
         // selection indices disponibles
         $indices = $em->getRepository('ChassorCoreBundle:Indice')
                       ->findByChassor2($user, $enigme);
+        $dateInd = $ocb_e->prochainAchat($chassorEnigme, 4);
+        $dateEni = $ocb_e->prochainAchat($chassorEnigme, 7);
+
         
         // affichage des prix
-        
         $prixIn = $param['indice']['prix'];
         $prixEn = $param['prix']['difficulte'.$enigme->getDifficulte()];
         
@@ -173,6 +175,8 @@ class EnigmeController extends Controller
                 'indices'      => $indices,
                 'proposition'  => $chassorEnigme,
                 'dateProp'     => $dateProp,
+                'dateInd'      => $dateInd,
+                'dateEni'      => $dateEni,
                 'prixIndice'   => $prixIn,
                 'prixEnigme'   => $prixEn,
                 'classement'   => $classement

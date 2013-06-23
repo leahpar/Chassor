@@ -564,6 +564,9 @@ h6 {
 #flash_msg:empty {
  display: none;
 }
+#chassor_msg {
+ display: none;
+}
 #flash_msg .alert {
  width: 65%;
  max-width: 700px;

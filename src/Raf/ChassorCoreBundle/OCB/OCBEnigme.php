@@ -38,6 +38,26 @@ class OCBEnigme
     }
     
     /**
+     * Verifie la date de dispo des indices
+     *
+     * renvoie null si un indice peut etre fait
+     * renvoie la date du prochain indice possible sinon
+     */
+    public function prochainAchat(ChassorEnigme $chassorEnigme, $delai)
+    {
+        $dateProp = clone $chassorEnigme->getDateDispo();
+        $dateProp->add(new \DateInterval('P'.$delai.'D'));
+        if ($dateProp <= new \DateTime())
+        {
+            return null;
+        }
+        else
+        {
+            return $dateProp->add(new \DateInterval('P1D'));
+        }
+    }
+    
+    /**
      * Verifie une proposition de reponse
      * 
      * renvoie true  si la proposition est bonne

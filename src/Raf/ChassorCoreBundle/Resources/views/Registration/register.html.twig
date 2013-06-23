@@ -57,9 +57,14 @@
         </div>
         <div class="spacer"></div>
         <div>
-        <label for="fos_user_registration_form_parrain">E-mail ou pseudo du parrain</label>
+        <label for="fos_user_registration_form_parrain">E-mail ou pseudo<br/>du parrain</label>
         {{ form_widget(form.parrain) }}
         {{ form_errors(form.parrain) }}
+        </div>
+        <div>
+        <label for="fos_user_registration_form_source">Comment avez-vous<br/>connu Chassor ?</label>
+        {{ form_widget(form.source) }}
+        {{ form_errors(form.source) }}
         </div>
         </div>
         <input type="submit" value="Créer mon compte" class="btn btn-primary inputSubmit" />

@@ -7,7 +7,9 @@
 <thead>
 <tr>
     <th class="sort" data-sort="string">Pseudo</th>
-    <th class="sort" data-sort="string">Email</th>
+    <th class="sort" data-sort="string">Code postal</th>
+    <th class="sort" data-sort="string">Source</th>
+    <th class="sort" data-sort="string">Parrain</th>
     <th class="sort" data-sort="date">Connexion</th>
     <th class="sort" data-sort="int">Compte</th>
     <th class="sort" data-sort="int">Engimes</th>
@@ -21,7 +23,9 @@
 {% for chassor in liste %}
 <tr>
     <td>{{ chassor.username }}</td>
-    <td>{{ chassor.email }}</td>
+    <td>{{ chassor.CP }}</td>
+    <td>{{ chassor.source }}</td>
+    <td>{{ chassor.parrain }}</td>
     <td>{{ chassor.lastLogin|date("d/m H:i") }}
     <td>{{ chassor.compte }}</td>
     <td>{{ chassor.nbEnigmes }}</td>

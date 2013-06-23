@@ -77,6 +77,13 @@ class Chassor extends BaseUser implements EquatableInterface
     private $ville;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="source", type="string", length=255)
+     */
+    private $source;
+    
+    /**
      * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Indice", inversedBy="chassors")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -201,6 +208,7 @@ class Chassor extends BaseUser implements EquatableInterface
     {
         return $this->prenom;
     }
+    
     /**
      * Constructor
      */
@@ -518,4 +526,27 @@ class Chassor extends BaseUser implements EquatableInterface
         return false;
     }
 
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     * @return Chassor
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+    
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string 
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
 }

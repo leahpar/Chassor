@@ -34,6 +34,13 @@ class ChassorEnigme
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="dateDispo", type="datetime")
+     */
+    private $dateDispo;
+    
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
@@ -53,6 +60,11 @@ class ChassorEnigme
     private $valide = false;
     
     
+    
+    public function __construct()
+    {
+        $this->dateDispo = new \DateTime();
+    }
 
     /**
      * Set reponse
@@ -190,5 +202,28 @@ class ChassorEnigme
     public function getValide()
     {
         return $this->valide;
+    }
+
+    /**
+     * Set dateDispo
+     *
+     * @param \DateTime $dateDispo
+     * @return ChassorEnigme
+     */
+    public function setDateDispo($dateDispo)
+    {
+        $this->dateDispo = $dateDispo;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateDispo
+     *
+     * @return \DateTime 
+     */
+    public function getDateDispo()
+    {
+        return $this->dateDispo;
     }
 }

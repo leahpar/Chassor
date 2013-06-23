@@ -39,7 +39,6 @@ class Indice
      */
     private $chassors;
 
-
     /**
      * Get id
      *

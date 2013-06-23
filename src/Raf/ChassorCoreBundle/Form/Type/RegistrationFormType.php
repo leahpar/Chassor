@@ -17,6 +17,7 @@ class RegistrationFormType extends BaseType
                 ->add('CP',        'integer')
                 ->add('ville',     'text')
                 ->add('parrain',   'text',     array('required' => false))
+                ->add('source',    'text',     array('required' => false))
         ;
     }
 
