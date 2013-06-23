@@ -13,9 +13,15 @@ class AdminChassorController extends Controller
                       ->getRepository('ChassorCoreBundle:Chassor')
                       ->findAll2();
         
+        $mails = $this->getDoctrine()
+                      ->getManager()
+                      ->getRepository('ChassorCoreBundle:Mail')
+                      ->findAll();
+        
         return $this->render('ChassorAdminBundle:Chassor:lister.html.twig',
                 array(
-                        'liste' => $liste
+                        'liste' => $liste,
+                        'mails' => $mails
                 ));
     }
 }

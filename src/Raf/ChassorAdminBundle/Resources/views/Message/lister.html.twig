@@ -17,7 +17,7 @@
     <td>{{ message.date|date("d/m/Y H:i") }}</td>
     <td>{{ message.message }}</td>
     <td>
-        <a class="btn" href="{{ path('admin_message_modifier',  {'id': message.id }) }}"><i class="icon-pencil" title="modifier"></i></a>
+        <a class="btn" href="{{ path('admin_message_modifier',  {'id': message.id }) }}">(M)</a>
     </td>
 </tr>
 {% endfor %}

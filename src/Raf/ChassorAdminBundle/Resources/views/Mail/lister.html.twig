@@ -1,0 +1,28 @@
+{% extends "ChassorAdminBundle::admin-layout.html.twig" %}
+ 
+{% block adminContent %}
+<a class="btn" href="{{ path('admin_mail_ajouter') }}">(+)</a>
+
+<table class="stupid">
+<thead>
+<tr>
+    <th class="sort" data-sort="string">Sujet</th>
+    <th>Template</th>
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for mail in liste %}
+<tr>
+    <td>{{ mail.sujet }}</td>
+    <td>{{ mail.template }}</td>
+    <td>
+        <a class="btn" href="{{ path('admin_mail_modifier',  {'id': mail.id }) }}">(M)</a>
+        <a class="btn" href="{{ path('admin_mail_tester',    {'id': mail.id }) }}">(V)</a>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+ 
+{% endblock adminContent %}

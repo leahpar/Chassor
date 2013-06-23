@@ -2,7 +2,8 @@
  
 {% block adminContent %}
 
-<table class="table table-striped table-hover table-condensed table-bordered stupid">
+<form action="{{ path('admin_mail_envoyer') }}" method="POST">
+<table class="stupid">
 <thead>
 <tr>
     <th class="sort" data-sort="string">Pseudo</th>
@@ -13,6 +14,7 @@
     <th class="sort" data-sort="int">Résolues</th>
     <th class="sort" data-sort="int">Tentatives</th>
     <th class="sort" data-sort="int">Indices</th>
+    <th></th>
 </tr>
 </thead>
 <tbody>
@@ -26,9 +28,18 @@
     <td>{{ chassor.nbEnigmesValides }}</td>
     <td>{{ chassor.nbTentatives }}</td>
     <td>{{ chassor.nbIndices }}</td>
+    <td><input type="checkbox" name="chassors[]" value="{{ chassor.id }}"></td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
- 
+<div><select name="mail" class="myselect2">
+    <option  value=""></option>
+    {% for mail in mails %}
+        <option value="{{ mail.id }}">{{ mail.sujet }}</option>
+    {% endfor %}
+</select></div>
+<input type="submit" value="Mail" class="inputSubmit" />
+</form>
+
 {% endblock adminContent %}

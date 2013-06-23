@@ -46,4 +46,23 @@ admin_message_modifier:
     pattern:  /messages/{id}
     defaults: { _controller: ChassorAdminBundle:AdminMessage:modifier }
 
+admin_mail_lister:
+    pattern:  /mails
+    defaults: { _controller: ChassorAdminBundle:AdminMail:lister }
+
+admin_mail_ajouter:
+    pattern:  /mail-ajout
+    defaults: { _controller: ChassorAdminBundle:AdminMail:ajouter }
+
+admin_mail_tester:
+    pattern:  /mail-test/{id}
+    defaults: { _controller: ChassorAdminBundle:AdminMail:tester }
+
+admin_mail_modifier:
+    pattern:  /mails/{id}
+    defaults: { _controller: ChassorAdminBundle:AdminMail:modifier }
+
+admin_mail_envoyer:
+    pattern:  /mail-envoi
+    defaults: { _controller: ChassorAdminBundle:AdminMail:envoyer }
     

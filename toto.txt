@@ -14,7 +14,7 @@ php app/console doctrine:generate:entities ChassorCoreBundle:Message
 
 
 # generation formulaire
-php app/console doctrine:generate:form ChassorCoreBundle:Enigme
+php app/console doctrine:generate:form ChassorCoreBundle:Mail
 
 # mise a jour BDD
 php app/console doctrine:schema:update --dump-sql
