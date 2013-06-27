@@ -191,7 +191,7 @@ class EnigmeController extends Controller
      * 
      * @Secure(roles="ROLE_CHASSOR")
      */
-    public function enigmeImageAction(Enigme $enigme, $image_id)
+    public function enigmeImageAction(Enigme $enigme, $image_id, $etat = 'enigme')
     {
                 
         // globales
@@ -207,7 +207,8 @@ class EnigmeController extends Controller
         $reponse->headers->add(array('Content-Type' => 'image/jpg'));
         
         // Accès interdit
-        if ($acces == null)
+        if (($acces == null)
+         || ($etat == 'reponse' && !$acces->getValide()))
         {
             $image = file_get_contents($this->container->getParameter('kernel.root_dir').'/../web/bundles/chassorcore/img/error403.png');
             $reponse->setStatusCode(403);

@@ -85,13 +85,17 @@
                   
                   {# Délai de réponse #}
                   {% if enigme.delai > 0 %}
-                     <p>Attention : délai de {{ enigme.delai }} heure(s) entre chaque proposition.</p>
+                    <p>
+                    Attention : délai de {{ enigme.delai }} heure(s) entre chaque proposition.
+                    {% if dateProp is not null %}
+                       Prochaine proposition possible le {{ dateProp|date("d/m") }} à {{ dateProp|date("H:i") }}.
+                    {% endif %}
+                    </p>
                   {% endif %}
-                  {% if dateProp is not null %}
-                     <p>Prochaine proposition possible le {{ dateProp|date("d/m") }} à {{ dateProp|date("H:i") }}.</p>
-                  {% endif %}
-
+                
+                  {% if dateProp is null %}
                   <input type="submit" class="submit btnblue" value="Valider ma réponse" />
+                  {% endif %}
                </form>
             </div>
          {% endif %}

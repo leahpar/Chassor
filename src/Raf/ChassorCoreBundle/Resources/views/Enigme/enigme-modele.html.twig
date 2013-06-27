@@ -1,20 +1,23 @@
 {%extends "ChassorCoreBundle:Enigme:layout-enigme.html.twig" %}
  
 {% set note = 'bla bla' %}
-{% set plceholder = 'jj/mm/aaaa' %}
+{% set placeholder = 'jj/mm/aaaa' %}
  
 {% block enigme %}
- 
 <p>J'ai aussi mis la main sur une lettre qui a l'air beaucoup plus ancienne que
 la plupart des documents que j'ai pu consulter jusque là au grenier. Pop semble
 lui avoir accordé une importance toute particulière.</p>
 <p>L'auteur n'a pas daté son courrier, mais peut-être saurez-vous m'aider à mieux
 la situer dans le temps : pourquoi Pop l'a-t-il conservée aussi précieusement,
 alors qu'elle relate, ma foi, un événement plutôt anodin ?</p>
- 
 {% endblock enigme %}
  
-{% block enigme2 %}
- 
-<p>Bravo !</p>
-{% endblock enigme2 %}
+{% block reponse %}
+<p>Il n’y a pas à dire, j’ai vraiment eu raison de faire appel à vous ! Mais je n’arrive toujours pas à faire le lien entre tous ces éléments…</p>
+<p>Je nage en plein brouillard et risque d’avoir encore bien besoin de vous. Je vous tiens au courant de l’avancée de mes recherches.</p>
+<div class="recompense">
+<p><strong>Vous avez déverrouillé un des indices permettant de localiser le trésor, gardez-le précieusement !</strong></p>
+<a href="#" class="btnblue">Télécharger mon indice</a>
+</div>
+{% endblock reponse %}
+
