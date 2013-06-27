@@ -1,4 +1,4 @@
-{% spaceless %}
+{#% spaceless %#}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -90,17 +90,6 @@
     </ul>
     #}
     
-    <div class="footer">
-      <ul>
-       <li><a href="http://twitter.com/ChassorRouen" target="_blank"><img src="{{ asset('bundles/chassorcore/img/footer_twitter.png') }}" /></a></li>
-       <li><a href="http://www.facebook.com/chassor" target="_blank"><img src="{{ asset('bundles/chassorcore/img/footer_facebook.png') }}" /></a></li>
-       </ul>
-       <p>&copy; Chassor Rouen 2013 - Tous droits réservés
-            - <a href="{{ path('reglement') }}">Règlement</a>
-            - <a href="{{ path('partenaires') }}">Partenaires</a>
-            - <a href="mailto:contact@chassor.com">Contact</a></p>
-       
-       </div>
 
     <!-- les js -->
     {# jQuery depuis le CDN de Google, ou fallback sur une copie locale #}
@@ -126,5 +115,5 @@
 
 </body>    
 </html>
-{% endspaceless %}
+{#% endspaceless %#}
 

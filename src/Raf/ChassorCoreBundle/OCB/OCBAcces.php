@@ -33,7 +33,7 @@ class OCBAcces
      */
     public function controleAccesEnigme($user, $enigme)
     {
-        if ($this->controleAccesEnigme2($this->em, $user, $enigme) == null)
+        if ($this->controleAccesEnigme2($user, $enigme) == null)
         {
             return false;
         }

@@ -1,0 +1,131 @@
+{%extends "ChassorCoreBundle::layout-black.html.twig" %}
+{% block content %}
+
+<div class="enigmeWrapper">
+   <article class="openEnigme">
+      <a href="{{ path('enigmes') }}" class="close"><img src="{{ asset('bundles/chassorcore/img/enigme_close_icon.png') }}" /></a>
+
+      <div class="sidebar">
+
+         <hgroup>
+            <div class="stars">
+               <img src="img/star_on.png" />
+               {% if enigme.difficulte > 0 %}<img src="{{ asset('bundles/chassorcore/img/star_on.png') }}" />{% endif %}
+               {% if enigme.difficulte > 1 %}<img src="{{ asset('bundles/chassorcore/img/star_on.png') }}" />{% endif %}
+               {% if enigme.difficulte > 2 %}<img src="{{ asset('bundles/chassorcore/img/star_on.png') }}" />{% endif %}
+               {% if enigme.difficulte < 3 %}<img src="{{ asset('bundles/chassorcore/img/star_off.png') }}" />{% endif %}
+               {% if enigme.difficulte < 2 %}<img src="{{ asset('bundles/chassorcore/img/star_off.png') }}" />{% endif %}
+               </div>
+            <figure class="sceau"><img src="{{ asset('bundles/chassorcore/img/sceau_' ~ enigme.codeInterne|slice(0,1) ~ '.png') }}" /></figure>
+            <h1>&Eacute;nigme {{ enigme.code }}</h1>
+         </hgroup>
+
+         {% if not proposition.valide %}
+            <div class="helpbox">
+            
+               {# ACHAT INDICE #}
+               {% if indices|length > 0 %}
+                  {% set x = 0 %}
+                  {% set n = 1 %}
+                  {% for i in indices %}
+                     {% if dateInd is null %}   {# Indices non disponibles #}
+                        <p>
+                           <a class="locked" href="#">
+                           <img src="{{ asset('bundles/chassorcore/img/enigme_indice_icon.png') }}" />
+                           <strong>Acheter l'indice {{ n }}</strong><br />Disponible le {{ dateInd|date("d/m") }}</a>
+                        </p>
+                     
+                     {% elseif i.chassor is not null %}  {# indice acheté : affichage #}
+                        <p>
+                           Indice : {{ i.indice }}
+                        </p>
+                     {% elseif x == 0 %}     {# indice disponible à l'achat #}
+                        {% set x = 1 %}
+                        <p>
+                           <a href="{{ path('indiceAchat', {'code': enigme.code, 'indice': i.id}) }}"
+                              onClick="return confirm('L\'achat de cet indice vous coutera {{ prixIndice }} pièces.')">
+                           <img src="{{ asset('bundles/chassorcore/img/enigme_indice_icon.png') }}" />
+                           <strong>Acheter l'indice {{ n }}</strong><br />{{ prixIndice }} pièces</a>
+                        </p>
+                     {% else %}        {# il faut acheter les indices précédents #}
+                        <p>
+                           <a class="locked"  href="#">
+                           <img src="{{ asset('bundles/chassorcore/img/enigme_indice_icon.png') }}" />
+                           <strong>Acheter l'indice {{ n }}</strong></a>
+                        </p>
+                     {% endif %}
+                     
+                     {% set n = n + 1 %}
+                  {% endfor %}
+               {% endif %}
+               
+               {# ACHAT ENGIME #}
+               {% if dateEni is null %}   {# Enigme disponible #}
+                  <p>
+                     <a href="{{ path('enigmeAchat', {'code': enigme.code}) }}"
+                        onClick="return confirm('L\'achat de la réponse à cette énigme vous coutera {{ prixEnigme }} pièces.')">
+                     <img src="{{ asset('bundles/chassorcore/img/enigme_reponse_icon.png') }}" />
+                     <strong>Acheter la réponse</strong><br />{{ prixEnigme }} pièces</a>
+                  </p>
+               {% else %}              {# Enigme non disponible #}
+                  <p>
+                     <a href="#" class="locked">
+                     <img src="{{ asset('bundles/chassorcore/img/enigme_reponse_icon.png') }}" />
+                     <strong>Acheter la réponse</strong><br />Disponible le {{ dateEni|date("d/m") }}</a>
+                  </p>
+                {% endif %}
+            </div>
+
+            
+            <div class="reponsebox">
+               <form method=post>
+                  <label for="reponse">Votre réponse :</label>
+                  <input type="text" name="reponse" {% if placeholder is defined %}placeholder="{{ placeholder }}{% endif %}" />
+                  <p>{% if note is defined %}{{ note }}{% endif %}</p>
+                  
+                  {# Délai de réponse #}
+                  {% if enigme.delai > 0 %}
+                     <p>Attention : délai de {{ enigme.delai }} heure(s) entre chaque proposition.</p>
+                  {% endif %}
+                  {% if dateProp is not null %}
+                     <p>Prochaine proposition possible le {{ dateProp|date("d/m") }} à {{ dateProp|date("H:i") }}.</p>
+                  {% endif %}
+
+                  <input type="submit" class="submit btnblue" value="Valider ma réponse" />
+               </form>
+            </div>
+         {% endif %}
+      
+      <div class="clearfix"></div>
+      </div>
+
+    {% if not proposition.valide %}
+        <div class="textecontent">
+        {{ block('enigme') }}
+        <div class="clearfix"></div>
+        </div>
+    {% else %}
+        <div class="textecontent">
+        <a href="#" class="btnopenenigme"><img src="{{ asset('bundles/chassorcore/img/rightarrow_icon_blue.png') }}" /> Revoir l'énigme</a>
+        <div class="enigmeclose">
+        {{ block('enigme') }}
+        </div>
+        <div class="separator"></div>
+        {% block reponse %}
+        {% endblock reponse %}
+        <div class="clearfix"></div>
+        </div>
+    {% endif %}
+
+    <div class="clearfix"></div>
+    </article>
+
+    <div class="backEnveloppe"></div>
+   
+</div>
+   
+   
+{% endblock content %}
+
+
+

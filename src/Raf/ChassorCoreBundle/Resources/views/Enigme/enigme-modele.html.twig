@@ -1,27 +1,20 @@
-{%extends "ChassorCoreBundle:Enigme:enigme-layout.html.twig" %}
-
-
+{%extends "ChassorCoreBundle:Enigme:layout-enigme.html.twig" %}
+ 
+{% set note = 'bla bla' %}
+{% set plceholder = 'jj/mm/aaaa' %}
+ 
 {% block enigme %}
-
-<div class="well">
-    <a href="{{ path('enigmeImage', {code: enigme.code, image_id: '1'}) }}" rel="lightbox" title="aze">
-    <img src="{{ path('enigmeImage', {code: enigme.code, image_id: '1b'}) }}" class="img-polaroid" alt="Enigme A1" />
-    </a>
-
-<form method="post">
-    <div>
-        <label for="question" class="required">Combien de livre contient cette photo ?</label>
-        <input type="text" id="question" name="reponse" required="required" maxlength="255"
-        {% if proposition.valide %}
-        value="{{ proposition.reponse }}" readonly
-        {% endif %}
-        />
-    </div>
-    <div>
-        {% if not proposition.valide %}
-        <input type="submit" value="Valider" class="btn btn-primary" /><br/>
-        {% endif %}
-    </div>
-</form>
-</div>
-{% endblock %}
+ 
+<p>J'ai aussi mis la main sur une lettre qui a l'air beaucoup plus ancienne que
+la plupart des documents que j'ai pu consulter jusque là au grenier. Pop semble
+lui avoir accordé une importance toute particulière.</p>
+<p>L'auteur n'a pas daté son courrier, mais peut-être saurez-vous m'aider à mieux
+la situer dans le temps : pourquoi Pop l'a-t-il conservée aussi précieusement,
+alors qu'elle relate, ma foi, un événement plutôt anodin ?</p>
+ 
+{% endblock enigme %}
+ 
+{% block enigme2 %}
+ 
+<p>Bravo !</p>
+{% endblock enigme2 %}
