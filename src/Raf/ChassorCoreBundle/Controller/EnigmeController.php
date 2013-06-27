@@ -74,6 +74,8 @@ class EnigmeController extends Controller
         $log    = $this->get('session')->getFlashBag();
         
         $classement = 0;
+        $gain = 0;
+        $reponse = '';
                 
         // controle de l'acces a l'enigme
         $chassorEnigme = $ocb_a->controleAccesEnigme2($user, $enigme);
@@ -94,7 +96,7 @@ class EnigmeController extends Controller
     
         // gestion reponse
         $request = $this->get('request');
-        if ($request->getMethod() == 'POST')
+        if ($request->getMethod() == 'POST' && !$chassorEnigme->getValide())
         {
             if ($dateProp != null) 
             {
@@ -179,7 +181,8 @@ class EnigmeController extends Controller
                 'dateEni'      => $dateEni,
                 'prixIndice'   => $prixIn,
                 'prixEnigme'   => $prixEn,
-                'classement'   => $classement
+                'classement'   => $classement,
+                'gain'         => $gain
             ));
     }
     
@@ -191,7 +194,7 @@ class EnigmeController extends Controller
      * 
      * @Secure(roles="ROLE_CHASSOR")
      */
-    public function enigmeImageAction(Enigme $enigme, $image_id, $etat = 'enigme')
+    public function enigmeImageAction(Enigme $enigme, $image_id)
     {
                 
         // globales
@@ -201,6 +204,8 @@ class EnigmeController extends Controller
         
         // controle de l'acces a l'enigme
         $acces = $ocb_a->controleAccesEnigme2($user, $enigme);
+        
+        $etat = ($image_id >= '0' && $image_id <= '9') ? 'reponse' : 'enigme';
         
         // Réponse de type image
         $reponse = new Response();
@@ -334,7 +339,7 @@ class EnigmeController extends Controller
             $em->persist($transaction);
             
             // réponse
-            $chassorEnigme->setReponse($enigme->getReponses());
+            $chassorEnigme->setReponse($enigme->getBonneReponse());
             $chassorEnigme->setValide(true);
             $chassorEnigme->setDate(new \DateTime());
             

@@ -356,25 +356,26 @@ h6 {
 .openEnigme .sidebar .helpbox p {
   margin: 10px 0px;
   padding: 0px;
+  color: #f7ba44;
+  line-height: 12px;
 }
 .openEnigme .sidebar .helpbox p a {
   display: inline-block;
   width: 100%;
   color: #f7ba44;
-  line-height: 12px;
-}
-.openEnigme .sidebar .helpbox p a img {
-  margin: 0px 10px;
-  float: left;
-}
-.openEnigme .sidebar .helpbox p a strong {
-  font-size: 15px;
-  color: #a8a8a8;
-  font-weight: normal;
 }
 .openEnigme .sidebar .helpbox p a.locked {
   opacity: 0.5;
   cursor: default;
+}
+.openEnigme .sidebar .helpbox p img {
+  margin: 0px 10px;
+  float: left;
+}
+.openEnigme .sidebar .helpbox p strong {
+  font-size: 15px;
+  color: #a8a8a8;
+  font-weight: normal;
 }
 .openEnigme .sidebar .bravobox {
   padding: 25px 30px;

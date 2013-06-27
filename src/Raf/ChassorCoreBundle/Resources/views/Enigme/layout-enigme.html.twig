@@ -28,7 +28,7 @@
                   {% set x = 0 %}
                   {% set n = 1 %}
                   {% for i in indices %}
-                     {% if dateInd is null %}   {# Indices non disponibles #}
+                     {% if dateInd is not null %}   {# Indices non disponibles #}
                         <p>
                            <a class="locked" href="#">
                            <img src="{{ asset('bundles/chassorcore/img/enigme_indice_icon.png') }}" />
@@ -36,8 +36,9 @@
                         </p>
                      
                      {% elseif i.chassor is not null %}  {# indice acheté : affichage #}
-                        <p>
-                           Indice : {{ i.indice }}
+				        <p>
+				            <img src="{{ asset('bundles/chassorcore/img/enigme_indice_icon.png') }}" />
+				            <strong>Indice {{ n }} : {{ i.indice }}</strong><br/>&nbsp;
                         </p>
                      {% elseif x == 0 %}     {# indice disponible à l'achat #}
                         {% set x = 1 %}
@@ -80,7 +81,9 @@
             <div class="reponsebox">
                <form method=post>
                   <label for="reponse">Votre réponse :</label>
-                  <input type="text" name="reponse" {% if placeholder is defined %}placeholder="{{ placeholder }}{% endif %}" />
+                  <input type="text" name="reponse"
+                      {% if placeholder is defined %}placeholder="{{ placeholder }}{% endif %}"
+                      value="{{ proposition.reponse }}" />
                   <p>{% if note is defined %}{{ note }}{% endif %}</p>
                   
                   {# Délai de réponse #}
@@ -99,6 +102,26 @@
                </form>
             </div>
          {% endif %}
+         
+         {% if proposition.valide %}
+             {% if classement > 0 %}
+             <div class="bravobox">
+                <p>Bravo,</p>
+                <p>vous avez été le <strong>{{ classement }}<sup>e</sup></strong> à résoudre cette énigme !</p>
+                <p>Vous avez gagné <strong>{{ gain }} pièces</strong> !</p>
+            </div>
+            {% endif %}
+            
+            <div class="reponsebox">
+                <form>
+                    <label for="reponse">Votre réponse :</label>
+                    <input type="text" name="reponse" value="{{ proposition.reponse }}" />
+                    <p>&nbsp;</p>
+                    <p class="btngreen"><img src="{{ asset('bundles/chassorcore/img/btngreen_icon.png') }}" /> <strong>Bravo !</strong> Bonne réponse</p>
+                    
+                </form>
+            </div>
+            {% endif %}
       
       <div class="clearfix"></div>
       </div>

@@ -15,10 +15,18 @@
 {% for tr in liste %}
 <tr>
     <td>{{ tr.date|date("d/m/Y H:i") }}</td>
-    <td>{{ tr.chassor.username }}</td>
+    <td>{{ tr.chassor.prenom }} {{ tr.chassor.nom }}</td>
     <td>{{ tr.libelle }}</td>
     <td>{{ tr.montant }}</td>
-    <td>{{ tr.etat }}</td>
+    {% if tr.etat == 0 %}
+        <td>Validé</td>
+    {% elseif tr.etat == 2 %}
+        <td>En attente</td>
+    {% elseif tr.etat == 3 %}
+        <td>Manuelle</td>
+    {% elseif tr.etat == -1 %}
+        <td>Refusée</td>
+    {% endif %}
 </tr>
 {% endfor %}
 </tbody>

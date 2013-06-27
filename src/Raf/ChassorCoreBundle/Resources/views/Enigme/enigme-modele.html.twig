@@ -10,6 +10,8 @@ lui avoir accordé une importance toute particulière.</p>
 <p>L'auteur n'a pas daté son courrier, mais peut-être saurez-vous m'aider à mieux
 la situer dans le temps : pourquoi Pop l'a-t-il conservée aussi précieusement,
 alors qu'elle relate, ma foi, un événement plutôt anodin ?</p>
+<img src="{{ path('enigmeImage', { code: enigme.code, image_id: '1' }) }}" /> {# image accessible apres reponse #}
+<img src="{{ path('enigmeImage', { code: enigme.code, image_id: 'A' }) }}" /> {# image accessible avant/apres reponse #}
 {% endblock enigme %}
  
 {% block reponse %}
@@ -17,7 +19,6 @@ alors qu'elle relate, ma foi, un événement plutôt anodin ?</p>
 <p>Je nage en plein brouillard et risque d’avoir encore bien besoin de vous. Je vous tiens au courant de l’avancée de mes recherches.</p>
 <div class="recompense">
 <p><strong>Vous avez déverrouillé un des indices permettant de localiser le trésor, gardez-le précieusement !</strong></p>
-<a href="#" class="btnblue">Télécharger mon indice</a>
+<a href="{{ path('enigmeImage', { code: enigme.code, image_id: '1' }) }}" class="btnblue">Télécharger mon indice</a>
 </div>
 {% endblock reponse %}
-

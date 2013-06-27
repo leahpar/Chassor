@@ -3,10 +3,11 @@
 {% block adminContent %}
 
 <form action="{{ path('admin_mail_envoyer') }}" method="POST">
+<p>{{ liste|length }} inscrits</p>
 <table class="stupid">
 <thead>
 <tr>
-    <th class="sort" data-sort="string">Pseudo</th>
+    <th class="sort" data-sort="string">Nom</th>
     <th class="sort" data-sort="string">Code postal</th>
     <th class="sort" data-sort="string">Source</th>
     <th class="sort" data-sort="string">Parrain</th>
@@ -22,7 +23,7 @@
 <tbody>
 {% for chassor in liste %}
 <tr>
-    <td>{{ chassor.username }}</td>
+    <td>{{ chassor.prenom }} {{ chassor.nom }}</td>
     <td>{{ chassor.CP }}</td>
     <td>{{ chassor.source }}</td>
     <td>{{ chassor.parrain }}</td>
