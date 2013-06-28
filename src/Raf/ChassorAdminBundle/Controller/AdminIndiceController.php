@@ -34,6 +34,14 @@ class AdminIndiceController extends Controller
         return $this->formulaireAction($indice);
     }
 
+    public function supprimerAction(Indice $indice)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($indice);
+        $em->flush();
+        return $this->redirect($this->generateUrl('admin_indice_lister'));
+    }
+    
     public function formulaireAction(Indice $indice)
     {
         $form = $this->createForm(new IndiceType, $indice);

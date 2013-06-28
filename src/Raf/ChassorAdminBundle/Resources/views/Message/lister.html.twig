@@ -18,6 +18,7 @@
     <td>{{ message.message }}</td>
     <td>
         <a class="btn" href="{{ path('admin_message_modifier',  {'id': message.id }) }}">(M)</a>
+        <a class="btn" href="{{ path('admin_message_supprimer',  {'id': message.id }) }}">(S)</a>
     </td>
 </tr>
 {% endfor %}

@@ -33,6 +33,14 @@ class AdminEnigmeController extends Controller
         return $this->formulaireAction($enigme);
     }
 
+    public function supprimerAction(Enigme $enigme)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($enigme);
+        $em->flush();
+        return $this->redirect($this->generateUrl('admin_enigme_lister'));
+    }
+    
     public function formulaireAction(Enigme $enigme)
     {
         $form = $this->createForm(new EnigmeType, $enigme);

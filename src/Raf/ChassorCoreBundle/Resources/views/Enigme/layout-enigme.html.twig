@@ -9,7 +9,6 @@
 
          <hgroup>
             <div class="stars">
-               <img src="img/star_on.png" />
                {% if enigme.difficulte > 0 %}<img src="{{ asset('bundles/chassorcore/img/star_on.png') }}" />{% endif %}
                {% if enigme.difficulte > 1 %}<img src="{{ asset('bundles/chassorcore/img/star_on.png') }}" />{% endif %}
                {% if enigme.difficulte > 2 %}<img src="{{ asset('bundles/chassorcore/img/star_on.png') }}" />{% endif %}
@@ -82,7 +81,7 @@
                <form method=post>
                   <label for="reponse">Votre réponse :</label>
                   <input type="text" name="reponse"
-                      {% if placeholder is defined %}placeholder="{{ placeholder }}{% endif %}"
+                      {% if placeholder is defined %}placeholder="{{ placeholder }}"{% endif %}
                       value="{{ proposition.reponse }}" />
                   <p>{% if note is defined %}{{ note }}{% endif %}</p>
                   
@@ -98,6 +97,10 @@
                 
                   {% if dateProp is null %}
                   <input type="submit" class="submit btnblue" value="Valider ma réponse" />
+                  {% endif %}
+                  
+                  {% if reponse is not null %}
+                  <p class="btnred"><strong>Faux !</strong> Mauvaise réponse</p>
                   {% endif %}
                </form>
             </div>

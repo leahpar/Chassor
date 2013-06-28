@@ -33,6 +33,14 @@ class AdminMessageController extends Controller
         return $this->formulaireAction($message);
     }
 
+    public function supprimerAction(Message $message)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush();
+        return $this->redirect($this->generateUrl('admin_message_lister'));
+    }
+    
     public function formulaireAction(Message $message)
     {
         $form = $this->createForm(new MessageType, $message);

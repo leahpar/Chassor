@@ -37,6 +37,7 @@ class Transaction
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", inversedBy="transactions")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $chassor;
 

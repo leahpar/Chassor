@@ -32,6 +32,7 @@
     <td>{{ enigme.difficulte }}</td>
     <td>
         <a class="btn" href="{{ path('admin_enigme_modifier',  {'id': enigme.id }) }}">(M)</a>
+        <a class="btn" href="{{ path('admin_enigme_supprimer',  {'id': enigme.id }) }}">(S)</a>
     </td>
 </tr>
 {% endfor %}

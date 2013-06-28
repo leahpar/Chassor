@@ -23,7 +23,7 @@ class Indice
 
     /**
      * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $enigme;
 

@@ -60,14 +60,17 @@
         
         {# messages chassor #}
         <div id="chassor_msg">
+        <div id="msgWrapper">
         {% for type in ['chassor'] %}
         {% for message in app.session.flashbag.get(type) %}
         <div class="alert alert-{{ type }}">
+            <a href="#" class="close"><img src="{{ asset('bundles/chassorcore/img/enigme_close_icon.png') }}" /></a>
             {{ message }}
         </div>
         {% endfor %}
         {% endfor %}
-        </div>
+        <a href="#" class="bottomClose btnred">Revenir au jeu</a>
+        </div></div>
     {# Les flash messages #}
     
     

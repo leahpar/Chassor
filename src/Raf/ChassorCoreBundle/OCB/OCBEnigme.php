@@ -27,7 +27,7 @@ class OCBEnigme
         {
             $dateProp->add(new \DateInterval('PT'.$enigme->getDelai().'H'));
         }
-        if ($dateProp == null || $dateProp <= new \DateTime())
+        if ($dateProp == null || $dateProp <= new \DateTime() || $enigme->getDelai() == 0)
         {
             return null;
         }
@@ -65,10 +65,13 @@ class OCBEnigme
      */
     public function reponseValide(Enigme $enigme, $reponse)
     {
-        return in_array(
-            $this->ocb_chaine->normaliza($reponse),
-            explode('|', $enigme->getReponses())
-        );
+        $rep = $this->ocb_chaine->normaliza($reponse);
+        $tab = explode('|', $enigme->getReponses());
+        foreach ($tab as $r)
+        {
+            if ($rep = $this->ocb_chaine->normaliza($r)) return true;
+        }
+        return false;
     }
 }
  

@@ -60,5 +60,24 @@ Recommandé : un smartphone pour pouvoir donner la réponse à une énigme rapid
 					
 					
 		        </div>
+		        
+		        {% if not is_granted("ROLE_USER") %}
+    <div class="linksContainer">
+        <a href="{{ path('fos_user_registration_register') }}" class="go"><span><strong>5</strong>&euro;</span>
+            Créer mon compte
+            <img src="{{ asset('bundles/chassorcore/img/home_links_a_arrow.png') }}" class="arrow" /></a>
+        
+        <div class="clearfix"></div>
+    </div>
+    <p class="why">
+        <a href="#" class="box">Pourquoi l'inscription à Chassor est-elle payante ?
+        <span>
+        <strong>Pour faire un chouette trésor !</strong><br/>
+        Le trésor de Chassor est financé par vos inscriptions ! Comme pour une loterie, plus il y a de joueurs, plus le gain est important !
+        <img src="{{ asset('bundles/chassorcore/img/box_onglet.png') }}" />
+        </span>
+        </a>
+    </p>
+    {% endif %}
 {% endblock content %}
 		        

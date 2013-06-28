@@ -34,6 +34,14 @@ class AdminmailController extends Controller
         return $this->formulaireAction($mail);
     }
     
+    public function supprimerAction(Mail $mail)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($mail);
+        $em->flush();
+        return $this->redirect($this->generateUrl('admin_mail_lister'));
+    }
+    
     public function envoyerAction()
     {
         $log    = $this->get('session')->getFlashBag();

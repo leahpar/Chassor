@@ -7,11 +7,15 @@ admin_enigme_lister:
     defaults: { _controller: ChassorAdminBundle:AdminEnigme:lister }
 
 admin_enigme_ajouter:
-    pattern:  /enigme-ajout
+    pattern:  /enigmes/ajouter
     defaults: { _controller: ChassorAdminBundle:AdminEnigme:ajouter }
 
+admin_enigme_supprimer:
+    pattern:  enigmes/{id}/supprimer
+    defaults: { _controller: ChassorAdminBundle:AdminEnigme:supprimer }
+
 admin_enigme_modifier:
-    pattern:  /enigmes/{id}
+    pattern:  /enigmes/{id}/modifier
     defaults: { _controller: ChassorAdminBundle:AdminEnigme:modifier }
 
 admin_indice_lister:
@@ -19,12 +23,16 @@ admin_indice_lister:
     defaults: { _controller: ChassorAdminBundle:AdminIndice:lister }
 
 admin_indice_ajouter:
-    pattern:  /indice-ajout
+    pattern:  /indices/ajouter
     defaults: { _controller: ChassorAdminBundle:AdminIndice:ajouter }
 
 admin_indice_modifier:
-    pattern:  /indices/{id}
+    pattern:  /indices/{id}/modifier
     defaults: { _controller: ChassorAdminBundle:AdminIndice:modifier }
+
+admin_indice_supprimer:
+    pattern:  /indices/{id}/supprimer
+    defaults: { _controller: ChassorAdminBundle:AdminIndice:supprimer }
 
 admin_transaction_lister:
     pattern:  /transactions
@@ -39,27 +47,31 @@ admin_message_lister:
     defaults: { _controller: ChassorAdminBundle:AdminMessage:lister }
 
 admin_message_ajouter:
-    pattern:  /message-ajout
+    pattern:  /messages/ajouter
     defaults: { _controller: ChassorAdminBundle:AdminMessage:ajouter }
 
 admin_message_modifier:
-    pattern:  /messages/{id}
+    pattern:  /messages/{id}/modifier
     defaults: { _controller: ChassorAdminBundle:AdminMessage:modifier }
+
+admin_message_supprimer:
+    pattern:  /messages/{id}/supprimer
+    defaults: { _controller: ChassorAdminBundle:AdminMessage:supprimer }
 
 admin_mail_lister:
     pattern:  /mails
     defaults: { _controller: ChassorAdminBundle:AdminMail:lister }
 
 admin_mail_ajouter:
-    pattern:  /mail-ajout
+    pattern:  /mails/ajouter
     defaults: { _controller: ChassorAdminBundle:AdminMail:ajouter }
 
 admin_mail_tester:
-    pattern:  /mail-test/{id}
+    pattern:  /mails/{id}/tester
     defaults: { _controller: ChassorAdminBundle:AdminMail:tester }
 
 admin_mail_modifier:
-    pattern:  /mails/{id}
+    pattern:  /mails/{id}/modifier
     defaults: { _controller: ChassorAdminBundle:AdminMail:modifier }
 
 admin_mail_envoyer:

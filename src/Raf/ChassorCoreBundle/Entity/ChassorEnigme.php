@@ -15,12 +15,14 @@ class ChassorEnigme
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", inversedBy="enigmes")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $chassor;
 
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Enigme", inversedBy="chassorEnigmes")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $enigme;
 

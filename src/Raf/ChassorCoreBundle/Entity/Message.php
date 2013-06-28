@@ -37,6 +37,7 @@ class Message
     
     /**
      * @ORM\ManyToMany(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", mappedBy="messages")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $chassors;
     

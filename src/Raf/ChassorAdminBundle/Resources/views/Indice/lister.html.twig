@@ -18,6 +18,7 @@
     <td>{{ indice.indice }}</td>
     <td>
         <a class="btn" href="{{ path('admin_indice_modifier',  {'id': indice.id }) }}">(M)</a>
+        <a class="btn" href="{{ path('admin_indice_supprimer',  {'id': indice.id }) }}">(S)</a>
     </td>
 </tr>
 {% endfor %}

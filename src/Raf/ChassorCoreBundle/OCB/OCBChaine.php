@@ -14,6 +14,7 @@ class OCBChaine
         $texte = preg_replace( "/[^A-Za-z0-9]+/", "-", $texte ); // On remplace les caracteres non-alphanumériques par le tiret
         $texte = strtolower( $texte ); // On convertit le tout en minuscules
         $texte = trim($texte, '-'); // Supprime les tirets en début ou en fin de chaine
+        $texte = preg_replace( "#-+#", "-", $texte ); // suppression doublons
         return $texte;
     }
     

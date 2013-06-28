@@ -75,7 +75,7 @@ class EnigmeController extends Controller
         
         $classement = 0;
         $gain = 0;
-        $reponse = '';
+        $reponse = null;
                 
         // controle de l'acces a l'enigme
         $chassorEnigme = $ocb_a->controleAccesEnigme2($user, $enigme);
@@ -176,6 +176,7 @@ class EnigmeController extends Controller
                 'enigme'       => $enigme,
                 'indices'      => $indices,
                 'proposition'  => $chassorEnigme,
+                'reponse'      => $reponse,
                 'dateProp'     => $dateProp,
                 'dateInd'      => $dateInd,
                 'dateEni'      => $dateEni,
