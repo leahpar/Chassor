@@ -2,16 +2,21 @@
 
 namespace Raf\ChassorCoreBundle\OCB;
 
+use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\Enigme;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
+use Raf\ChassorCoreBundle\Entity\Transaction;
  
 class OCBEnigme
 {
     private $ocb_chaine;
+    private $em;
     
-    public function __construct($ocb_chaine)
+    
+    public function __construct($em, $ocb_chaine)
     {
         $this->ocb_chaine = $ocb_chaine;
+        $this->em = $em;
     }
     
     /**
@@ -67,8 +72,21 @@ class OCBEnigme
     {
         return in_array(
             $this->ocb_chaine->normaliza($reponse),
-            explode('|', $enigme->getReponses())
+            $this->ocb_chaine->normaliza(explode('|', $enigme->getReponses()))
         );
+    }
+    
+    public function creerTransaction(Chassor $user, $libelle)
+    {
+        $transaction = $this->em->getRepository('ChassorCoreBundle:Transaction')
+                                ->findOneBy(array('chassor' => $user,
+                                                  'libelle' => $libelle,
+                                                  'etat'    => Transaction::$ETAT_ATTENTE));
+        if ($transaction == null)
+        {
+            $transaction = new Transaction($user);
+        }
+        return $transaction;
     }
 }
  

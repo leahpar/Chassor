@@ -13,19 +13,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-    	// globales
-    	$user  = $this->getUser();
-    	
-    	if ($user != null)
-    	{
-        	$log   = $this->get('session')->getFlashBag();
-        	$em    = $this->getDoctrine()->getManager();
-        	$ocb_m = $this->get('ocb.message');
-        	
-        	// affichage messages
-        	$ocb_m->gestionMessages($user);
-    	}
-    	
         return $this->render('ChassorCoreBundle:Default:index.html.twig');
     }
     public function aproposAction()

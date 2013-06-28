@@ -16,7 +16,7 @@ services:
         class: Raf\ChassorCoreBundle\OCB\OCBChaine
     ocb.enigme:
         class: Raf\ChassorCoreBundle\OCB\OCBEnigme
-        arguments: [@ocb.chaine]
+        arguments: [@doctrine.orm.entity_manager, @ocb.chaine]
     ocb.acces:
         class: Raf\ChassorCoreBundle\OCB\OCBAcces
         arguments: [@doctrine.orm.entity_manager]

@@ -14,7 +14,7 @@ class AdminEnigmeController extends Controller
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Enigme')
-                      ->findAll();
+                      ->findBy(array(), array('code' => 'ASC'));
        
         return $this->render('ChassorAdminBundle:Enigme:lister.html.twig',
                 array(
