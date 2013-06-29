@@ -8,6 +8,7 @@
     <th class="sort" data-sort="string">Chassor</th>
     <th class="sort" data-sort="string">Libellé</th>
     <th class="sort" data-sort="float">Montant</th>
+    <th class="sort" data-sort="string">Code</th>
     <th class="sort" data-sort="string">Etat</th>
 </tr>
 </thead>
@@ -18,6 +19,7 @@
     <td>{{ tr.chassor.prenom }} {{ tr.chassor.nom }}</td>
     <td>{{ tr.libelle }}</td>
     <td>{{ tr.montant }}</td>
+    <td>{{ tr.code }}</td>
     {% if tr.etat == 0 %}
         <td>Validé</td>
     {% elseif tr.etat == 2 %}

@@ -1,70 +1,99 @@
-{%extends "ChassorCoreBundle::layout.html.twig" %}
+{%extends "ChassorCoreBundle::layout-black.html.twig" %}
 
 
-{% block body %}
-<div class="mainWrapper">
+{% block content %}
 
-<ul>
-    <li><a href="{{ path('achat', { 'type': 'pack1' }) }}">Pack 500 Pièces</a></li>
-    <li><a href="{{ path('achat', { 'type': 'pack2' }) }}">Pack 1000 Pièces</a></li>
-    <li><a href="{{ path('achat', { 'type': 'pack3' }) }}">Pack 2500 Pièces</a></li>
-    <li><a href="{{ path('achat', { 'type': 'pack4' }) }}">Pack 5000 Pièces</a></li>
-    <li><a href="{{ path('achat', { 'type': 'pack5' }) }}">Pack 10000 Pièces</a></li>
-</ul>
+<div class="blackContent banque">
+    <hgroup>
+        <h2>Vous êtes à cours de fonds ?</h2>
+        <h1>Chassor Banque est là pour vous !</h1>
+    </hgroup>
+    <div class="packs">
+        <div class="pack" id="p500">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p500_illus.png') }}" class="illus" />
+	        <h2><strong>500</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <h3>1 &euro; 50</h3>
+	        <div class="separator"></div>
+	        <a href="{{ path('achat', { 'type': 'pack1' }) }}" class="btnblue">Acheter</a>
+        </div>
+        <div class="pack" id="p1000">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p1000_illus.png') }}" class="illus" />
+	        <h2><strong>1000</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <h3>2 &euro; 50</h3>
+	        <div class="separator"></div>
+	        <a href="{{ path('achat', { 'type': 'pack2' }) }}" class="btnblue">Acheter</a>
+        </div>
+        <div class="pack" id="p2500">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p2500_illus.png') }}" class="illus" />
+	        <h2><strong>2500</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <h3>4 &euro; 50</h3>
+	        <div class="separator"></div>
+	        <a href="{{ path('achat', { 'type': 'pack3' }) }}" class="btnblue">Acheter</a>
+        </div>
+        <div class="pack" id="p5000">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p5000_illus.png') }}" class="illus" />
+	        <h2><strong>5000</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <h3>7 &euro;</h3>
+	        <div class="separator"></div>
+	        <a href="{{ path('achat', { 'type': 'pack4' }) }}" class="btnblue">Acheter</a>
+        </div>
+        <div class="pack" id="p10000">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p10000_illus.png') }}" class="illus" />
+	        <h2><strong>10000</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <h3>10 &euro;</h3>
+	        <div class="separator"></div>
+	        <a href="{{ path('achat', { 'type': 'pack5' }) }}" class="btnblue">Acheter</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <p class="banquedetail"><strong>Paiement CB / Paypal sécurisé</strong><br />
+Chassor n’a pas accès à vos coordonnées bancaires. Paiement par chèque <a href="mailto:contact@chassor.com">nous contacter</a>.<br/>
+L’achat de pièce n’est pas indispensable pour gagner le jeu.</p>
 
-<table class="">
-<tbody>
-{% set sum = 0 %}
-{% for t in transactions %}
-{#
-<tr 
-{% if     t.etat == 0 %}
-    {% set sum = sum + t.montant %}
-    class="success"
-{% elseif t.etat  > 0 %}
-    class="warning"
-{% elseif t.etat  < 0 %}
-    class="error"
-{% endif %}
->
-#}
-<tr>
-    <td>{{ t.date|date("d/m") }}</td>
-    <td>{{ t.libelle }}</td>
-    <td>{{ t.montant }}</td>
-    {% if t.etat == 0 %}
-        <td>Validé</td>
-    {% elseif t.etat == 2 %}
-        <td>En attente</td>
-    {% elseif t.etat == 3 %}
-        <td>Manuelle</td>
-    {% elseif t.etat == 4 %}
-        <td>Abandon</td>
-    {% elseif t.etat == -1 %}
-        <td>Refusée</td>
-    {% endif %}    
-</tr>
-{% endfor %}
-</tbody>
-<thead>
-<tr>
-    <th>Date</th>
-    <th>Libellé</th>
-    <th>Montant</th>
-    <th>Status</th>
-</tr>
-{#
-<tr>
-    <th>{{ "now"|date("d/m/Y") }}</th>
-    <th>Total</th>
-    <th>{{ sum }}</th>
-    <th></th>
-</tr>
-#}
-</thead>
-</table>
+	<div class="banqueHistoric">
+		<h1>Historique de votre compte</h1>
+		<div class="separator"></div>
 
+		<table>
+        <tbody>
+        {% set sum = 0 %}
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t.date|date("d/m") }}</td>
+            <td>{{ t.libelle }}</td>
+            <td>{{ t.montant }}</td>
+            {% if t.etat == 0 %}
+                <td>Validé</td>
+            {% elseif t.etat == 2 %}
+                <td>En attente</td>
+            {% elseif t.etat == 3 %}
+                <td>Manuelle</td>
+            {% elseif t.etat == 4 %}
+                <td>Abandon</td>
+            {% elseif t.etat == -1 %}
+                <td>Refusée</td>
+            {% endif %}    
+        </tr>
+        {% endfor %}
+        </tbody>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Libellé</th>
+            <th>Montant</th>
+            <th>Status</th>
+        </tr>
+        
+        </thead>
+        </table>
 
 </div>
+<div class="clearfix"></div>
+</div>
 
-{% endblock %}
+{% endblock content %}

@@ -63,7 +63,7 @@ class BanqueController extends Controller
         }
     
         // code promo
-        if ($promo == $tran['code_promo'])
+        if (in_array($promo, explode('|', $tran['code_promo'])))
         {
             $type = $type.'X';
         }
@@ -73,6 +73,7 @@ class BanqueController extends Controller
         $transaction = $ocb_e->creerTransaction($user, $tran['libelle'][$type]);
         $transaction->setLibelle($tran['libelle'][$type]);
         $transaction->setMontant($tran['pieces'][$type]);
+        $transaction->setCode($promo);
         $transaction->setEtat(Transaction::$ETAT_ATTENTE);
         $em->persist($transaction);
         $em->flush();

@@ -38,8 +38,7 @@
     {% if is_granted("ROLE_USER") %}
         <ul class="userNav">
         <li>
-            {#<a href="{{ path('fos_user_profile_show') }}">#}
-            <a href="#">
+            <a href="{{ path('fos_user_profile_show') }}">
             <img src="{{ asset('bundles/chassorcore/img/header_user_icon.png') }}" />
             {{ app.user.username }}
             </a>

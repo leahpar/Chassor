@@ -846,6 +846,7 @@ h6 {
 .redWrapper .redContent form div input#fos_user_registration_form_ville {
   width: 36%;
   max-width: 258px;
+  margin-right: 5px;
 }
 .redWrapper .redContent form div .spacer {
   height: 10px;
@@ -883,6 +884,120 @@ h6 {
 }
 .redWrapper .whitebloc .partner {
   margin: 0px 5px;
+}
+.blackContent {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  outline: 0px dotted red;
+}
+.blackContent hgroup h2 {
+  margin: 0px;
+  padding: 0px;
+  font-family: dinM;
+  font-size: 27px;
+  color: #f7ad2d;
+}
+.blackContent hgroup h1 {
+  margin: 0px;
+  padding: 0px;
+  font-family: dinL;
+  font-size: 37px;
+  color: #e8e8e8;
+}
+.blackContent h1 {
+  margin: 0px;
+  padding: 0px;
+  font-family: dinL;
+  font-size: 27px;
+  color: #e8e8e8;
+}
+.blackContent p {
+  font-family: din;
+  font-size: 17px;
+  color: #b3b3b3;
+}
+.blackContent p strong {
+  font-family: dinM;
+  color: #fff;
+  font-weight: normal;
+}
+.blackContent p a {
+  color: #fff;
+}
+.blackContent .separator {
+  height: 1px;
+  border-bottom: 1px solid #242424;
+  box-shadow: 0px 1px 0px #424242;
+  margin: 5px 0px;
+  margin-bottom: 15px;
+}
+.banque {
+  background: url(../img/banque_bg.png) no-repeat center top;
+}
+.banque .packs {
+  outline: 0px dotted green;
+}
+.banque .packs .pack {
+  position: relative;
+  width: 150px;
+  margin: 0px 23px;
+  margin-top: 270px;
+  float: left;
+  outline: 0px dotted blue;
+}
+.banque .packs .pack .illus {
+  position: absolute;
+  bottom: 160px;
+}
+.banque .packs .pack h2 {
+  margin: 0px;
+  padding: 0px;
+  font-family: dinM;
+  font-size: 20px;
+  color: #dadada;
+}
+.banque .packs .pack h2 strong {
+  font-weight: normal;
+  color: #f7b63d;
+}
+.banque .packs .pack h3 {
+  margin: 0px;
+  padding: 0px;
+  font-family: dinM;
+  font-size: 27px;
+  color: #f7ad2d;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
+}
+.banque .packs .pack .btnblue {
+  display: block;
+  padding: 5px 0px;
+}
+.banque .packs #p500 .illus {
+  left: -20px;
+  z-index: 6;
+}
+.banque .packs #p1000 .illus {
+  left: -25px;
+  z-index: 5;
+}
+.banque .packs #p2500 .illus {
+  left: -40px;
+  z-index: 4;
+}
+.banque .packs #p5000 .illus {
+  left: -90px;
+  z-index: 3;
+}
+.banque .packs #p10000 .illus {
+  left: -130px;
+  z-index: 2;
+}
+.banque .banquedetail {
+  margin-top: 50px;
+}
+.banque .banqueHistoric {
+  margin-top: 60px;
 }
 .footer {
   background: #be0c0f;

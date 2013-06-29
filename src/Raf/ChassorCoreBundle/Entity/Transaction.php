@@ -36,7 +36,7 @@ class Transaction
     private $id;
 
     /**
-     * @var string
+     * @var Chassor
      *
      * @ORM\ManyToOne(targetEntity="Raf\ChassorCoreBundle\Entity\Chassor", inversedBy="transactions")
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -50,6 +50,13 @@ class Transaction
      */
     private $libelle;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255, nullable=true)
+     */
+    private $code;
+    
     /**
      * @var integer
      *
@@ -212,5 +219,28 @@ class Transaction
             return 1;
         }
         return 2;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return Transaction
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }
