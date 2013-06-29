@@ -39,7 +39,9 @@ class BanqueController extends Controller
     public function achatPiecesAction($type)
     {
         $user  = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
+        $em    = $this->getDoctrine()->getManager();
+        $ocb_e = $this->get('ocb.enigme');
+        
         
         $a = explode('-', $type);
         $type  = $a[0];
@@ -68,7 +70,7 @@ class BanqueController extends Controller
     
         
         // construction transaction
-        $transaction = new Transaction($user);
+        $transaction = $ocb_e->creerTransaction($user, $tran['libelle'][$type]);
         $transaction->setLibelle($tran['libelle'][$type]);
         $transaction->setMontant($tran['pieces'][$type]);
         $transaction->setEtat(Transaction::$ETAT_ATTENTE);

@@ -24,6 +24,8 @@
         <td>En attente</td>
     {% elseif tr.etat == 3 %}
         <td>Manuelle</td>
+    {% elseif tr.etat == 4 %}
+        <td>Abandon</td>
     {% elseif tr.etat == -1 %}
         <td>Refusée</td>
     {% endif %}

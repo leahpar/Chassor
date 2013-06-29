@@ -14,7 +14,7 @@ class AdminMessageController extends Controller
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Message')
-                      ->findAll();
+                      ->findBy(array(), array('date' => 'ASC'));
        
         return $this->render('ChassorAdminBundle:Message:lister.html.twig',
                 array(

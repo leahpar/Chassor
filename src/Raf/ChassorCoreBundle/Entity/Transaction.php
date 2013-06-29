@@ -21,6 +21,8 @@ class Transaction
     
     static public $ETAT_INIT     =  1;
     static public $ETAT_ATTENTE  =  2;
+    static public $ETAT_MANUEL   =  3;
+    static public $ETAT_ABANDON  =  4;
     static public $ETAT_VALIDE   =  0;
     static public $ETAT_INVALIDE = -1;
     
