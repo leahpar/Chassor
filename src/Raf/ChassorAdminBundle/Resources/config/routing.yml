@@ -74,6 +74,10 @@ admin_mail_modifier:
     pattern:  /mails/{id}/modifier
     defaults: { _controller: ChassorAdminBundle:AdminMail:modifier }
 
+admin_mail_supprimer:
+    pattern:  /mails/{id}/supprimer
+    defaults: { _controller: ChassorAdminBundle:AdminMail:supprimer }
+
 admin_mail_envoyer:
     pattern:  /mail-envoi
     defaults: { _controller: ChassorAdminBundle:AdminMail:envoyer }

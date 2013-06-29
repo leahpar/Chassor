@@ -54,3 +54,6 @@ git reset --hard origin/master
 rm -rf cache/*
 php app/console assets:install web --symlink
 php app/console assetic:dump --env=prod --no-debug
+
+MAIL
+php app/console swiftmailer:spool:send

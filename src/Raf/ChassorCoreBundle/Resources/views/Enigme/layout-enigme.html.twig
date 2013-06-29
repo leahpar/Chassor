@@ -60,6 +60,7 @@
                {% endif %}
                
                {# ACHAT ENGIME #}
+               {% if enigme.achat %}
                {% if dateEni is null %}   {# Enigme disponible #}
                   <p>
                      <a href="{{ path('enigmeAchat', {'code': enigme.code}) }}"
@@ -73,6 +74,7 @@
                      <img src="{{ asset('bundles/chassorcore/img/enigme_reponse_icon.png') }}" />
                      <strong>Acheter la réponse</strong><br />Disponible le {{ dateEni|date("d/m") }}</a>
                   </p>
+                {% endif %}
                 {% endif %}
             </div>
 

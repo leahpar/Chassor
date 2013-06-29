@@ -29,6 +29,7 @@ class EnigmeType extends AbstractType
             ->add('difficulte',  'choice', array('choices' => array('1' => 'Niveau 1',
                                                                     '2' => 'Niveau 2',
                                                                     '3' => 'Niveau 3')))
+            ->add('achat',       'checkbox', array('required' => false))
         ;
     }
 

@@ -87,6 +87,13 @@ class Enigme
      * @ORM\OneToMany(targetEntity="Raf\ChassorCoreBundle\Entity\ChassorEnigme", mappedBy="enigme")
      */
     private $chassorEnigmes;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="achat", type="boolean")
+     */
+    private $achat = 1;
 
     
     public function __construct()
@@ -422,5 +429,28 @@ class Enigme
     {
         $liste = explode('|', $this->reponses);
         return $liste[0];
+    }
+
+    /**
+     * Set achat
+     *
+     * @param boolean $achat
+     * @return Enigme
+     */
+    public function setAchat($achat)
+    {
+        $this->achat = $achat;
+    
+        return $this;
+    }
+
+    /**
+     * Get achat
+     *
+     * @return boolean 
+     */
+    public function getAchat()
+    {
+        return $this->achat;
     }
 }

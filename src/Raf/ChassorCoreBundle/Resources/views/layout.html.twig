@@ -36,64 +36,14 @@
     {# barre de header #}
     {% include "ChassorCoreBundle::layout-header.html.twig" %}
    
-    {# Les flash messages #}
-        {# messages techniques #}
-        <div id="flash_msg">
-        {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
-        {% for message in app.session.flashbag.get(type) %}
-        <div class="alert alert-{{ type }}">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endfor %}
-        
-        {# utilisateur enregistré mais pas actif #}
-        {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
-        <div class="alert alert-info">
-            Votre inscription n'est pas finalisée.<br/>
-            Si vous n'avez pas encore payé votre inscription, c'est <a href="{{ path('fos_user_registration_confirmed') }}" >par ici</a>.
-            Sinon la transaction est en cours de traitement, nous n'avons simplement pas encore reçu le pigeon voyageur.<br/>
-            En cas de soucis, vous pouvez nous contacter à l'adresse <a href="mailto:contact@chassor.com">contact@chassor.com</a>.
-        </div>
-        {% endif %}
-        </div>
-        
-        {# messages chassor #}
-        <div id="chassor_msg">
-        <div id="msgWrapper">
-        {% for type in ['chassor'] %}
-        {% for message in app.session.flashbag.get(type) %}
-        <div class="alert alert-{{ type }}">
-            <a href="#" class="close"><img src="{{ asset('bundles/chassorcore/img/enigme_close_icon.png') }}" /></a>
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endfor %}
-        <a href="#" class="bottomClose btnred">Revenir au jeu</a>
-        </div></div>
-    {# Les flash messages #}
-    
+    {# les messages #}
+    {% include "ChassorCoreBundle::layout-messages.html.twig" %}
+   
     
     {% block body %}
     {% endblock body %}
     
-    {# TODO : supprimer menu temporaire
-    <ul>
-        {% if is_granted("ROLE_ADMIN") %}
-        <li><a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
-        <li><a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
-        <li><a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
-        <li><a href="{{ path('admin_transaction_lister') }}">Les transactions</a></li>
-        <li><a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
-        {% endif %}
-        
-        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
-        <li><a href="{{ path('fos_user_security_login')        }}">Connexion</a></li>
-        <li><a href="{{ path('fos_user_security_logout')       }}">Déconnexion</a></li>
-    </ul>
-    #}
     
-
     <!-- les js -->
     {# jQuery depuis le CDN de Google, ou fallback sur une copie locale #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

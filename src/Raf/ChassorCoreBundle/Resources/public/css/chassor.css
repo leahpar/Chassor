@@ -227,7 +227,7 @@ h6 {
   position: relative;
   width: 90%;
   margin: 0px auto;
-  padding: 200px 0px 100px 0px;
+  padding: 150px 0px 50px 0px;
   outline: 0px dashed blue;
   text-align: center;
 }
@@ -502,6 +502,15 @@ h6 {
   overflow: auto;
   padding: 50px 5%;
   text-align: justify;
+}
+.openEnigme .textecontent img {
+  width: 100%;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  -moz-transform: rotate(1deg);
+  -webkit-transform: rotate(1deg);
+  -o-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  transform: rotate(1deg);
 }
 .openEnigme .textecontent p {
   font-family: Georgia;
@@ -933,8 +942,68 @@ h6 {
 #flash_msg .alert a {
   color: #fff;
 }
+#chassor_msg {
+  position: fixed;
+  z-index: 10000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+#chassor_msg:hover {
+  cursor: pointer;
+}
 #chassor_msg:empty {
   display: none;
+}
+#chassor_msg #msgWrapper {
+  position: relative;
+  width: 650px;
+  height: 300px;
+  margin: 0 auto;
+  background: #fff;
+  margin-top: 160px;
+  padding: 50px;
+  overflow: auto;
+  overflow-x: hidden;
+  cursor: default;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+#chassor_msg #msgWrapper .alert {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  font-family: Georgia;
+  font-size: 17px;
+  font-style: italic;
+  color: #8b8b8b;
+  line-height: 27px;
+}
+#chassor_msg #msgWrapper .alert p {
+  font-family: Georgia;
+  font-size: 17px;
+  font-style: italic;
+  color: #8b8b8b;
+  line-height: 27px;
+}
+#chassor_msg #msgWrapper .close {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  z-index: 100;
+  padding: 4px 7px 6px 9px;
+  border-radius: 20px 0px 20px 20px;
+  background: #a10a0d;
+  text-align: center;
+  line-height: 21px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(bottom, #900709 0%, #a71419 100%);
+  background-image: -o-linear-gradient(bottom, #900709 0%, #a71419 100%);
+  background-image: -moz-linear-gradient(bottom, #900709 0%, #a71419 100%);
+  background-image: -webkit-linear-gradient(bottom, #900709 0%, #a71419 100%);
+  background-image: -ms-linear-gradient(bottom, #900709 0%, #a71419 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #900709), color-stop(1, #a71419));
 }
 @media only screen and (max-width: 500px) {
   .mainHeader .mainLogo {

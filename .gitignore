@@ -18,6 +18,7 @@
 /web/images/*
 /web/media/*
 /src/Raf/ChassorCoreBundle/Resources/views/EnigmeData/*
+/src/Raf/ChassorCoreBundle/Resources/views/MailData/*
 
 /MDD.txt
 /.project

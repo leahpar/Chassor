@@ -1,0 +1,49 @@
+{# Les flash messages #}
+    {# messages techniques #}
+    <div id="flash_msg">
+    {% for type in ['info', 'notice', 'success', 'warning', 'error'] %}
+    {% for message in app.session.flashbag.get(type) %}
+    <div class="alert alert-{{ type }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    
+    {# utilisateur enregistré mais pas actif #}
+    {% if not is_granted("ROLE_CHASSOR") and is_granted("ROLE_USER") %}
+    <div class="alert alert-info">
+        Votre inscription n'est pas finalisée.<br/>
+        Si vous n'avez pas encore payé votre inscription, c'est <a href="{{ path('fos_user_registration_confirmed') }}" >par ici</a>.
+        Sinon la transaction est en cours de traitement, nous n'avons simplement pas encore reçu le pigeon voyageur.<br/>
+        En cas de soucis, vous pouvez nous contacter à l'adresse <a href="mailto:contact@chassor.com">contact@chassor.com</a>.
+    </div>
+    {% endif %}
+    </div>
+    
+    {# messages chassor #}
+    {% if app.request.attributes.get('_route') == 'enigmes' %}
+        {% set x = 0 %}
+        {% for message in app.session.flashbag.get('chassor') %}
+            {% if x == 0 %}
+                <div id="chassor_msg">
+                <div id="msgWrapper">
+                {% set x = 1 %}
+            {% endif %}
+            <div class="alert alert-chassor">
+                <a href="#" class="close"><img src="{{ asset('bundles/chassorcore/img/enigme_close_icon.png') }}" /></a>
+                {{ message|raw }}
+            </div>
+        {% endfor %}
+        {% if x == 1 %}
+            <a href="#" class="bottomClose btnred">Revenir au jeu</a>
+            </div></div>
+        {% endif %}
+    {% endif %}
+{# Les flash messages #}
+
+
+
+
+
+
+
