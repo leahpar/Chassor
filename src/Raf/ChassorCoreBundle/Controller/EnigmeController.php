@@ -116,7 +116,8 @@ class EnigmeController extends Controller
                 $chassorEnigme->setTentative($chassorEnigme->getTentative() + 1);
                 $chassorEnigme->setDate($dateCur);
                 $dateProp = $ocb_e->prochaineProposition($enigme, $chassorEnigme);
-                $chassorEnigme->setReponse(mysql_real_escape_string($reponse));
+                $chassorEnigme->setReponse($reponse);
+                echo $chassorEnigme->getReponse();
                 $em->persist($chassorEnigme);
                 
                 if ($valide)
