@@ -6,7 +6,7 @@ class OCBChaine
 {
     public function normaliza($texte)
     {
-        $texte = htmlentities($texte, ENT_NOQUOTES);
+        $texte = htmlentities($texte, ENT_NOQUOTES, 'UTF-8');
         $texte = trim($texte);
         // Enlève les accents
         $texte = preg_replace('#&([A-za-z])(?:acute|cedil|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $texte);

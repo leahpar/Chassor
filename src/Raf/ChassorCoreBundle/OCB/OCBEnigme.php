@@ -74,7 +74,7 @@ class OCBEnigme
         $tab = explode('|', $enigme->getReponses());
         foreach ($tab as $r)
         {
-            if ($rep = $this->ocb_chaine->normaliza($r)) return true;
+            if ($rep == $this->ocb_chaine->normaliza($r)) return true;
         }
         return false;
     }

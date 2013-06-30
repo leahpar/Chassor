@@ -8,19 +8,6 @@ $('input[id=codePromo]').change(function()
 // tri des tableaux
 $(document).ready(function() { $(".stupid").stupidtable(); });
 
-// affichage enigmes
-jQuery.fn.exists = function(){return this.length>0;}
-$(".enigmeclose").hide();
-$(".btnopenenigme").click(function(){
-	if($(".enigmenotclose").exists()){
-		$(".enigmenotclose").addClass("enigmeclose").removeClass("enigmenotclose").slideUp();
-	}
-	else{
-		$(".enigmeclose").addClass("enigmenotclose").removeClass("enigmeclose").slideDown();
-	}
-	return false;
-});
-
 // fonction de test d'existence
 jQuery.fn.exists = function(){return this.length>0;}
 

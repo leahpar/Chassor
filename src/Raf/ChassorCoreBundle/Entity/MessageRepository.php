@@ -28,7 +28,8 @@ class MessageRepository extends EntityRepository
                  WHERE
                     m.date <= :date
                  AND
-                    m NOT IN (:messagesArray)'); 
+                    m NOT IN (:messagesArray)
+                 ORDER BY m.date ASC'); 
         
         $query->setParameter('date',    new \DateTime())
               ->setParameter('messagesArray', count($messagesArray) > 0 ? $messagesArray : '-1');
