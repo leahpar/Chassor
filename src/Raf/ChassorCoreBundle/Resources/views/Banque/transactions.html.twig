@@ -49,12 +49,20 @@
 	        <div class="separator"></div>
 	        <a href="{{ path('achat', { 'type': 'pack5' }) }}" class="btnblue">Acheter</a>
         </div>
+        <div class="pack" id="p500">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p500_illus.png') }}" class="illus" />
+	        <h2><strong>200</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <a href="mailto:?subject=chassor&body=Coucou%0ARejoins-moi sur http://rouen.chassor.com !%0A%0A{{ app.user.username }}" class="btnblue">Parrainez un ami</a>
+        </div>
         <div class="clearfix"></div>
+        
     </div>
     <p class="banquedetail"><strong>Paiement CB / Paypal sécurisé</strong><br />
 Chassor n’a pas accès à vos coordonnées bancaires. Paiement par chèque <a href="mailto:contact@chassor.com">nous contacter</a>.<br/>
 L’achat de pièce n’est pas indispensable pour gagner le jeu.</p>
 
+    
 	<div class="banqueHistoric">
 		<h1>Historique de votre compte</h1>
 		<div class="separator"></div>

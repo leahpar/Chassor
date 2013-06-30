@@ -20,10 +20,14 @@ class OCBChaine
         $texte = strtolower( $texte );
         // Supprime les tirets en début ou en fin de chaine
         $texte = trim($texte, '-');
+        // suppressions mots de liaison
+        $texte = preg_replace( "#-..-#", "-", $texte );
+        $texte = preg_replace( "#^..-#", "-", $texte );
+        $texte = preg_replace( "#-..$#",  "-", $texte );
         // suppression doublons
         $texte = preg_replace( "#-+#", "-", $texte );
+
         return $texte;
     }
-    
     
 }
