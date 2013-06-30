@@ -538,6 +538,7 @@ h6 {
   margin-right: 5px;
   position: relative;
   top: -1px;
+  width: auto;
 }
 .openEnigme .textecontent .recompense p {
   font-size: 16px;
@@ -931,6 +932,25 @@ h6 {
   box-shadow: 0px 1px 0px #424242;
   margin: 5px 0px;
   margin-bottom: 15px;
+}
+.blackContent table {
+  width: 70%;
+  margin: 0 auto;
+  font-family: din;
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+}
+.blackContent table td,
+.blackContent table th {
+  padding: 5px 0px;
+}
+.blackContent table th {
+  color: #f7b63e;
+}
+.blackContent table tr:nth-child(even),
+.blackContent table thead {
+  background: rgba(0, 0, 0, 0.1);
 }
 .banque {
   background: url(../img/banque_bg.png) no-repeat center top;
