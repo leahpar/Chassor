@@ -117,7 +117,6 @@ class EnigmeController extends Controller
                 $chassorEnigme->setDate($dateCur);
                 $dateProp = $ocb_e->prochaineProposition($enigme, $chassorEnigme);
                 $chassorEnigme->setReponse($reponse);
-                echo $chassorEnigme->getReponse();
                 $em->persist($chassorEnigme);
                 
                 if ($valide)
