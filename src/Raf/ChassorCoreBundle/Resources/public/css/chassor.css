@@ -1107,7 +1107,8 @@ h6 {
 }
 #chassor_msg #msgWrapper {
   position: relative;
-  width: 650px;
+  width: 95%;
+  max-width: 650px;
   height: 300px;
   margin: 0 auto;
   background: #fff;
