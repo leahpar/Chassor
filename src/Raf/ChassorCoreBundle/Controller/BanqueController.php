@@ -89,7 +89,40 @@ class BanqueController extends Controller
     
         // on envoie l'user chez paypal
 
-        //return new Response($url);
+        return $this->redirect($url);
+    }
+    
+    /**
+     * @Secure(roles="ROLE_USER")
+     */
+    public function partageAction($type)
+    {
+        $user  = $this->getUser();
+        $em    = $this->getDoctrine()->getManager();
+        $ocb_e = $this->get('ocb.enigme');
+        
+   
+        // recuperation variables globales
+        $tran  = $this->container->getParameter('transaction');
+        
+        // construction transaction
+        $transaction = $ocb_e->creerTransaction($user, $tran['libelle'][$type]);
+        $transaction->setLibelle($tran['libelle'][$type]);
+        $transaction->setMontant($tran['pieces'][$type]);
+        $transaction->setEtat(Transaction::$ETAT_ATTENTE);
+        $em->persist($transaction);
+        $em->flush();
+    
+        if ($type == 'facebook')
+        {
+            $url = "http://www.facebook.com/sharer.php?u=chassor.com";
+        }
+        elseif ($type == 'twitter')
+        {
+            $url = "https://twitter.com/intent/tweet?text=Je%20cherche%20le%20trésor%20caché%20à%20Rouen.%20Et%20vous%20?%20Découvrez%20Chassor.%20@ChassorRouen";
+        }
+    
+        // on envoie l'user chez bidule
         return $this->redirect($url);
     }
     

@@ -37,14 +37,16 @@ parameters:
             pack3:         "Pack 2500 Pieces"
             pack4:         "Pack 5000 Pieces"
             pack5:         "Pack 10000 Pieces"
+            twitter:       "Partage Twitter"
+            facebook:      "Partage Facebook"
         prix: 
             inscription:   5
             inscriptionX:  4
-            pack1:         2
-            pack2:         3.5
-            pack3:         8
-            pack4:         15
-            pack5:         25
+            pack1:         1.5
+            pack2:         2.5
+            pack3:         4.5
+            pack4:         7
+            pack5:         10
         pieces:
             inscription:   500
             inscriptionX:  500
@@ -53,18 +55,20 @@ parameters:
             pack3:         2500
             pack4:         5000
             pack5:         10000
-            parrain:       100
+            parrain:       200
+            twitter:       100
+            facebook:      100
     enigme:
         prix:
-            difficulte1:    1000
+            difficulte1:    2000
             difficulte2:    5000
             difficulte3:    10000
         gain:
             niveau1:       1
             niveau2:       10
             niveau3:       100
-            gain1:         300
-            gain2:         200
-            gain3:         100
+            gain1:         400
+            gain2:         150
+            gain3:         50
         indice:
             prix:          300

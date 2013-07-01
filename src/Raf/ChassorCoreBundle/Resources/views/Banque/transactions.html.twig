@@ -71,7 +71,7 @@ L’achat de pièce n’est pas indispensable pour gagner le jeu.</p>
 	        <div class="separator"></div>
 	        <p>En partageant<br />sur <strong>Facebook</strong></p>
 	        <div class="separator"></div>
-	        <a href="http://www.facebook.com/sharer.php?u=chassor.com" target="_blank" class="btnblue">Partager</a>
+	        <a href="{{ path('partage', { 'type': 'facebook' }) }}" target="_blank" class="btnblue">Partager</a>
         </div>
         <div class="pack" id="p500">
 	        <img src="{{ asset('bundles/chassorcore/img/banque_p500_illus.png') }}" class="illus" />
@@ -79,7 +79,7 @@ L’achat de pièce n’est pas indispensable pour gagner le jeu.</p>
 	        <div class="separator"></div>
 	        <p>En partageant<br />sur <strong>Twitter</strong></p>
 	        <div class="separator"></div>
-	        <a href="https://twitter.com/intent/tweet?text=Je%20cherche%20le%20trésor%20caché%20à%20Rouen.%20Et%20vous%20?%20Découvrez%20Chassor.%20@ChassorRouen" class="btnblue" target="_blank">Partager</a>
+	        <a href="{{ path('partage', { 'type': 'twitter' }) }}" class="btnblue" target="_blank">Partager</a>
         </div>
         
         <div class="clearfix"></div>

@@ -63,9 +63,13 @@ banque:
     defaults: { _controller: ChassorCoreBundle:Banque:lister }
 
 achat:
-    pattern:  /banque/achat-{type}
+    pattern:  /banque/achat/{type}
     defaults: { _controller: ChassorCoreBundle:Banque:achatPieces }
     
+partage:
+    pattern:  /banque/partage/{type}
+    defaults: { _controller: ChassorCoreBundle:Banque:partage }
+
 retourPaiement:
     pattern:  /banque/retourPaiement
     defaults: { _controller: ChassorCoreBundle:Banque:retourPaiement }
