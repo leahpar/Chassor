@@ -1,0 +1,34 @@
+{% extends "ChassorAdminBundle::admin-layout.html.twig" %}
+ 
+{% block adminContent %}
+<table class="stupid">
+<thead>
+<tr>
+    <th class="sort" data-sort="date">Date</th>
+    <th class="sort" data-sort="string">Chassor</th>
+    <th class="sort" data-sort="string">Enigme</th>
+    <th class="sort" data-sort="string">Reponse</th>
+    <th class="sort" data-sort="integer">tentative</th>
+    <th class="sort" data-sort="string">valide</th>
+</tr>
+</thead>
+<tbody>
+{% for tr in liste %}
+<tr>
+    <td>{{ tr.date|date("d/m/Y H:i") }}</td>
+    <td>{{ tr.chassor.prenom }} {{ tr.chassor.nom }}</td>
+    <td>{{ tr.enigme.code }} ({{ tr.enigme.codeInterne }}) {{ tr.enigme.titre }}</td>
+    <td>{{ tr.reponse }}</td>
+    <td>{{ tr.tentative }}</td>
+    {% if tr.valide == 1 %}
+        <td>OK</td>
+    {% else %}
+        <td>Boulet</td>
+    {% endif %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+ 
+{% endblock adminContent %}
+

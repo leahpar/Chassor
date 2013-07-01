@@ -6,7 +6,7 @@ class OCBChaine
 {
     public function normaliza($texte)
     {
-        $texte = htmlentities($texte, ENT_NOQUOTES);
+        $texte = htmlentities($texte, ENT_NOQUOTES, 'UTF-8');
         $texte = trim($texte);
         // Enlève les accents
         $texte = preg_replace('#&([A-za-z])(?:acute|cedil|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $texte);
@@ -20,10 +20,14 @@ class OCBChaine
         $texte = strtolower( $texte );
         // Supprime les tirets en début ou en fin de chaine
         $texte = trim($texte, '-');
+        // suppressions mots de liaison
+        $texte = preg_replace( "#-..-#", "-", $texte );
+        $texte = preg_replace( "#^..-#", "-", $texte );
+        $texte = preg_replace( "#-..$#",  "-", $texte );
         // suppression doublons
         $texte = preg_replace( "#-+#", "-", $texte );
+
         return $texte;
     }
-    
     
 }

@@ -505,7 +505,6 @@ h6 {
 }
 .openEnigme .textecontent img {
   width: 100%;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
   -moz-transform: rotate(1deg);
   -webkit-transform: rotate(1deg);
   -o-transform: rotate(1deg);
@@ -538,6 +537,12 @@ h6 {
   margin-right: 5px;
   position: relative;
   top: -1px;
+  width: auto;
+  box-shadow: 0px 0px 0px #fff;
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
 }
 .openEnigme .textecontent .recompense p {
   font-size: 16px;
@@ -932,18 +937,38 @@ h6 {
   margin: 5px 0px;
   margin-bottom: 15px;
 }
+.blackContent table {
+  width: 70%;
+  margin: 0 auto;
+  font-family: din;
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+}
+.blackContent table td,
+.blackContent table th {
+  padding: 5px 0px;
+}
+.blackContent table th {
+  color: #f7b63e;
+}
+.blackContent table tr:nth-child(even),
+.blackContent table thead {
+  background: rgba(0, 0, 0, 0.1);
+}
 .banque {
   background: url(../img/banque_bg.png) no-repeat center top;
 }
 .banque .packs {
   outline: 0px dotted green;
+  text-align: center;
 }
 .banque .packs .pack {
   position: relative;
   width: 150px;
-  margin: 0px 23px;
+  margin: 0px 20px;
   margin-top: 270px;
-  float: left;
+  display: inline-block;
   outline: 0px dotted blue;
 }
 .banque .packs .pack .illus {
@@ -969,9 +994,16 @@ h6 {
   color: #f7ad2d;
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
 }
+.banque .packs .pack p {
+  margin: 0px;
+  padding: 0px;
+}
 .banque .packs .pack .btnblue {
   display: block;
   padding: 5px 0px;
+}
+.banque .packs.pgratos .pack {
+  margin-top: 130px;
 }
 .banque .packs #p500 .illus {
   left: -20px;
@@ -995,6 +1027,7 @@ h6 {
 }
 .banque .banquedetail {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 .banque .banqueHistoric {
   margin-top: 60px;
@@ -1074,7 +1107,8 @@ h6 {
 }
 #chassor_msg #msgWrapper {
   position: relative;
-  width: 650px;
+  width: 95%;
+  max-width: 650px;
   height: 300px;
   margin: 0 auto;
   background: #fff;

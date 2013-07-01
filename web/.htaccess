@@ -1,10 +1,4 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
+php_flag magic_quotes_gpc Off
+php_flag short_open_tag Off
+php_flag register_globals Off
 
-    #<IfModule mod_vhost_alias.c>
-    #    RewriteBase /
-    #</IfModule>
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app.php [QSA,L]
-</IfModule>

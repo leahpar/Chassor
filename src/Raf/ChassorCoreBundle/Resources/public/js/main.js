@@ -20,7 +20,7 @@ $(".btnopenenigme").click(function(){
 	else{
 		$(".enigmeclose").addClass("enigmenotclose").removeClass("enigmeclose").slideDown();
 	}
-	
+	return false;
 });
 
 // Affichage "mauvaise réponse"

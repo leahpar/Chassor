@@ -20,6 +20,7 @@ framework:
     trusted_proxies: ~
     session:         ~
     fragments:       ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
@@ -101,3 +102,12 @@ orderly_pay_pal_ipn:
             object_manager: doctrine.orm.entity_manager
             classes: ~
                 
+# Forum
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: Raf\ChassorCoreBundle\Entity\ComComment
+            thread: Raf\ChassorCoreBundle\Entity\ComThread
+
+

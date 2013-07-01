@@ -85,7 +85,7 @@
                   <input type="text" name="reponse"
                       {% if placeholder is defined %}placeholder="{{ placeholder }}"{% endif %}
                       value="{{ proposition.reponse }}" />
-                  <p>{% if note is defined %}{{ note }}{% endif %}</p>
+                  <p>{% if note is defined %}{{ note|raw }}{% endif %}</p>
                   
                   {# Délai de réponse #}
                   {% if enigme.delai > 0 %}

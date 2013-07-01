@@ -15,7 +15,7 @@
 	        <div class="separator"></div>
 	        <h3>1 &euro; 50</h3>
 	        <div class="separator"></div>
-	        <a href="{{ path('achat', { 'type': 'pack1' }) }}" class="btnblue">Acheter</a>
+	        <a href="{{ path('achat', { 'type': 'pack1' }) }}" class="btnblue" target="_blank">Acheter</a>
         </div>
         <div class="pack" id="p1000">
 	        <img src="{{ asset('bundles/chassorcore/img/banque_p1000_illus.png') }}" class="illus" />
@@ -23,7 +23,7 @@
 	        <div class="separator"></div>
 	        <h3>2 &euro; 50</h3>
 	        <div class="separator"></div>
-	        <a href="{{ path('achat', { 'type': 'pack2' }) }}" class="btnblue">Acheter</a>
+	        <a href="{{ path('achat', { 'type': 'pack2' }) }}" class="btnblue" target="_blank">Acheter</a>
         </div>
         <div class="pack" id="p2500">
 	        <img src="{{ asset('bundles/chassorcore/img/banque_p2500_illus.png') }}" class="illus" />
@@ -31,7 +31,7 @@
 	        <div class="separator"></div>
 	        <h3>4 &euro; 50</h3>
 	        <div class="separator"></div>
-	        <a href="{{ path('achat', { 'type': 'pack3' }) }}" class="btnblue">Acheter</a>
+	        <a href="{{ path('achat', { 'type': 'pack3' }) }}" class="btnblue" target="_blank">Acheter</a>
         </div>
         <div class="pack" id="p5000">
 	        <img src="{{ asset('bundles/chassorcore/img/banque_p5000_illus.png') }}" class="illus" />
@@ -39,7 +39,7 @@
 	        <div class="separator"></div>
 	        <h3>7 &euro;</h3>
 	        <div class="separator"></div>
-	        <a href="{{ path('achat', { 'type': 'pack4' }) }}" class="btnblue">Acheter</a>
+	        <a href="{{ path('achat', { 'type': 'pack4' }) }}" class="btnblue" target="_blank">Acheter</a>
         </div>
         <div class="pack" id="p10000">
 	        <img src="{{ asset('bundles/chassorcore/img/banque_p10000_illus.png') }}" class="illus" />
@@ -47,14 +47,44 @@
 	        <div class="separator"></div>
 	        <h3>10 &euro;</h3>
 	        <div class="separator"></div>
-	        <a href="{{ path('achat', { 'type': 'pack5' }) }}" class="btnblue">Acheter</a>
+	        <a href="{{ path('achat', { 'type': 'pack5' }) }}" class="btnblue" target="_blank">Acheter</a>
         </div>
-        <div class="clearfix"></div>
     </div>
     <p class="banquedetail"><strong>Paiement CB / Paypal sécurisé</strong><br />
 Chassor n’a pas accès à vos coordonnées bancaires. Paiement par chèque <a href="mailto:contact@chassor.com">nous contacter</a>.<br/>
 L’achat de pièce n’est pas indispensable pour gagner le jeu.</p>
 
+    <h1>Ou gagnez des pièces gratuitement</h1>
+				
+	<div class="packs pgratos">
+        <div class="pack" id="p500">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p500_illus.png') }}" class="illus" />
+        	        <h2><strong>200</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <p>En parrainant<br />vos amis</p>
+	        <div class="separator"></div>
+	        <a href="mailto:?subject=chassor&body=Bonjour%0AJe t'invite à découvrir Chassor Rouen, la plus grande chasse au trésor organisée à Rouen ! Tu devrais participer.%0Ahttp://rouen.chassor.com !%0A%0A{{ app.user.username }}" class="btnblue">Parrainez un ami</a>	        
+        </div>
+        <div class="pack" id="p500">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p500_illus.png') }}" class="illus" />
+        	        <h2><strong>100</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <p>En partageant<br />sur <strong>Facebook</strong></p>
+	        <div class="separator"></div>
+	        <a href="http://www.facebook.com/sharer.php?u=chassor.com" target="_blank" class="btnblue">Partager</a>
+        </div>
+        <div class="pack" id="p500">
+	        <img src="{{ asset('bundles/chassorcore/img/banque_p500_illus.png') }}" class="illus" />
+        	        <h2><strong>100</strong> pièces</h2>
+	        <div class="separator"></div>
+	        <p>En partageant<br />sur <strong>Twitter</strong></p>
+	        <div class="separator"></div>
+	        <a href="https://twitter.com/intent/tweet?text=Je%20cherche%20le%20trésor%20caché%20à%20Rouen.%20Et%20vous%20?%20Découvrez%20Chassor.%20@ChassorRouen" class="btnblue" target="_blank">Partager</a>
+        </div>
+        
+        <div class="clearfix"></div>
+    </div>
+    
 	<div class="banqueHistoric">
 		<h1>Historique de votre compte</h1>
 		<div class="separator"></div>

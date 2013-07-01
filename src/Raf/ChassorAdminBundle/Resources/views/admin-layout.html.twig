@@ -8,6 +8,8 @@
         <a href="{{ path('admin_chassor_lister')     }}">Les chassors</a></li>
     <li {% if app.request.attributes.get('_route') == 'admin_enigme_lister'  %}class="active"{% endif %}>
         <a href="{{ path('admin_enigme_lister')      }}">Les enigmes</a></li>
+    <li {% if app.request.attributes.get('_route') == 'admin_tentative_lister'  %}class="active"{% endif %}>
+        <a href="{{ path('admin_tentative_lister')      }}">Les tentatives</a></li>
     <li {% if app.request.attributes.get('_route') == 'admin_indice_lister'  %}class="active"{% endif %}>
         <a href="{{ path('admin_indice_lister')      }}">Les indices</a></li>
     <li {% if app.request.attributes.get('_route') == 'admin_transaction_lister'  %}class="active"{% endif %}>
