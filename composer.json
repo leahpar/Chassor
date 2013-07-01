@@ -23,7 +23,9 @@
         "jms/di-extra-bundle": "1.4.*",
         "friendsofsymfony/user-bundle": "dev-master",
         "liip/imagine-bundle": "dev-master",
-        "orderly/paypal-ipn-bundle" : "dev-master"
+        "orderly/paypal-ipn-bundle" : "dev-master",
+        "friendsofsymfony/comment-bundle": "2.0.*@dev",
+        "jms/serializer-bundle": "0.12.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

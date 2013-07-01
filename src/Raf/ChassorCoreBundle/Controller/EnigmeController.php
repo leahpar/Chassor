@@ -14,6 +14,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 # Chassor
 use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
+use Raf\ChassorCoreBundle\Entity\Tentative;
 use Raf\ChassorCoreBundle\Entity\Enigme;
 use Raf\ChassorCoreBundle\Entity\Transaction;
 use Raf\ChassorCoreBundle\Entity\Indice;
@@ -126,8 +127,9 @@ class EnigmeController extends Controller
                     
                     // Classement resultat 
                     $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
-                                  ->findBy(array('enigme' => $enigme));
-                    $classement = count($enigmes);
+                                  ->findBy(array('enigme' => $enigme, 'valide' => true));
+                    $classement = count($enigmes)+1;
+echo $classement;
                     
                     if ($classement == $param['gain']['niveau1'])
                     {
@@ -156,6 +158,15 @@ class EnigmeController extends Controller
                 }
             }
         }
+        $t = new Tentative();
+        $t->setChassor($user);
+        $t->setEnigme($enigme);
+        $t->setDate($dateCur);
+        $t->setReponse($chassorEnigme->getReponse());
+        $t->setValide($chassorEnigme->getValide());
+        $t->setTentative($chassorEnigme->getTentative());
+        $em->persist($t);
+
         $em->flush();
         
         // selection indices disponibles

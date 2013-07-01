@@ -38,6 +38,10 @@ admin_transaction_lister:
     pattern:  /transactions
     defaults: { _controller: ChassorAdminBundle:AdminTransaction:lister }
     
+admin_transaction_valider:
+    pattern:  /transactions/{id}/valider
+    defaults: { _controller: ChassorAdminBundle:AdminTransaction:valider }
+    
 admin_chassor_lister:
     pattern:  /chassors
     defaults: { _controller: ChassorAdminBundle:AdminChassor:lister }
@@ -82,3 +86,7 @@ admin_mail_envoyer:
     pattern:  /mail-envoi
     defaults: { _controller: ChassorAdminBundle:AdminMail:envoyer }
     
+admin_tentative_lister:
+    pattern:  /tentatives
+    defaults: { _controller: ChassorAdminBundle:AdminTentative:lister }
+

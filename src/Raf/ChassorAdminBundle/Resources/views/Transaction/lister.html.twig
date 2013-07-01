@@ -10,6 +10,7 @@
     <th class="sort" data-sort="float">Montant</th>
     <th class="sort" data-sort="string">Code</th>
     <th class="sort" data-sort="string">Etat</th>
+    <th>Actions</th>
 </tr>
 </thead>
 <tbody>
@@ -31,6 +32,7 @@
     {% elseif tr.etat == -1 %}
         <td>Refusée</td>
     {% endif %}
+    <td><a href="{{ path('admin_transaction_valider',  {'id': tr.id }) }}">(V)</a></td>
 </tr>
 {% endfor %}
 </tbody>
