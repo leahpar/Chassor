@@ -156,16 +156,16 @@ echo $classement;
                     // mauvaise reponse
                     $log->add('error', 'Mauvaise réponse...');
                 }
+                $t = new Tentative();
+                $t->setChassor($user);
+                $t->setEnigme($enigme);
+                $t->setDate($dateCur);
+                $t->setReponse($chassorEnigme->getReponse());
+                $t->setValide($chassorEnigme->getValide());
+                $t->setTentative($chassorEnigme->getTentative());
+                $em->persist($t);
             }
         }
-        $t = new Tentative();
-        $t->setChassor($user);
-        $t->setEnigme($enigme);
-        $t->setDate($dateCur);
-        $t->setReponse($chassorEnigme->getReponse());
-        $t->setValide($chassorEnigme->getValide());
-        $t->setTentative($chassorEnigme->getTentative());
-        $em->persist($t);
 
         $em->flush();
         

@@ -18,5 +18,13 @@ class ComThread extends BaseThread
      * @ORM\Column(type="string")
      */
     protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
 }
 
