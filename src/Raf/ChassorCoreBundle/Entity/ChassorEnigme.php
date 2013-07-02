@@ -62,7 +62,6 @@ class ChassorEnigme
     private $valide = false;
     
     
-    
     public function __construct()
     {
         $this->dateDispo = new \DateTime();
