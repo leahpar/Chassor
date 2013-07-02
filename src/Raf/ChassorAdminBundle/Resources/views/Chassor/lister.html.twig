@@ -7,8 +7,9 @@
 <table class="stupid">
 <thead>
 <tr>
+    <th class="sort" data-sort="string">Id</th>
     <th class="sort" data-sort="string">Nom</th>
-    <th class="sort" data-sort="string">Code postal</th>
+    <th class="sort" data-sort="string">Mail</th>
     <th class="sort" data-sort="string">Source</th>
     <th class="sort" data-sort="string">Parrain</th>
     <th class="sort" data-sort="date">Connexion</th>
@@ -23,8 +24,9 @@
 <tbody>
 {% for chassor in liste %}
 <tr>
+    <td>{{ chassor.id }}</td>
     <td>{{ chassor.prenom }} {{ chassor.nom }}</td>
-    <td>{{ chassor.CP }}</td>
+    <td>{{ chassor.email }}</td>
     <td>{{ chassor.source }}</td>
     <td>{{ chassor.parrain }}</td>
     <td>{{ chassor.lastLogin|date("d/m H:i") }}

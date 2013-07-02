@@ -12,11 +12,11 @@
         <div class="lock"><figure>
         <img src="{{ asset('bundles/chassorcore/img/enigme_lock.png') }}" alt="&Eacute;nigme verrouill&eacute;e" />
         </figure><br/>
-        {% if e.depend is null %}
-            ({{ e.date|date("d/m") }})
-        {% else %}
-            (&Eacute;nigme {{ e.depend.code }})
+        ( {{ e.date|date("d/m") }}
+        {% if e.depend is not null %}
+            - &Eacute;nigme {{ e.depend.code }}
         {% endif %}
+        )
         </div>
         <img src="{{ asset('bundles/chassorcore/img/enveloppe.jpg') }}" class="enveloppe" alt="&Eacute;nigme {{ e.code }}" />
         </a>
