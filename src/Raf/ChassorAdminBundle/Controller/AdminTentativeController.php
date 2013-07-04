@@ -11,8 +11,6 @@ use Raf\ChassorCoreBundle\Entity\Tentative;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
 use Raf\ChassorCoreBundle\Entity\Transaction;
 
-use Raf\ChassorCoreBundle\Entity\Enigme;
-
 class AdminTentativeController extends Controller
 {
     public function listerAction()
@@ -64,6 +62,18 @@ class AdminTentativeController extends Controller
         $em->persist($chassorEnigme);
         $em->persist($tentative);
         $em->flush();
+        
+        // mail au chassor
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Chassor.com - Validation de l\'enigme '.$enigme->getCode())
+            ->setFrom('contact@chassor.com')
+            ->setTo($user->getEmail())
+            ->setContentType('text/html')
+            ->setBody($this->renderView('ChassorCoreBundle:MailData:email-validation-enigme.html.twig',
+                array('chassor' => $user,
+                      'enigme'  => $enigme)));
+
+        $this->get('mailer')->send($message);
         
         return $this->redirect($this->generateUrl('admin_tentative_lister'));
     }

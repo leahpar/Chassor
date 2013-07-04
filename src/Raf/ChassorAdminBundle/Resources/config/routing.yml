@@ -90,13 +90,11 @@ admin_tentative_lister:
     pattern:  /tentatives
     defaults: { _controller: ChassorAdminBundle:AdminTentative:lister }
 
-<<<<<<< HEAD
+admin_tentative_valider:
+    pattern:  /tentatives/{idT}-{idE}-{idC}
+    defaults: { _controller: ChassorAdminBundle:AdminTentative:valider }
+
 admin_tentative_lister_e:
     pattern:  /tentatives/{id}
     defaults: { _controller: ChassorAdminBundle:AdminTentative:listerEnigme }
 
-=======
-admin_tentative_valider:
-    pattern:  /tentatives/{idT}-{idE}-{idC}
-    defaults: { _controller: ChassorAdminBundle:AdminTentative:valider }
->>>>>>> 4571128db7b66ef8e34ded630303d4c5e4aa15a5
