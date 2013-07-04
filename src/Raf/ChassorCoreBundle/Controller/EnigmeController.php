@@ -77,6 +77,7 @@ class EnigmeController extends Controller
         $classement = 0;
         $gain = 0;
         $reponse = null;
+        $flagValidation = false;
                 
         // controle de l'acces a l'enigme
         $chassorEnigme = $ocb_a->controleAccesEnigme2($user, $enigme);
@@ -85,19 +86,27 @@ class EnigmeController extends Controller
             throw new AccessDeniedHttpException("Vous n'avez pas débloqué cette énigme !");
         }
         
-        // visibilité enigme
-        if ($chassorEnigme->getTentative() < 0)
-        {
-            $chassorEnigme->setTentative(0);
-        }
-        
         // gestion date
         $dateCur  = new \DateTime();
         $dateProp = $ocb_e->prochaineProposition($enigme, $chassorEnigme);
     
+        // visibilité enigme
+        if ($chassorEnigme->getTentative() == -1)
+        {
+            $chassorEnigme->setTentative(0);
+        }
+        if ($chassorEnigme->getTentative() < -1)
+        {
+            $chassorEnigme->setTentative(0 - $chassorEnigme->getTentative() - 1);
+            $flagValidation = true;
+            $dateProp = null;
+        }
+        
+        
         // gestion reponse
         $request = $this->get('request');
-        if ($request->getMethod() == 'POST' && !$chassorEnigme->getValide())
+        if (($request->getMethod() == 'POST' && !$chassorEnigme->getValide())
+          || $flagValidation == true)
         {
             if ($dateProp != null) 
             {
@@ -110,8 +119,17 @@ class EnigmeController extends Controller
             else
             {
                 // correction reponse
-                $reponse = $this->get('request')->request->get('reponse');
-                $valide = $ocb_e->reponseValide($enigme, $reponse);
+                if (!$flagValidation)
+                {
+                    $reponse = $this->get('request')->request->get('reponse');
+                    $valide = $ocb_e->reponseValide($enigme, $reponse);
+                }
+                else
+                {
+                    $reponse = $chassorEnigme->getReponse();
+                    $dateCur = $chassorEnigme->getDate();
+                    $valide = true;
+                }
                 
                 $chassorEnigme->setValide($valide);
                 $chassorEnigme->setTentative($chassorEnigme->getTentative() + 1);
@@ -156,14 +174,17 @@ echo $classement;
                     // mauvaise reponse
                     $log->add('error', 'Mauvaise réponse...');
                 }
-                $t = new Tentative();
-                $t->setChassor($user);
-                $t->setEnigme($enigme);
-                $t->setDate($dateCur);
-                $t->setReponse($chassorEnigme->getReponse());
-                $t->setValide($chassorEnigme->getValide());
-                $t->setTentative($chassorEnigme->getTentative());
-                $em->persist($t);
+                if (!$flagValidation)
+                {
+                    $t = new Tentative();
+                    $t->setChassor($user);
+                    $t->setEnigme($enigme);
+                    $t->setDate($dateCur);
+                    $t->setReponse($chassorEnigme->getReponse());
+                    $t->setValide($chassorEnigme->getValide());
+                    $t->setTentative($chassorEnigme->getTentative());
+                    $em->persist($t);
+                }
             }
         }
 
