@@ -39,7 +39,7 @@ admin_transaction_lister:
     defaults: { _controller: ChassorAdminBundle:AdminTransaction:lister }
     
 admin_transaction_valider:
-    pattern:  /transactions/{id}/valider
+    pattern:  /transactions/{id}/valider-{etat}
     defaults: { _controller: ChassorAdminBundle:AdminTransaction:valider }
     
 admin_chassor_lister:

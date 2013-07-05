@@ -20,15 +20,19 @@ class AdminTransactionController extends Controller
                 ));
     }
 
-    public function validerAction(Transaction $t)
+    public function validerAction(Transaction $t, $etat)
     {
         $log = $this->get('session')->getFlashBag();
         $em  = $this->getDoctrine()->getManager();
-        $t->setEtat(Transaction::$ETAT_VALIDE);
+        if ($etat == 'V')
+            $t->setEtat(Transaction::$ETAT_VALIDE);
+        else if ($etat == 'X')
+            $t->setEtat(Transaction::$ETAT_INVALIDE);
+        
         $em->persist($t);
         $em->flush();
         
-        $log->add('success', 'Transaction ['.$t->getLibelle().'] de '.$t->getChassor()->getPrenom().' OK');
+        $log->add('success', 'Transaction ['.$t->getLibelle().'] de '.$t->getChassor()->getPrenom().' modifiee');
         
         return $this->redirect($this->generateUrl('admin_transaction_lister'));
     }

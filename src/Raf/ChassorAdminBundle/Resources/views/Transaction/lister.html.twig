@@ -32,7 +32,10 @@
     {% elseif tr.etat == -1 %}
         <td>Refusée</td>
     {% endif %}
-    <td><a href="{{ path('admin_transaction_valider',  {'id': tr.id }) }}">(V)</a></td>
+    <td>
+        <a href="{{ path('admin_transaction_valider',  {'id': tr.id, 'etat': 'V' }) }}">(V)</a>
+        <a href="{{ path('admin_transaction_valider',  {'id': tr.id, 'etat': 'X' }) }}">(X)</a>
+    </td>
 </tr>
 {% endfor %}
 </tbody>
