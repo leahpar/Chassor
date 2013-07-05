@@ -25,11 +25,13 @@ class EnigmeController extends Controller
      * function enigmesAction
      * - Liste les enigmes disponibles pour l'user
      * - Appelle this->deverouillerEnigmesDate pour deverouiller les enigmes sur la date
-     * 
-     * @Secure(roles="ROLE_CHASSOR")
      */
     public function enigmesAction()
     {
+        if (!$this->get('security.context')->isGranted('ROLE_CHASSOR'))
+        {
+            return $this->redirect('/');
+        }
         // globales
         $user  = $this->getUser();
         $log   = $this->get('session')->getFlashBag();
