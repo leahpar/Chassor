@@ -383,7 +383,7 @@ class Enigme
      */
     public function getCodeInterne2()
     {
-        return $this->codeInterne.' '.$this->titre;
+        return '['.$this->code.' - '.$this->codeInterne.'] '.$this->titre;
     }
     
     /**

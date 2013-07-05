@@ -549,4 +549,10 @@ class Chassor extends BaseUser implements EquatableInterface
     {
         return $this->source;
     }
+
+    public function getNomComplet()
+    {
+        return '('.$this->id.') '.$this->prenom.' '.$this->nom;
+    }
 }
+

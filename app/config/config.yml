@@ -102,12 +102,3 @@ orderly_pay_pal_ipn:
             object_manager: doctrine.orm.entity_manager
             classes: ~
                 
-# Forum
-fos_comment:
-    db_driver: orm
-    class:
-        model:
-            comment: Raf\ChassorCoreBundle\Entity\ComComment
-            thread: Raf\ChassorCoreBundle\Entity\ComThread
-
-

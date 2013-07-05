@@ -37,10 +37,7 @@ OrderlyPayPalIpnBundleEmail:
     type:     annotation
     prefix:   /ipn/
 
-# Forum
-fos_comment_api:
-    type: rest
-    resource: "@FOSCommentBundle/Resources/config/routing.yml"
-    prefix: /api
-    defaults: { _format: html }
-
+_demo:
+    resource: "@SaadTaziGChartBundle/Resources/config/routing.yml"
+    type:     yaml
+    prefix:   /gchart

@@ -18,6 +18,8 @@
         <a href="{{ path('admin_message_lister')     }}">Les messages</a></li>
     <li {% if app.request.attributes.get('_route') == 'admin_mail_lister'  %}class="active"{% endif %}>
         <a href="{{ path('admin_mail_lister')     }}">Les mails</a></li>
+    <li {% if app.request.attributes.get('_route') == 'admin_stats_lister'  %}class="active"{% endif %}>
+        <a href="{{ path('admin_stats_lister')     }}">Les stats</a></li>
 </ul>
 </div>
 
