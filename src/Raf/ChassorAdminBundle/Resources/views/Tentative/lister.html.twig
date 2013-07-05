@@ -1,6 +1,17 @@
 {% extends "ChassorAdminBundle::admin-layout.html.twig" %}
  
 {% block adminContent %}
+
+{% if app.request.query.get('enigme') is not null %}
+    <a href="{{ path('admin_tentative_lister', { 'chassor':  app.request.query.get('chassor') }) }}">
+    (X) Enigme</a><br/>
+{% endif %}
+{% if app.request.query.get('chassor') is not null %}
+    <a href="{{ path('admin_tentative_lister', { 'enigme':  app.request.query.get('enigme') }) }}">
+    (X) Chassor</a><br/>
+{% endif %}
+
+<p>{{ liste|length }} tentatives</p>
 <table class="stupid">
 <thead>
 <tr>
@@ -10,23 +21,30 @@
     <th class="sort" data-sort="string">Reponse</th>
     <th class="sort" data-sort="integer">Tentative</th>
     <th class="sort" data-sort="string">Valide</th>
-    <th>Action</th>
 </tr>
 </thead>
 <tbody>
 {% for tr in liste %}
 <tr>
     <td>{{ tr.date|date("d/m/Y H:i") }}</td>
-    <td>{{ tr.chassor.prenom }} {{ tr.chassor.nom }}</td>
-    <td>{{ tr.enigme.code }} ({{ tr.enigme.codeInterne }}) {{ tr.enigme.titre }}</td>
+    <td><a href="{{ path('admin_tentative_lister',
+                        { 'chassor': tr.chassor.id,
+                          'enigme':  app.request.query.get('enigme')  }) }}">
+        {{ tr.chassor.nomComplet }}
+        </a></td>
+    <td><a href="{{ path('admin_tentative_lister',
+                        { 'chassor': app.request.query.get('chassor'),
+                          'enigme':  tr.enigme.id  }) }}">
+        {{ tr.enigme.codeInterne2 }}
+        </a></td>
     <td>{{ tr.reponse }}</td>
     <td>{{ tr.tentative }}</td>
     {% if tr.valide == 1 %}
         <td>OK</td>
     {% else %}
-        <td>Boulet</td>
+        <td>Boulet 
+        <a href="{{ path('admin_tentative_valider',  {'idT': tr.id, 'idE': tr.enigme.id, 'idC': tr.chassor.id }) }}">(V)</a></td>
     {% endif %}
-    <td><a href="{{ path('admin_tentative_valider',  {'idT': tr.id, 'idE': tr.enigme.id, 'idC': tr.chassor.id }) }}">(V)</a></td>
     
 </tr>
 {% endfor %}

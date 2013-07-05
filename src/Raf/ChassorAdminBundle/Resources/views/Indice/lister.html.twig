@@ -14,7 +14,7 @@
 <tbody>
 {% for indice in liste %}
 <tr>
-    <td>{{ indice.enigme.codeInterne ~ indice.enigme.titre}}</td>
+    <td>{{ indice.enigme.codeInterne2 }}</td>
     <td>{{ indice.indice }}</td>
     <td>
         <a class="btn" href="{{ path('admin_indice_modifier',  {'id': indice.id }) }}">(M)</a>

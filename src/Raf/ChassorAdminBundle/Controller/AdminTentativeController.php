@@ -15,10 +15,18 @@ class AdminTentativeController extends Controller
 {
     public function listerAction()
     {
+        $request = $this->getRequest();
+        $chassor = $request->query->get('chassor');
+        $enigme  = $request->query->get('enigme');
+  
+        $filtre = array();
+        ($chassor != '') ? $filtre['chassor'] = $chassor : null;
+        ($enigme  != '') ? $filtre['enigme']  = $enigme  : null;
+        
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Tentative')
-                      ->findBy(array(), array('date' => 'DESC'));
+                      ->findBy($filtre, array('date' => 'DESC'));
        
         return $this->render('ChassorAdminBundle:Tentative:lister.html.twig',
                 array(
