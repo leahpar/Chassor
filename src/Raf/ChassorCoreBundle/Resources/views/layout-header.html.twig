@@ -15,10 +15,15 @@
         <a href="{{ path('enigmes') }}" {% if app.request.attributes.get('_route') == 'enigmes' %}class="active"{% endif %}>
         Mes &Eacute;nigmes</a>
     </li>
-    {% endif %}
+    {% else %}
     <li>
         <a href="{{ path('apropos') }}" {% if app.request.attributes.get('_route') == 'apropos'  %}class="active"{% endif %}>
         &Agrave; propos</a>
+    </li>
+    {% endif %}
+    <li>
+        <a href="{{ path('jouer') }}" {% if app.request.attributes.get('_route') == 'jouer'  %}class="active"{% endif %}>
+        Comment jouer</a>
     </li>
     {#
     <li>

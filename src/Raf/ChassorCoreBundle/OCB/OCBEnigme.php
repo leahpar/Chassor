@@ -27,7 +27,7 @@ class OCBEnigme
      */
     public function prochaineProposition(Enigme $enigme, ChassorEnigme $chassorEnigme)
     {
-        $dateProp = null
+        $dateProp = null;
         if ($chassorEnigme->getDate() != null && $enigme->getDelai() > 0)
         {
             $dateProp = clone $chassorEnigme->getDate();

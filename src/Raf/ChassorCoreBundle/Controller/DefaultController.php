@@ -19,6 +19,10 @@ class DefaultController extends Controller
     {
         return $this->render('ChassorCoreBundle:Default:apropos.html.twig');
     }
+    public function jouerAction()
+    {
+        return $this->render('ChassorCoreBundle:Default:jouer.html.twig');
+    }
     public function contactAction()
     {
         return $this->render('ChassorCoreBundle:Default:contact.html.twig');

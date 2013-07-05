@@ -10,6 +10,8 @@
 # cache + logs
 /app/cache/*
 /app/logs/*
+/web/css/*
+/web/js/*
 
 # parameters
 /app/config/parameters.yml

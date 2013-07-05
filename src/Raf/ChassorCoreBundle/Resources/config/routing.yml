@@ -17,6 +17,10 @@ apropos:
     pattern:  /apropos
     defaults: { _controller: ChassorCoreBundle:Default:apropos }
 
+jouer:
+    pattern:  /comment-jouer
+    defaults: { _controller: ChassorCoreBundle:Default:jouer }
+
 contact:
     pattern:  /contact
     defaults: { _controller: ChassorCoreBundle:Default:contact }
