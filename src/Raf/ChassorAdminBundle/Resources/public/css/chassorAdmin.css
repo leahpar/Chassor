@@ -46,6 +46,11 @@
  color: #fff;
 }
 
+.admin table a, .admin table a:visited {
+    color : white;
+    text-decoration: none;
+    border-bottom: 1px dotted white;
+}
 
 /* les tableaux */
 .admin table
@@ -73,7 +78,7 @@
 }
 .admin tbody tr:hover td
 {
-     color: #dd6e01;
+     background-color: #AA0000;
 }
 
 

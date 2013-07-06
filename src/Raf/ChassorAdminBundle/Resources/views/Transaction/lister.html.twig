@@ -1,7 +1,16 @@
 {% extends "ChassorAdminBundle::admin-layout.html.twig" %}
- 
+
 {% block adminContent %}
-<table class="table table-striped table-hover table-condensed table-bordered stupid">
+
+
+{% if app.request.query.get('chassor') is not null %}
+    <a href="{{ path('admin_transaction_lister') }}">
+    (X) Chassor</a><br/>
+{% endif %}
+
+<p>{{ liste|length }} transactions</p>
+
+<table class="stupid">
 <thead>
 <tr>
     <th class="sort" data-sort="date">Date</th>
@@ -10,21 +19,25 @@
     <th class="sort" data-sort="float">Montant</th>
     <th class="sort" data-sort="string">Code</th>
     <th class="sort" data-sort="string">Etat</th>
-    <th>Actions</th>
 </tr>
 </thead>
 <tbody>
 {% for tr in liste %}
 <tr>
     <td>{{ tr.date|date("d/m/Y H:i") }}</td>
-    <td>{{ tr.chassor.prenom }} {{ tr.chassor.nom }}</td>
+<td><a href="{{ path('admin_transaction_lister', { 'chassor': tr.chassor.id  }) }}">
+        {{ tr.chassor.nomComplet }}
+        </a></td>
     <td>{{ tr.libelle }}</td>
     <td>{{ tr.montant }}</td>
     <td>{{ tr.code }}</td>
     {% if tr.etat == 0 %}
         <td>Validé</td>
     {% elseif tr.etat == 2 %}
-        <td>En attente</td>
+        <td>En attente
+        <a href="{{ path('admin_transaction_valider',  {'id': tr.id, 'etat': 'V' }) }}">(V)</a>
+        <a href="{{ path('admin_transaction_valider',  {'id': tr.id, 'etat': 'X' }) }}">(X)</a>
+        </td>
     {% elseif tr.etat == 3 %}
         <td>Manuelle</td>
     {% elseif tr.etat == 4 %}
@@ -32,10 +45,6 @@
     {% elseif tr.etat == -1 %}
         <td>Refusée</td>
     {% endif %}
-    <td>
-        <a href="{{ path('admin_transaction_valider',  {'id': tr.id, 'etat': 'V' }) }}">(V)</a>
-        <a href="{{ path('admin_transaction_valider',  {'id': tr.id, 'etat': 'X' }) }}">(X)</a>
-    </td>
 </tr>
 {% endfor %}
 </tbody>

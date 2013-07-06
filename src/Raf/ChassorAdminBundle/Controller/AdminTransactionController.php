@@ -9,10 +9,16 @@ class AdminTransactionController extends Controller
 {
     public function listerAction()
     {
+        $request = $this->getRequest();
+        $chassor = $request->query->get('chassor');
+  
+        $filtre = array();
+        ($chassor != '') ? $filtre['chassor'] = $chassor : null;
+        
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Transaction')
-                      ->findBy(array(), array('date' => 'DESC'));
+                      ->findBy($filtre, array('date' => 'DESC'));
        
         return $this->render('ChassorAdminBundle:Transaction:lister.html.twig',
                 array(
