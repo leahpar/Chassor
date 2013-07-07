@@ -44,13 +44,24 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   "%database_driver%"
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
+        default_connection:  default
+        connections:
+            default:
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+            forum:
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%forumbase_name%"
+                user:     "%forumbase_user%"
+                password: "%forumbase_password%"
+                charset:  UTF8
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
@@ -103,6 +114,6 @@ orderly_pay_pal_ipn:
             classes: ~
 
 # Forum (widop phpbb)
-widop_php_bb:
-    path: "%kernel.root_dir%/../vendor/widop/phpbb3"
-    web_path: /forum
+#widop_php_bb:
+#    path: "%kernel.root_dir%/../vendor/widop/phpbb3"
+#    web_path: /forum

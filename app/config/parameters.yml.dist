@@ -5,6 +5,9 @@ parameters:
     database_name:     chassor
     database_user:     chassor
     database_password: chassor
+    forumbase_name:     chassor_forum
+    forumbase_user:     chassor
+    forumbase_password: chassor
 
     mailer_transport:  gmail
     mailer_host:       
