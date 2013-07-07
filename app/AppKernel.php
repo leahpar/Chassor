@@ -24,9 +24,8 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Raf\ChassorAdminBundle\ChassorAdminBundle(),
             new Orderly\PayPalIpnBundle\OrderlyPayPalIpnBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new FOS\CommentBundle\FOSCommentBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle($this)
+            // Forum
+            new Widop\PhpBBBundle\WidopPhpBBBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

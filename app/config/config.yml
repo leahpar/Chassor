@@ -102,3 +102,7 @@ orderly_pay_pal_ipn:
             object_manager: doctrine.orm.entity_manager
             classes: ~
 
+# Forum (widop phpbb)
+widop_php_bb:
+    path: "%kernel.root_dir%/../vendor/widop/phpbb3"
+    web_path: /forum
