@@ -37,7 +37,11 @@
                           'enigme':  tr.enigme.id  }) }}">
         {{ tr.enigme.codeInterne2 }}
         </a></td>
-    <td>{{ tr.reponse }}</td>
+    {% if tr.reponse|length > 50 %}
+        <td title="{{ tr.reponse }}">{{ tr.reponse|slice(0, 50) }}[...]</td>
+    {% else %}
+        <td>{{ tr.reponse }}</td>    
+    {% endif %}
     <td>{{ tr.tentative }}</td>
     {% if tr.valide == 1 %}
         <td>OK</td>

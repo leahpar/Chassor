@@ -16,6 +16,10 @@ index2:
 apropos:
     pattern:  /apropos
     defaults: { _controller: ChassorCoreBundle:Default:apropos }
+    
+messages:
+    pattern:  /messages
+    defaults: { _controller: ChassorCoreBundle:Default:messages }
 
 jouer:
     pattern:  /comment-jouer

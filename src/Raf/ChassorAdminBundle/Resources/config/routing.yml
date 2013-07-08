@@ -58,6 +58,10 @@ admin_message_modifier:
     pattern:  /messages/{id}/modifier
     defaults: { _controller: ChassorAdminBundle:AdminMessage:modifier }
 
+admin_message_tester:
+    pattern:  /messages/{id}/tester
+    defaults: { _controller: ChassorAdminBundle:AdminMessage:tester }
+
 admin_message_supprimer:
     pattern:  /messages/{id}/supprimer
     defaults: { _controller: ChassorAdminBundle:AdminMessage:supprimer }

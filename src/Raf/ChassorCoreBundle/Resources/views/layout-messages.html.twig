@@ -21,7 +21,8 @@
     </div>
     
     {# messages chassor #}
-    {% if app.request.attributes.get('_route') == 'enigmes' %}
+    {% if app.request.attributes.get('_route') == 'enigmes'
+       or app.request.attributes.get('_route') == 'admin_message_lister' %}
         {% set x = 0 %}
         {% for message in app.session.flashbag.get('chassor') %}
             {% if x == 0 %}

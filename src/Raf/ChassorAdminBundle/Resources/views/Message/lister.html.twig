@@ -7,6 +7,7 @@
 <thead>
 <tr>
     <th class="sort" data-sort="date">Date</th>
+    <th class="sort" data-sort="string">Type</th>
     <th class="sort" data-sort="string">Message</th>
     <th></th>
 </tr>
@@ -15,10 +16,12 @@
 {% for message in liste %}
 <tr>
     <td>{{ message.date|date("d/m/Y H:i") }}</td>
+    <td>{{ message.type }}</td>
     <td>{{ message.message }}</td>
     <td>
         <a class="btn" href="{{ path('admin_message_modifier',  {'id': message.id }) }}">(M)</a>
-        <a class="btn" href="{{ path('admin_message_supprimer',  {'id': message.id }) }}">(S)</a>
+        <a class="btn" href="{{ path('admin_message_supprimer', {'id': message.id }) }}">(S)</a>
+        <a class="btn" href="{{ path('admin_message_tester',    {'id': message.id }) }}">(V)</a>
     </td>
 </tr>
 {% endfor %}

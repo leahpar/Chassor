@@ -71,4 +71,11 @@ class AdminMessageController extends Controller
                         'form' => $form->createView()
                 ));
     }
+    
+    public function testerAction(Message $message)
+    {
+        $this->get('session')->getFlashBag()->add('chassor', $message->getMessage());
+    
+        return $this->redirect($this->generateUrl('admin_message_lister'));
+    }
 }

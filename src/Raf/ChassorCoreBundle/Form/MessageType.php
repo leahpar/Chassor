@@ -12,6 +12,8 @@ class MessageType extends AbstractType
     {
         $builder
             ->add('message',     'textarea')
+            ->add('type',        'choice', array('choices' => array('technique' => 'Technique',
+                                                                    'histoire' => 'Histoire')))
             ->add('date',        'datetime',     array('required' => false,
                                                    'widget' => 'single_text',
                                                    'format' => 'dd/MM/yyyy HH:mm',

@@ -27,6 +27,13 @@ class Message
      * @ORM\Column(name="message", type="text")
      */
     private $message;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="text")
+     */
+    private $type = 'histoire';
 
     /**
      * @var \DateTime
@@ -136,5 +143,28 @@ class Message
     public function getChassors()
     {
         return $this->chassors;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Message
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
