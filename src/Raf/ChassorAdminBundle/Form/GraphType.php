@@ -17,6 +17,7 @@ class GraphType extends AbstractType
             ->add('yType',  'choice', array('choices' => array('tentative' => 'Tentatives',
                                                                'chassor'   => 'Chassors',
                                                                'indice'   => 'Indices',
+                                                               'piece'   => 'Pieces',
                                                                'reponse'   => 'Reponses')))
             ->add('cumul',       'checkbox', array('required' => false))
             ->add('format',  'choice', array('choices' => array('line' => 'Line',

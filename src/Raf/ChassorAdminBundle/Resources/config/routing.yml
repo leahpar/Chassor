@@ -100,5 +100,5 @@ admin_tentative_lister_e:
 
 admin_stats_lister:
     pattern:  /stats
-    defaults: { _controller: ChassorAdminBundle:Default:test }
+    defaults: { _controller: ChassorAdminBundle:AdminStats:lister}
 

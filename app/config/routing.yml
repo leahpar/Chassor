@@ -37,7 +37,3 @@ OrderlyPayPalIpnBundleEmail:
     type:     annotation
     prefix:   /ipn/
 
-_demo:
-    resource: "@SaadTaziGChartBundle/Resources/config/routing.yml"
-    type:     yaml
-    prefix:   /gchart

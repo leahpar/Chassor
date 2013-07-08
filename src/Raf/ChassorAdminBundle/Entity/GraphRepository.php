@@ -4,6 +4,10 @@ namespace Raf\ChassorAdminBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
+use Raf\ChassorCoreBundle\Entity\Chassor;
+use Raf\ChassorCoreBundle\Entity\Enigme;
+
 /**
  * GraphRepository
  *
@@ -12,4 +16,68 @@ use Doctrine\ORM\EntityRepository;
  */
 class GraphRepository extends EntityRepository
 {
+    public function findChassorEnigme($em)
+    {
+        $sql = 'select count(ce.chassor_id) y, e.code x'
+             . ' from chassor_enigme ce left join Enigme e on ce.enigme_id = e.id'
+             . ' group by e.id'
+             . ' order by 2 asc';
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findChassorDate($em)
+    {
+        $sql = 'select count(c.id) y, date(last_login) x'
+             . ' from Chassor c'
+             . ' group by date(last_login)'
+             . ' order by 2 desc';
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findTentativeEnigme($em)
+    {
+        $sql = 'select count(t.id) y, e.code x'
+             . ' from Tentative t left join Enigme e on t.enigme_id = e.id'
+             . ' group by e.id';
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findTentativeChassor($em)
+    {
+        $sql = 'select count(t.id) y, concat(c.prenom, \' \', c.nom) x'
+             . ' from Tentative t left join Chassor c on t.chassor_id = c.id'
+             . ' group by c.id'
+             . ' order by 1 desc';
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findTentativeJour($em)
+    {
+        $sql = 'select count(t.id) y, date(t.date) x'
+             . ' from Tentative t'
+             . ' group by date(t.date)';
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findResoluJour($em)
+    {
+        $sql = 'select count(t.id) y, date(t.date) x'
+             . ' from Tentative t'
+             . ' where t.valide = 1'
+             . ' group by date(t.date)';
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }
