@@ -9,9 +9,6 @@ use Raf\ChassorCoreBundle\Entity\Chassor;
 use Raf\ChassorCoreBundle\Entity\ChassorEnigme;
 use Raf\ChassorCoreBundle\Entity\Indice;
 
-use Raf\ChassorAdminBundle\Entity\Graph;
-use Raf\ChassorAdminBundle\Form\GraphType;
-
 class AdminStatsController extends Controller
 {
     public function listerAction()
@@ -21,12 +18,7 @@ class AdminStatsController extends Controller
 
     public function ChassorEnigmeAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $graph = new Graph();
-        $liste = $this->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ChassorAdminBundle:Graph')
-                      ->findChassorEnigme($em);
+        $liste = $this->get('stats.repository')->findChassorEnigme();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '1',
                       'titre'     => 'Chassor par enigme',
@@ -39,12 +31,7 @@ class AdminStatsController extends Controller
     
     public function ChassorDateAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $graph = new Graph();
-        $liste = $this->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ChassorAdminBundle:Graph')
-                      ->findChassorDate($em);
+        $liste = $this->get('stats.repository')->findChassorDate($em);
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '2',
                       'titre'     => 'Derniere connexion',
@@ -57,12 +44,7 @@ class AdminStatsController extends Controller
     
     public function TentativeEnigmeAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $graph = new Graph();
-        $liste = $this->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ChassorAdminBundle:Graph')
-                      ->findTentativeEnigme($em);
+        $liste = $this->get('stats.repository')->findTentativeEnigme($em);
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '3',
                       'xLabel'    => 'Enigme',
@@ -75,12 +57,7 @@ class AdminStatsController extends Controller
     
     public function TentativeChassorAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $graph = new Graph();
-        $liste = $this->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ChassorAdminBundle:Graph')
-                      ->findTentativeChassor($em);
+        $liste = $this->get('stats.repository')->findTentativeChassor($em);
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '4',
                       'xLabel'    => 'Chassor',
@@ -93,12 +70,7 @@ class AdminStatsController extends Controller
     
     public function TentativeJourAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $graph = new Graph();
-        $liste = $this->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ChassorAdminBundle:Graph')
-                      ->findTentativeJour($em);
+        $liste = $this->get('stats.repository')->findTentativeJour($em);
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '5',
                       'titre'     => 'Tentatives par jour',
@@ -111,12 +83,7 @@ class AdminStatsController extends Controller
 
     public function ResoluJourAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $graph = new Graph();
-        $liste = $this->getDoctrine()
-                      ->getManager()
-                      ->getRepository('ChassorAdminBundle:Graph')
-                      ->findResoluJour($em);
+        $liste = $this->get('stats.repository')->findResoluJour($em);
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '6',
                       'titre'     => 'Resolues par jour',
@@ -125,29 +92,6 @@ class AdminStatsController extends Controller
                       'type'      => 'LineChart',
                       'dataTable' => $liste
             ));
-    }
-    
-    public function formulaireAction(Graph $graph)
-    {
-        $form = $this->createForm(new GraphType, $graph);
-        
-        $request = $this->get('request');
-    
-        if ($request->getMethod() == 'POST')
-        {
-            $form->bind($request);
-    
-            if ($form->isValid())
-            {
-                
-                return $this->redirect($this->generateUrl('admin_stats_lister'));
-            }
-        }
-    
-        return $this->render('ChassorAdminBundle:Stats:formulaire.html.twig',
-                array(
-                        'form' => $form->createView()
-                ));
     }
 }
 
