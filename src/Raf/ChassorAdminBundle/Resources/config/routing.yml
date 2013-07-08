@@ -98,3 +98,7 @@ admin_tentative_lister_e:
     pattern:  /tentatives/{id}
     defaults: { _controller: ChassorAdminBundle:AdminTentative:listerEnigme }
 
+admin_stats_lister:
+    pattern:  /stats
+    defaults: { _controller: ChassorAdminBundle:AdminStats:lister}
+

@@ -1,0 +1,25 @@
+{#{% extends "ChassorAdminBundle:Stats:graph-layout.html.twig" %}#}
+
+{#{% block stats %}#}
+<div id="chart{{ id }}" style="margin: auto; width: 1000px; height: 400px;"></div>
+<script>
+google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['{{ xLabel }}', '{{yLabel }}'],
+          {% for lg in dataTable %}
+              ['{{ lg.x }}',  {{ lg.y }}],
+          {% endfor %}
+        ]);
+
+        var options = {
+          title: '{{ titre }}'
+        };
+
+        var chart = new google.visualization.{{ type }}(document.getElementById('chart{{ id }}'));
+        chart.draw(data, options);
+      }
+</script>
+{#{% endblock stats %}#}
+
+

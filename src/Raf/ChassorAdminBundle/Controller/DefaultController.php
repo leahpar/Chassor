@@ -10,4 +10,10 @@ class DefaultController extends Controller
     {
         return $this->redirect($this->generateUrl('admin_chassor_lister'));
     }
+    public function testAction()
+    {
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('dataTable' => null
+            ));
+    }
 }

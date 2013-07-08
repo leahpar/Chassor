@@ -22,7 +22,9 @@ class AppKernel extends Kernel
             new Raf\ChassorCoreBundle\ChassorCoreBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            # Admin chassor
             new Raf\ChassorAdminBundle\ChassorAdminBundle(),
+            # IPN Paypal
             new Orderly\PayPalIpnBundle\OrderlyPayPalIpnBundle(),
         );
 

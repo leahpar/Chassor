@@ -1,0 +1,45 @@
+{% extends "ChassorAdminBundle::admin-layout.html.twig" %}
+ 
+{% block adminContent %}
+<a class="btn" href="{{ path('admin_enigme_ajouter') }}">(+)</a>
+
+<table class="stupid">
+<thead>
+<tr>
+    <th class="sort" data-sort="int"   >Enigme</th>
+    <th class="sort" data-sort="string">Code Interne</th>
+    <th class="sort" data-sort="string">Depend</th>
+    <th class="sort" data-sort="string">Titre</th>
+    <th class="sort" data-sort="date"  >Date</th>
+    <th                                >Commentaire</th>
+    <th                                >Réponses</th>
+    <th class="sort" data-sort="int"   >Délai</th>
+    <th class="sort" data-sort="string">Difficulté</th>
+    <th class="sort" data-sort="string">Achat</th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+{% for enigme in liste %}
+<tr>
+    <td>{{ enigme.code }}</td>
+    <td>{{ enigme.codeInterne }}</td>
+    <td>{%if enigme.depend %} {{  enigme.depend.codeInterne }} {% endif %}</td>
+    <td>{{ enigme.titre }}</td>
+    <td>{{ enigme.date|date("d/m") }}</td>
+    <td>{{ enigme.commentaire|nl2br }}</td>
+    <td>{{ enigme.reponses }}</td>
+    <td>{{ enigme.delai }}</td>
+    <td>{{ enigme.difficulte }}</td>
+    <td>{% if enigme.achat %}oui{% else %}non{% endif %}</td>
+    <td>
+        <a class="btn" href="{{ path('admin_enigme_modifier',    {'id': enigme.id }) }}">(M)</a>
+        <a class="btn" href="{{ path('admin_enigme_supprimer',   {'id': enigme.id }) }}" onClick="return confirm('certain ?')">(S)</a>
+        <a class="btn" href="{{ path('admin_tentative_lister_e', {'id': enigme.id }) }}">(L)</a>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+ 
+{% endblock adminContent %}

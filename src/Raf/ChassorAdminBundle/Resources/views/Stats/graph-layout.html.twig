@@ -1,0 +1,27 @@
+{% extends "ChassorAdminBundle::admin-layout.html.twig" %}
+
+{% block adminContent %}
+
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+// Load the Visualization API and the piechart package.
+google.load('visualization', '1.0', {'packages':['corechart']});
+</script>
+
+{{ render(controller("ChassorAdminBundle:AdminStats:ChassorEnigme")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:ChassorDate")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:TentativeEnigme")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:TentativeChassor")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:TentativeJour")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:ResoluJour")) }}
+<br/><br/>
+
+{% endblock adminContent %}
+
