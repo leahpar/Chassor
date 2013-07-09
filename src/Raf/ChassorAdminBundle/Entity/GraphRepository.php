@@ -26,10 +26,11 @@ class GraphRepository
     
     public function findChassorEnigme()
     {
-        $sql = 'select count(ce.chassor_id) y, e.code x'
-             . ' from chassor_enigme ce left join Enigme e on ce.enigme_id = e.id'
+        $sql = 'select count(ce.chassor_id) y, sum(ce.valide) z, e.code x'
+             . ' from chassor_enigme ce'
+             . ' left join Enigme e on ce.enigme_id = e.id'
              . ' group by e.id'
-             . ' order by 2 asc';
+             . ' order by e.code asc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

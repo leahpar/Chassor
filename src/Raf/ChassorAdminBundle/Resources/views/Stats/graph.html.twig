@@ -1,14 +1,13 @@
-{#{% extends "ChassorAdminBundle:Stats:graph-layout.html.twig" %}#}
 
-{#{% block stats %}#}
+{% block stats %}
 <div id="chart{{ id }}" style="margin: auto; width: 1000px; height: 400px;"></div>
 <script>
 google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['{{ xLabel }}', '{{yLabel }}'],
+          ['{{ xLabel }}', '{{ yLabel }}' {% if zLabel is defined %} , '{{ zLabel }}' {% endif %} ],
           {% for lg in dataTable %}
-              ['{{ lg.x }}',  {{ lg.y }}],
+              ['{{ lg.x }}',  {{ lg.y }} {% if zLabel is defined %} , {{ lg.z }} {% endif %}],
           {% endfor %}
         ]);
 
@@ -20,6 +19,6 @@ google.setOnLoadCallback(drawChart);
         chart.draw(data, options);
       }
 </script>
-{#{% endblock stats %}#}
+{% endblock stats %}
 
 

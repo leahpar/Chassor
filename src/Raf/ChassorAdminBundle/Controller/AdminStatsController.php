@@ -23,7 +23,8 @@ class AdminStatsController extends Controller
                 array('id'        => '1',
                       'titre'     => 'Chassor par enigme',
                       'xLabel'    => 'Enigme',
-                      'yLabel'    => 'Chassors',
+                      'yLabel'    => 'Disponibles',
+                      'zLabel'    => 'Resolues',
                       'type'      => 'ColumnChart',
                       'dataTable' => $liste
             ));
