@@ -40,6 +40,13 @@ class Indice
     private $chassors;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre = 1;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -143,5 +150,28 @@ class Indice
     public function getChassor()
     {
         return $this->chassors[0];
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return Indice
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
     }
 }

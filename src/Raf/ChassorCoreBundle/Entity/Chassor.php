@@ -37,21 +37,21 @@ class Chassor extends BaseUser implements EquatableInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="text", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="text", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
 
     /**
      * @var String
      * 
-     * @ORM\Column(name="parrain", type="text", type="string", length=255, nullable=true)
+     * @ORM\Column(name="parrain", type="string", length=255, nullable=true)
      */
     private $parrain;
 

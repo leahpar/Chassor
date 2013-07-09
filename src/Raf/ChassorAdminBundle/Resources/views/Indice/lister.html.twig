@@ -7,6 +7,7 @@
 <thead>
 <tr>
     <th class="sort" data-sort="string">Enigme</th>
+    <th>Ordre</th>
     <th>Indice</th>
     <th></th>
 </tr>
@@ -15,6 +16,7 @@
 {% for indice in liste %}
 <tr>
     <td>{{ indice.enigme.codeInterne2 }}</td>
+    <td>{{ indice.ordre }}</td>
     <td>{{ indice.indice }}</td>
     <td>
         <a class="btn" href="{{ path('admin_indice_modifier',  {'id': indice.id }) }}">(M)</a>

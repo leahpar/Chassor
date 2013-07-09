@@ -15,7 +15,7 @@ class AdminIndiceController extends Controller
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Indice')
-                      ->findAll();
+                      ->findAll2();
        
         return $this->render('ChassorAdminBundle:Indice:lister.html.twig',
                 array(

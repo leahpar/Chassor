@@ -25,6 +25,20 @@ class IndiceRepository extends EntityRepository
         $qb->leftJoin('i.chassors', 'c', 'with', 'c = :chassor')
            ->setParameter('chassor', $chassor)
            ->addSelect('c');
+ 
+        $qb->orderBy('i.ordre', 'asc');
+    
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function findAll2()
+    {
+        $qb = $this->createQueryBuilder('i');
+    
+        $qb->leftJoin('i.enigme', 'e');
+ 
+        $qb->orderBy('e.code', 'asc');
+        $qb->addOrderBy('i.ordre', 'asc');
     
         return $qb->getQuery()->getResult();
     }

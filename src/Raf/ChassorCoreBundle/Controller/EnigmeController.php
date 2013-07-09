@@ -149,7 +149,6 @@ class EnigmeController extends Controller
                     $enigmes = $em->getRepository('ChassorCoreBundle:ChassorEnigme')
                                   ->findBy(array('enigme' => $enigme, 'valide' => true));
                     $classement = count($enigmes)+1;
-echo $classement;
                     
                     if ($classement == $param['gain']['niveau1'])
                     {

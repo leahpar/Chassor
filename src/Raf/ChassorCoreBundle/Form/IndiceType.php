@@ -15,6 +15,7 @@ class IndiceType extends AbstractType
                                               'class' => 'ChassorCoreBundle:Enigme',
                                               'property' => 'codeInterne2',
                                               'attr' => array('class' => 'myselect2')))
+            ->add('ordre',  'number')
             ->add('indice', 'text')
         ;
     }
