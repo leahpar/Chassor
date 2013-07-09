@@ -81,11 +81,24 @@ class AdminStatsController extends Controller
             ));
     }
 
+    public function TentativeHeureAction()
+    {
+        $liste = $this->get('stats.repository')->findTentativeHeure($em);
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => '6',
+                      'titre'     => 'Tentatives par heure',
+                      'xLabel'    => 'Heure',
+                      'yLabel'    => 'Tentatives',
+                      'type'      => 'ColumnChart',
+                      'dataTable' => $liste
+            ));
+    }
+    
     public function ResoluJourAction()
     {
         $liste = $this->get('stats.repository')->findResoluJour($em);
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '6',
+                array('id'        => '7',
                       'titre'     => 'Resolues par jour',
                       'xLabel'    => 'Date',
                       'yLabel'    => 'Resolues',
@@ -93,5 +106,19 @@ class AdminStatsController extends Controller
                       'dataTable' => $liste
             ));
     }
+    
+    public function ResoluHeureAction()
+    {
+        $liste = $this->get('stats.repository')->findResoluHeure($em);
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => '8',
+                      'titre'     => 'Resolues par heure',
+                      'xLabel'    => 'Heure',
+                      'yLabel'    => 'Resolues',
+                      'type'      => 'ColumnChart',
+                      'dataTable' => $liste
+            ));
+    }
+
 }
 

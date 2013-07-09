@@ -71,7 +71,19 @@ class GraphRepository
     {
         $sql = 'select count(t.id) y, date(t.date) x'
              . ' from Tentative t'
-             . ' group by date(t.date)';
+             . ' group by date(t.date)'
+             . ' order by 2 asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findTentativeHeure()
+    {
+        $sql = 'select count(t.id) y, hour(t.date) x'
+             . ' from Tentative t'
+             . ' group by hour(t.date)'
+             . ' order by 2 asc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -82,7 +94,19 @@ class GraphRepository
         $sql = 'select count(t.id) y, date(t.date) x'
              . ' from Tentative t'
              . ' where t.valide = 1'
-             . ' group by date(t.date)';
+             . ' group by date(t.date)'
+             . ' order by 2 asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function findResoluHeure()
+    {
+        $sql = 'select count(t.id) y, hour(t.date) x'
+             . ' from Tentative t'
+             . ' where t.valide = 1'
+             . ' group by hour(t.date)'
+             . ' order by 2 asc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
