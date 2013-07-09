@@ -4,6 +4,7 @@ namespace Raf\ChassorAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Raf\ChassorCoreBundle\Entity\Transaction;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminTransactionController extends Controller
 {
@@ -34,6 +35,11 @@ class AdminTransactionController extends Controller
             $t->setEtat(Transaction::$ETAT_VALIDE);
         else if ($etat == 'X')
             $t->setEtat(Transaction::$ETAT_INVALIDE);
+
+        // ajout role ROLE_CHASSOR systematique meme si inutile, desole
+        $user = $t->getChassor();
+        $user->addRole('ROLE_CHASSOR');
+        $em->persist($user);
         
         $em->persist($t);
         $em->flush();
