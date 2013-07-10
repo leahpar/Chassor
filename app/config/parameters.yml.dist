@@ -65,10 +65,10 @@ parameters:
             difficulte3:    10000
         gain:
             niveau1:       1
-            niveau2:       10
+            niveau2:       20
             niveau3:       100
             gain1:         400
             gain2:         150
-            gain3:         50
+            gain3:         75
         indice:
             prix:          300
