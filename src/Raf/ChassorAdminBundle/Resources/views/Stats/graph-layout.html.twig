@@ -12,6 +12,8 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 
 {{ render(controller("ChassorAdminBundle:AdminStats:ChassorEnigme")) }}
 <br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:InscritJour2")) }}
+<br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:ChassorDate")) }}
 <br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:TentativeEnigme")) }}
@@ -26,6 +28,12 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 <br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:ResoluHeure")) }}
 <br/><br/>
+{#
+{{ render(controller("ChassorAdminBundle:AdminStats:MasseMonetaire")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:PieceChassor")) }}
+<br/><br/>
+#}
 
 {% endblock adminContent %}
 

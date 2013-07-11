@@ -32,7 +32,7 @@ class AdminStatsController extends Controller
     
     public function ChassorDateAction()
     {
-        $liste = $this->get('stats.repository')->findChassorDate($em);
+        $liste = $this->get('stats.repository')->findChassorDate();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '2',
                       'titre'     => 'Derniere connexion',
@@ -45,7 +45,7 @@ class AdminStatsController extends Controller
     
     public function TentativeEnigmeAction()
     {
-        $liste = $this->get('stats.repository')->findTentativeEnigme($em);
+        $liste = $this->get('stats.repository')->findTentativeEnigme();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '3',
                       'xLabel'    => 'Enigme',
@@ -58,7 +58,7 @@ class AdminStatsController extends Controller
     
     public function TentativeChassorAction()
     {
-        $liste = $this->get('stats.repository')->findTentativeChassor($em);
+        $liste = $this->get('stats.repository')->findTentativeChassor();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '4',
                       'xLabel'    => 'Chassor',
@@ -71,7 +71,7 @@ class AdminStatsController extends Controller
     
     public function TentativeJourAction()
     {
-        $liste = $this->get('stats.repository')->findTentativeJour($em);
+        $liste = $this->get('stats.repository')->findTentativeJour();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '5',
                       'titre'     => 'Tentatives par jour',
@@ -84,7 +84,7 @@ class AdminStatsController extends Controller
 
     public function TentativeHeureAction()
     {
-        $liste = $this->get('stats.repository')->findTentativeHeure($em);
+        $liste = $this->get('stats.repository')->findTentativeHeure();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '6',
                       'titre'     => 'Tentatives par heure',
@@ -97,7 +97,7 @@ class AdminStatsController extends Controller
     
     public function ResoluJourAction()
     {
-        $liste = $this->get('stats.repository')->findResoluJour($em);
+        $liste = $this->get('stats.repository')->findResoluJour();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '7',
                       'titre'     => 'Resolues par jour',
@@ -110,7 +110,7 @@ class AdminStatsController extends Controller
     
     public function ResoluHeureAction()
     {
-        $liste = $this->get('stats.repository')->findResoluHeure($em);
+        $liste = $this->get('stats.repository')->findResoluHeure();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '8',
                       'titre'     => 'Resolues par heure',
@@ -121,5 +121,74 @@ class AdminStatsController extends Controller
             ));
     }
 
-}
+    public function InscritJourAction()
+    {
+        $liste = $this->get('stats.repository')->findInscritJour();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => '9',
+                      'titre'     => 'Inscrit par jour',
+                      'xLabel'    => 'date',
+                      'yLabel'    => 'Inscriptions',
+                      'type'      => 'ColumnChart',
+                      'dataTable' => $liste
+            ));
+    }
 
+    public function InscritJour2Action()
+    {
+        $liste = $this->get('stats.repository')->findInscritJour2();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => '10',
+                      'titre'     => 'Inscrit par jour',
+                      'xLabel'    => 'date',
+                      'yLabel'    => 'Inscriptions',
+                      'type'      => 'ColumnChart',
+                      'dataTable' => $liste
+            ));
+    }
+
+    public function MasseMonetaireAction()
+    {
+        $liste = $this->get('stats.repository')->findMasseMonetaire();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => '11',
+                      'titre'     => 'Pieces en circulation',
+                      'xLabel'    => 'date',
+                      'yLabel'    => 'Pieces',
+                      'type'      => 'LineChart',
+                      'dataTable' => $liste
+            ));
+    }
+
+    public function PieceChassorAction()
+    {
+        $monnaie  = $this->get('stats.repository')->findMasseMonetaire();
+        $chassors = $this->get('stats.repository')->findInscritJour2(); 
+        $liste = array();
+        $liste[] = array('x' => '2013-06-01', 'y' => 0);
+        $i = 0;
+        $c = count($chassors);
+        foreach ($monnaie as $m)
+        {
+            while ($chassors[$i]['x'] != $m['x']
+                && $i < $c)
+            {
+                $i++;
+            }
+            if ($i >= $c) return null;
+            $liste[] = array('x' => $m['x'],
+                             'y' => $m['y'] / $chassors[$i]['y']);
+        }
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => '11',
+                      'titre'     => 'Pieces en circulation',
+                      'xLabel'    => 'date',
+                      'yLabel'    => 'Pieces',
+                      'type'      => 'LineChart',
+                      'dataTable' => $liste
+            ));
+    }
+
+
+
+}

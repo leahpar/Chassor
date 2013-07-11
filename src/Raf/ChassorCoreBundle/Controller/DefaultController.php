@@ -45,7 +45,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $messages = $em->getRepository('ChassorCoreBundle:Message')
-        ->findBy(array('type' => 'histoire'));
+        ->findBy(array('type' => 'histoire'), array('date' => 'asc'));
     
         // affichage
         return $this->render('ChassorCoreBundle:Default:messages.html.twig',

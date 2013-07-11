@@ -101,6 +101,7 @@ class GraphRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
     public function findResoluHeure()
     {
         $sql = 'select count(t.id) y, hour(t.date) x'
@@ -108,6 +109,47 @@ class GraphRepository
              . ' where t.valide = 1'
              . ' group by hour(t.date)'
              . ' order by 2 asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findInscritJour()
+    {
+        $sql = 'select count(t.id) y, date(t.date) x'
+             . ' from Transaction t'
+             . ' where t.libelle like \'Inscription%\''
+             . ' group by date(t.date)'
+             . ' order by 2 asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findInscritJour2()
+    {
+        $sql = 'select tbl.dt x, @tot := @tot + tbl.ct y'
+             . ' from  (select date(t.date) dt, count(t.id) ct'
+             . '       from Transaction t'
+             . '       where t.libelle like \'Inscriptio%\''
+             . '       group by date(t.date)'
+             . '       order by t.date) tbl'
+             . ' join (select @tot := 0) r'
+             . ' order by tbl.dt asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findMasseMonetaire()
+    {
+        $sql = 'select tbl.dt x, @tot := @tot + tbl.ct y'
+             . ' from  (select date(t.date) dt, sum(t.montant) ct'
+             . '       from Transaction t'
+             . '       group by date(t.date)'
+             . '       order by t.date) tbl'
+             . ' join (select @tot := 0) r'
+             . ' order by tbl.dt';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
