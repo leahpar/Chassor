@@ -37,7 +37,8 @@ class AdminStatsController extends Controller
                 array('id'        => '2',
                       'titre'     => 'Derniere connexion',
                       'xLabel'    => 'Date',
-                      'yLabel'    => 'Connexions',
+                      'zLabel'    => 'Connexions',
+                      'yLabel'    => 'Absents',
                       'type'      => 'ColumnChart',
                       'dataTable' => $liste
             ));
@@ -136,12 +137,13 @@ class AdminStatsController extends Controller
 
     public function InscritJour2Action()
     {
-        $liste = $this->get('stats.repository')->findInscritJour2();
+        $liste = $this->get('stats.repository')->findInscritJour3();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
                 array('id'        => '10',
                       'titre'     => 'Inscrit par jour',
                       'xLabel'    => 'date',
-                      'yLabel'    => 'Inscriptions',
+                      'yLabel'    => 'Total',
+                      'zLabel'    => 'Inscriptions',
                       'type'      => 'ColumnChart',
                       'dataTable' => $liste
             ));

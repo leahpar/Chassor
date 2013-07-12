@@ -38,10 +38,20 @@ class GraphRepository
 
     public function findChassorDate()
     {
-        $sql = 'select count(c.id) y, date(last_login) x'
+        $sql = 'select tbl.dt x, tbl.ct z, @tot := @tot - tbl.ct y'
+             . ' from  ('
+             . ' select count(c.id) ct, date(last_login) dt'
              . ' from Chassor c'
+             . ' where roles like \'%ROLE_CHASSOR%\''
              . ' group by date(last_login)'
-             . ' order by 2 desc';
+             . ' order by 2 desc) tbl'
+             . ' join (select @tot := count(id) from Chassor where roles like \'%ROLE_CHASSOR%\') r'
+             . ' order by tbl.dt desc';
+#        $sql = 'select count(c.id) y, date(last_login) x'
+#             . ' from Chassor c'
+#             . ' where roles like \'%ROLE_CHASSOR%\''
+#             . ' group by date(last_login)'
+#             . ' order by 2 desc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -120,7 +130,7 @@ class GraphRepository
              . ' from Transaction t'
              . ' where t.libelle like \'Inscription%\''
              . ' group by date(t.date)'
-             . ' order by 2 asc';
+             . ' order by 2 desc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -132,10 +142,36 @@ class GraphRepository
              . ' from  (select date(t.date) dt, count(t.id) ct'
              . '       from Transaction t'
              . '       where t.libelle like \'Inscriptio%\''
+             . '       and etat = 0'
              . '       group by date(t.date)'
              . '       order by t.date) tbl'
              . ' join (select @tot := 0) r'
-             . ' order by tbl.dt asc';
+             . ' order by tbl.dt desc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findInscritJour3()
+    {
+        $sql = 'select tbl2.dt x, tbl2.ct y, tbl3.c z'
+             . ' from '
+             . ' (select tbl.dt dt, @tot := @tot + tbl.ct ct'
+             . ' from  (select date(t.date) dt, count(t.id) ct'
+             . '       from Transaction t'
+             . '       where t.libelle like \'Inscriptio%\''
+             . '       and etat = 0'
+             . '       group by date(t.date)'
+             . '       order by t.date) tbl'
+             . ' join (select @tot := 0) r'
+             . ' order by tbl.dt asc) tbl2,'
+             . ' (select count(t.id) c, date(t.date) dt'
+             . ' from Transaction t'
+             . ' where t.libelle like \'Inscription%\''
+             . ' group by date(t.date)'
+             . ' order by 2 asc) tbl3'
+             . ' where tbl2.dt = tbl3.dt'
+             . ' order by tbl2.dt desc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -146,6 +182,7 @@ class GraphRepository
         $sql = 'select tbl.dt x, @tot := @tot + tbl.ct y'
              . ' from  (select date(t.date) dt, sum(t.montant) ct'
              . '       from Transaction t'
+             . '       and etat = 0'
              . '       group by date(t.date)'
              . '       order by t.date) tbl'
              . ' join (select @tot := 0) r'

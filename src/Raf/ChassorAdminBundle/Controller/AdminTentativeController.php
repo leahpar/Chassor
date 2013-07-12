@@ -26,7 +26,9 @@ class AdminTentativeController extends Controller
         $liste = $this->getDoctrine()
                       ->getManager()
                       ->getRepository('ChassorCoreBundle:Tentative')
-                      ->findBy($filtre, array('date' => 'DESC'));
+                      ->findBy($filtre,
+                               array('date' => 'DESC'),
+                               500);
        
         return $this->render('ChassorAdminBundle:Tentative:lister.html.twig',
                 array(
