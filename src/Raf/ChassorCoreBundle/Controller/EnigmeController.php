@@ -253,16 +253,16 @@ class EnigmeController extends Controller
             $reponse->setStatusCode(403);
         }
         // Accès autorisé
-        elseif (file_exists($this->container->getParameter('kernel.root_dir').'/../web/images/enigmes/'.$enigme->getCodeInterne().'-'.$image_id.'.jpg'))
+        elseif (file_exists($this->container->getParameter('kernel.root_dir').'/../web/data/images/'.$enigme->getCodeInterne().'-'.$image_id.'.jpg'))
         {
-            $image = file_get_contents($this->container->getParameter('kernel.root_dir').'/../web/images/enigmes/'.$enigme->getCodeInterne().'-'.$image_id.'.jpg');
+            $image = file_get_contents($this->container->getParameter('kernel.root_dir').'/../web/data/images/'.$enigme->getCodeInterne().'-'.$image_id.'.jpg');
             $reponse->setStatusCode(200);
         }
         // Image inexistante
         else
         {
-            $image = file_get_contents($this->container->getParameter('kernel.root_dir').'/../web/bundles/chassorcore/img/error.png');
-            $reponse->setStatusCode(404);
+            $image = file_get_contents($this->container->getParameter('kernel.root_dir').'/../web/bundles/chassorcore/img/error403.png');
+            $reponse->setStatusCode(403);
         }
         $reponse->setContent($image);
         
