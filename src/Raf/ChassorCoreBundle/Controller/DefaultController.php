@@ -34,9 +34,13 @@ class DefaultController extends Controller
     {
         return $this->render('ChassorCoreBundle:Default:reglement.html.twig');
     }
-    public function PartenairesAction()
+    public function partenairesAction()
     {
         return $this->render('ChassorCoreBundle:Default:partenaires.html.twig');
+    }
+    public function forumAction()
+    {
+        return $this->redirect('/forum/index.php');
     }
     /**
      * @Secure(roles="ROLE_CHASSOR")

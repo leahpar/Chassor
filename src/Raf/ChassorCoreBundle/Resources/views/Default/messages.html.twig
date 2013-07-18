@@ -1,8 +1,7 @@
-{%extends "ChassorCoreBundle::layout-red.html.twig" %}
+{%extends "ChassorCoreBundle::layout-black.html.twig" %}
 
 {% block content %}
 
-<div class="textContent">
 {% for m in messages %}
    <div class="textContent">
    <p>{{ m.date|date('d/m') }}</p>
@@ -11,5 +10,4 @@
    </div>
 {% endfor %}
 
-</div>
 {% endblock content %}

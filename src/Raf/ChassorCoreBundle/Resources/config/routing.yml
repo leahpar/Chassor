@@ -25,6 +25,10 @@ jouer:
     pattern:  /comment-jouer
     defaults: { _controller: ChassorCoreBundle:Default:jouer }
 
+forum:
+    pattern:  /forum/
+    defaults: { _controller: ChassorCoreBundle:Default:forum }
+
 contact:
     pattern:  /contact
     defaults: { _controller: ChassorCoreBundle:Default:contact }

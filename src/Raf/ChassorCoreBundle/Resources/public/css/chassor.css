@@ -1255,3 +1255,15 @@ h6 {
     left: -25px;
   }
 }
+
+.black .textContent {
+
+text-align: left;
+    width: 80%;
+margin: auto;
+font-family: din;
+font-size: 15px;
+color: #fff;
+max-width: 630px;
+}
+

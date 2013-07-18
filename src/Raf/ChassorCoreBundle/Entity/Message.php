@@ -31,7 +31,7 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="text")
+     * @ORM\Column(name="type", type="string", length=255)
      */
     private $type = 'histoire';
 
