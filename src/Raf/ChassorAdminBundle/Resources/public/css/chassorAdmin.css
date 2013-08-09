@@ -53,7 +53,7 @@
 }
 
 /* les tableaux */
-.admin table
+.adminTable
 {
     width : 90%;
     font-size: 12px;
@@ -62,7 +62,7 @@
     border-collapse: collapse;
     text-align: left;
 }
-.admin th
+.adminTable th
 {
     font-size: 14px;
     font-weight: normal;
@@ -70,13 +70,13 @@
     padding: 10px 8px;
     border-bottom: 2px solid #dd6e01;
 }
-.admin td
+.adminTable td
 {
     border-bottom: 1px solid #ccc;
     color: #fff;
     padding: 6px 8px;
 }
-.admin tbody tr:hover td
+.adminTable tbody tr:hover td
 {
      background-color: #AA0000;
 }

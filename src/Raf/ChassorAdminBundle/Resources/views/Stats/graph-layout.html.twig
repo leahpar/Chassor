@@ -7,10 +7,12 @@
 <script type="text/javascript">
 
 // Load the Visualization API and the piechart package.
-google.load('visualization', '1.0', {'packages':['corechart']});
+google.load('visualization', '1.0', {'packages':['corechart', 'table']});
 </script>
 
 {{ render(controller("ChassorAdminBundle:AdminStats:ChassorEnigme")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:TauxEnigme")) }}
 <br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:InscritJour2")) }}
 <br/><br/>
@@ -22,11 +24,15 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 <br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:TentativeJour")) }}
 <br/><br/>
-{{ render(controller("ChassorAdminBundle:AdminStats:TentativeHeure")) }}
-<br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:ResoluJour")) }}
 <br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:ProductiviteJour")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:TentativeHeure")) }}
+<br/><br/>
 {{ render(controller("ChassorAdminBundle:AdminStats:ResoluHeure")) }}
+<br/><br/>
+{{ render(controller("ChassorAdminBundle:AdminStats:ProductiviteHeure")) }}
 <br/><br/>
 {#
 {{ render(controller("ChassorAdminBundle:AdminStats:MasseMonetaire")) }}
@@ -34,6 +40,8 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 {{ render(controller("ChassorAdminBundle:AdminStats:PieceChassor")) }}
 <br/><br/>
 #}
+{{ render(controller("ChassorAdminBundle:AdminStats:Classement")) }}
+<br/><br/>
 
 {% endblock adminContent %}
 

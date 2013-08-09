@@ -36,6 +36,19 @@ class GraphRepository
         return $stmt->fetchAll();
     }
 
+    public function findTauxEnigme()
+    {
+        $sql = 'select e.code x,'
+             . ' round(sum(ce.valide)/count(ce.chassor_id)*100) y'
+             . ' from chassor_enigme ce'
+             . ' left join Enigme e on ce.enigme_id = e.id'
+             . ' group by e.id'
+             . ' order by e.code asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function findChassorDate()
     {
         $sql = 'select tbl.dt x, tbl.ct z, @tot := @tot - tbl.ct y'
@@ -94,6 +107,28 @@ class GraphRepository
         $sql = 'select count(t.id) y, hour(t.date) x'
              . ' from Tentative t'
              . ' group by hour(t.date)'
+             . ' order by 2 asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findProductiviteHeure()
+    {
+        $sql = 'select sum(t.valide)/count(t.id)*100 y, hour(t.date) x'
+             . ' from Tentative t'
+             . ' group by hour(t.date)'
+             . ' order by 2 asc';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findProductiviteJour()
+    {
+        $sql = 'select sum(t.valide)/count(t.id)*100 y, date(t.date) x'
+             . ' from Tentative t'
+             . ' group by date(t.date)'
              . ' order by 2 asc';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
@@ -187,6 +222,21 @@ class GraphRepository
              . '       order by t.date) tbl'
              . ' join (select @tot := 0) r'
              . ' order by tbl.dt';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function findClassement()
+    {
+        $sql = 'select concat(c.prenom, \' \', c.nom) x,'
+             . ' concat(\'\\\'\', sum(t.valide), \'\\\'\') y,'
+             . ' concat(\'\\\'\', sec_to_time(sum(time_to_sec(timediff(t.date, t.datedispo)))), \'\\\'\') z'
+             . ' from chassor_enigme t, Chassor c'
+             . ' where c.id = t.chassor_id'
+             . ' group by chassor_id'
+             . ' order by sum(t.valide) desc, sum(time_to_sec(timediff(t.date, t.datedispo))) asc'
+             . ' limit 0, 15';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

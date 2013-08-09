@@ -20,7 +20,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findChassorEnigme();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '1',
+                array('id'        => 'ChassorEnigme',
                       'titre'     => 'Chassor par enigme',
                       'xLabel'    => 'Enigme',
                       'yLabel'    => 'Disponibles',
@@ -30,11 +30,24 @@ class AdminStatsController extends Controller
             ));
     }
     
+    public function TauxEnigmeAction()
+    {
+        $liste = $this->get('stats.repository')->findTauxEnigme();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => 'TauxEnigme',
+                      'titre'     => 'Taux de resolution',
+                      'xLabel'    => 'Enigme',
+                      'yLabel'    => 'Resolution',
+                      'type'      => 'ColumnChart',
+                      'dataTable' => $liste
+            ));
+    }
+    
     public function ChassorDateAction()
     {
         $liste = $this->get('stats.repository')->findChassorDate();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '2',
+                array('id'        => 'ChassorDate',
                       'titre'     => 'Derniere connexion',
                       'xLabel'    => 'Date',
                       'zLabel'    => 'Connexions',
@@ -48,7 +61,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findTentativeEnigme();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '3',
+                array('id'        => 'TentativeEnigme',
                       'xLabel'    => 'Enigme',
                       'yLabel'    => 'Tentatives',
                       'titre'     => 'Tentatives par enigme',
@@ -61,7 +74,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findTentativeChassor();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '4',
+                array('id'        => 'TentativeChassor',
                       'xLabel'    => 'Chassor',
                       'yLabel'    => 'Tentatives',
                       'titre'     => 'Tentatives par chassor',
@@ -74,10 +87,23 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findTentativeJour();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '5',
+                array('id'        => 'TentativeJour',
                       'titre'     => 'Tentatives par jour',
                       'xLabel'    => 'Date',
                       'yLabel'    => 'Tentatives',
+                      'type'      => 'LineChart',
+                      'dataTable' => $liste
+            ));
+    }
+    
+    public function ProductiviteJourAction()
+    {
+        $liste = $this->get('stats.repository')->findProductiviteJour();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => 'ProductiviteJour',
+                      'titre'     => 'Productivite par jour',
+                      'xLabel'    => 'Date',
+                      'yLabel'    => 'Productivite',
                       'type'      => 'LineChart',
                       'dataTable' => $liste
             ));
@@ -87,10 +113,23 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findTentativeHeure();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '6',
+                array('id'        => 'TentativeHeure',
                       'titre'     => 'Tentatives par heure',
                       'xLabel'    => 'Heure',
                       'yLabel'    => 'Tentatives',
+                      'type'      => 'ColumnChart',
+                      'dataTable' => $liste
+            ));
+    }
+    
+    public function ProductiviteHeureAction()
+    {
+        $liste = $this->get('stats.repository')->findProductiviteHeure();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => 'ProductiviteHeure',
+                      'titre'     => 'Productivite par heure',
+                      'xLabel'    => 'Heure',
+                      'yLabel'    => 'Productivite',
                       'type'      => 'ColumnChart',
                       'dataTable' => $liste
             ));
@@ -100,7 +139,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findResoluJour();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '7',
+                array('id'        => 'ResoluJour',
                       'titre'     => 'Resolues par jour',
                       'xLabel'    => 'Date',
                       'yLabel'    => 'Resolues',
@@ -113,7 +152,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findResoluHeure();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '8',
+                array('id'        => 'ResoluHeure',
                       'titre'     => 'Resolues par heure',
                       'xLabel'    => 'Heure',
                       'yLabel'    => 'Resolues',
@@ -126,7 +165,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findInscritJour();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '9',
+                array('id'        => 'InscritJour',
                       'titre'     => 'Inscrit par jour',
                       'xLabel'    => 'date',
                       'yLabel'    => 'Inscriptions',
@@ -139,7 +178,7 @@ class AdminStatsController extends Controller
     {
         $liste = $this->get('stats.repository')->findInscritJour3();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '10',
+                array('id'        => 'InscritJour3',
                       'titre'     => 'Inscrit par jour',
                       'xLabel'    => 'date',
                       'yLabel'    => 'Total',
@@ -149,11 +188,25 @@ class AdminStatsController extends Controller
             ));
     }
 
+    public function ClassementAction()
+    {
+        $liste = $this->get('stats.repository')->findClassement();
+        return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
+                array('id'        => 'Classement',
+                      'titre'     => 'Classement',
+                      'xLabel'    => 'Chassor',
+                      'yLabel'    => 'Enigmes',
+                      'zLabel'    => 'Delai',
+                      'type'      => 'Table',
+                      'dataTable' => $liste
+            ));
+    }
+
     public function MasseMonetaireAction()
     {
         $liste = $this->get('stats.repository')->findMasseMonetaire();
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '11',
+                array('id'        => 'MasseMonetaire',
                       'titre'     => 'Pieces en circulation',
                       'xLabel'    => 'date',
                       'yLabel'    => 'Pieces',
@@ -182,7 +235,7 @@ class AdminStatsController extends Controller
                              'y' => $m['y'] / $chassors[$i]['y']);
         }
         return $this->render('ChassorAdminBundle:Stats:graph.html.twig',
-                array('id'        => '11',
+                array('id'        => 'PieceChassor',
                       'titre'     => 'Pieces en circulation',
                       'xLabel'    => 'date',
                       'yLabel'    => 'Pieces',

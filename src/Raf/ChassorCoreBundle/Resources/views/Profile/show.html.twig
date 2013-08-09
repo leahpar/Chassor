@@ -4,8 +4,13 @@
 <div class="redContent">
     <p>
         {{ app.user.username }}<br/>
-        {{ app.user.email }}<br/>
+        {{ app.user.email }}
+    </p>
+    <p>
         {{ app.user.prenom }} {{ app.user.nom }}<br/>
+        {{ app.user.rue }}<br/>
+        {{ app.user.cp  }}<br/>
+        {{ app.user.ville }}
     </p>
     <a href="{{ path("fos_user_profile_edit") }}">Editer mon profil</a><br/>
     <a href="{{ path("fos_user_change_password") }}">Changer mon mot de passe</a>
