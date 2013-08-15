@@ -20,8 +20,8 @@ class ChassorRepository extends EntityRepository
     public function findAll2()
     {
         $qb = $this->createQueryBuilder('c')
-                   ->leftJoin('c.transactions', 'ct')
-                   ->addSelect('ct')
+                  // ->leftJoin('c.transactions', 'ct')
+                  // ->addSelect('ct')
                    ->leftJoin('c.indices', 'ci')
                    ->addSelect('ci')
                    ->leftJoin('c.enigmes', 'ce')
