@@ -37,7 +37,7 @@
                      {% elseif i.chassor is not null %}  {# indice acheté : affichage #}
 				        <p>
 				            <img src="{{ asset('bundles/chassorcore/img/enigme_indice_icon.png') }}" />
-				            <strong>Indice {{ n }} : {{ i.indice }}</strong><br/>&nbsp;
+				            <strong>Indice {{ n }} : {{ i.indice|raw }}</strong><br/>&nbsp;
                         </p>
                      {% elseif x == 0 %}     {# indice disponible à l'achat #}
                         {% set x = 1 %}
